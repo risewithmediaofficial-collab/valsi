@@ -1,0 +1,458 @@
+@import "tailwindcss";
+
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16a34a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d;
+}/* 
+  Global Styles - Smooth Scrolling & Performance Optimization
+  Add this to your index.css or global styles
+*/
+
+/* ============================
+   SMOOTH SCROLLING
+   ============================ */
+
+html {
+  /* Enable smooth scrolling behavior */
+  scroll-behavior: smooth;
+  
+  /* Improve font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  /* Prevent over-scroll bounce on mobile */
+  overscroll-behavior: none;
+}
+
+/* ============================
+   ANIMATION OPTIMIZATION
+   ============================ */
+
+/* Hardware acceleration for all elements */
+* {
+  /* Enable GPU acceleration */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  
+  /* Smooth transitions by default */
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Prevent text selection on buttons/links */
+button,
+a,
+[role="button"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* ============================
+   WILL-CHANGE UTILITIES
+   ============================ */
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+/* ============================
+   SCROLL PERFORMANCE
+   ============================ */
+
+/* Optimize scrolling containers */
+main,
+.scrollable {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Remove scroll delay on touch devices */
+a,
+button {
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+/* ============================
+   REDUCE MOTION SUPPORT
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================
+   MOBILE OPTIMIZATIONS
+   ============================ */
+
+@media (max-width: 768px) {
+  /* Faster animations on mobile */
+  * {
+    transition-duration: 150ms;
+  }
+  
+  /* Reduce motion on mobile devices */
+  @media (hover: none) {
+    button:hover,
+    a:hover {
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+  
+  /* Optimize input performance */
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on focus */
+  }
+}
+
+/* ============================
+   PAINT OPTIMIZATION
+   ============================ */
+
+/* Minimize repaints */
+.sticky {
+  will-change: transform, position;
+}
+
+/* Optimize animations */
+.animate {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ============================
+   FONT OPTIMIZATION
+   ============================ */
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap; /* Prevent FOIT */
+}
+
+/* ============================
+   IMAGE OPTIMIZATION
+   ============================ */
+
+img {
+  /* Prevent layout shift */
+  display: block;
+  
+  /* Lazy load support */
+  loading: lazy;
+  decoding: async;
+  
+  /* Prevent scaling artifacts */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Responsive images */
+img[srcset] {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================
+   BUTTON OPTIMIZATION
+   ============================ */
+
+button {
+  /* GPU acceleration */
+  will-change: transform;
+  
+  /* Improve click feedback */
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Prevent double-tap zoom */
+  touch-action: manipulation;
+}
+
+button:active {
+  /* Quick tap feedback */
+  transform: scale(0.98);
+}
+
+/* ============================
+   LINK OPTIMIZATION
+   ============================ */
+
+a {
+  /* Smooth color transitions */
+  transition: color 0.2s ease-out;
+  
+  /* Touch optimization */
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+/* ============================
+   FORM OPTIMIZATION
+   ============================ */
+
+input,
+textarea,
+select {
+  /* Prevent zoom on iOS */
+  font-size: 16px;
+  
+  /* Improve accessibility */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #15803d; /* Emerald focus ring */
+  outline-offset: 2px;
+}
+
+/* ============================
+   LOADING STATES
+   ============================ */
+
+/* Skeleton loading animation */
+@keyframes skeleton-loading {
+  0% {
+    background-color: rgb(249, 250, 251);
+  }
+  50% {
+    background-color: rgb(243, 244, 246);
+  }
+  100% {
+    background-color: rgb(249, 250, 251);
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+/* ============================
+   SCROLLBAR STYLING
+   ============================ */
+
+/* Chrome/Safari scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(21, 128, 61, 0.5);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 128, 61, 0.8);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: rgba(21, 128, 61, 0.5) rgba(0, 0, 0, 0.05);
+  scrollbar-width: thin;
+}
+
+/* ============================
+   SELECTION STYLING
+   ============================ */
+
+::selection {
+  background-color: #15803d;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #15803d;
+  color: white;
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+
+/* No animation */
+.no-motion {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* No scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth fade in */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* GPU-accelerated class */
+.gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+}
+
+/* ============================
+   ACCESSIBILITY
+   ============================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  * {
+    border-width: 1px;
+  }
+  
+  button,
+  a {
+    text-decoration: underline;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(21, 128, 61, 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(21, 128, 61, 0.5);
+  }
+}
+
+/* ============================
+   FOCUS MANAGEMENT
+   ============================ */
+
+/* Visible focus for keyboard navigation */
+:focus-visible {
+  outline: 2px solid #15803d;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #15803d;
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================
+   PRINT STYLES
+   ============================ */
+
+@media print {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ============================
+   PERFORMANCE DEBUGGING
+   ============================ */
+
+/* Uncomment to debug paint/reflows */
+/* * {
+  outline: 1px solid #f0f; 
+} */
+
+/* Uncomment to see elements with will-change */
+/* [style*="will-change"] {
+  outline: 2px dashed #0f0;
+} */
