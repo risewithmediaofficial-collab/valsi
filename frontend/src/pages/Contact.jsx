@@ -69,15 +69,19 @@ const Contact = () => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                     <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>1</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>System Orientation</div>
+                    <div style={{ fontSize: 15, fontWeight: 500 }}>Request Orientation</div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                     <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>2</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>Capability Assessment</div>
+                    <div style={{ fontSize: 15, fontWeight: 500 }}>Schedule Session</div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                     <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>3</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>Execution Path</div>
+                    <div style={{ fontSize: 15, fontWeight: 500 }}>System Understanding</div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>4</div>
+                    <div style={{ fontSize: 15, fontWeight: 500 }}>Clarity & Next Steps</div>
                   </div>
                 </div>
               </div>
@@ -125,6 +129,29 @@ const Contact = () => {
               </div>
             </motion.div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* KEY COMMITMENTS */}
+      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)' }}>
+        <div className="v-wrap">
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <span className="v-label">Commitment</span>
+            <WordReveal text="Our promise to you." colorWords={['promise', 'you.']} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+            {[
+              { title: "Completely Free", desc: "Our orientation sessions are designed for clarity, not commerce. No fees involved." },
+              { title: "Pressure-Free", desc: "Decide on your own terms. We never pressure participants to join after orientation." },
+              { title: "Full Transparency", desc: "Every aspect of both SkillNet and Farm-to-Home systems is shared openly." },
+            ].map((c, i) => (
+              <motion.div key={i} {...fu(i * 0.1)} className="v-card" style={{ padding: 40, textAlign: 'center' }}>
+                <div style={{ color: 'var(--secondary)', marginBottom: 20 }}><CheckCircle size={32} /></div>
+                <h4 style={{ fontSize: 20, marginBottom: 12 }}>{c.title}</h4>
+                <p style={{ color: 'var(--text-3)', fontSize: 15, lineHeight: 1.6, fontWeight: 300 }}>{c.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

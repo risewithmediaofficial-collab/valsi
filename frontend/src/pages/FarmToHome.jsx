@@ -17,38 +17,59 @@ const FarmToHome = () => {
         <div className="v-wrap">
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 80, alignItems: 'center' }}>
              <motion.div {...fu()}>
-                <span className="v-label">The Network</span>
-                <h2 style={{ fontSize: 42, marginBottom: 24 }}>Eliminating inefficiency. Building trust.</h2>
-                <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300, marginBottom: 40 }}>
-                  Traditional supply chains are bloated with middlemen and lack transparency. Farm-to-Home uses trained Valsii nodes to manage the flow of goods with precision and ethics.
-                </p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-                  {[
-                    { icon: <Sprout size={20} />, title: "Direct Sourcing", desc: "No middlemen. Just farmers and execution nodes." },
-                    { icon: <ShieldCheck size={20} />, title: "Quality Control", desc: "Every product is verified by trained Valsii members." },
-                  ].map((f, i) => (
-                    <div key={i}>
-                      <div style={{ color: 'var(--secondary)', marginBottom: 12 }}>{f.icon}</div>
-                      <div style={{ fontWeight: 600, marginBottom: 8 }}>{f.title}</div>
-                      <div style={{ fontSize: 14, color: 'var(--text-3)', lineHeight: 1.5 }}>{f.desc}</div>
-                    </div>
-                  ))}
+                <span className="v-label">Architecture</span>
+                <h2 style={{ fontSize: 42, marginBottom: 24 }}>The Problem & The Solution.</h2>
+                <div style={{ display: 'grid', gap: 32, marginBottom: 40 }}>
+                  <div style={{ padding: 24, background: 'rgba(255, 107, 107, 0.05)', borderLeft: '4px solid #ff6b6b', borderRadius: '0 12px 12px 0' }}>
+                    <div style={{ fontWeight: 700, color: '#ff6b6b', fontSize: 13, textTransform: 'uppercase', marginBottom: 8 }}>The Problem</div>
+                    <div style={{ color: 'var(--text-2)', fontSize: 15, lineHeight: 1.6 }}>Farmers lack market access; Consumers face inconsistent quality; Youth lack real product-based exposure.</div>
+                  </div>
+                  <div style={{ padding: 24, background: 'rgba(31, 122, 99, 0.05)', borderLeft: '4px solid var(--secondary)', borderRadius: '0 12px 12px 0' }}>
+                    <div style={{ fontWeight: 700, color: 'var(--secondary)', fontSize: 13, textTransform: 'uppercase', marginBottom: 8 }}>The Solution</div>
+                    <div style={{ color: 'var(--text-2)', fontSize: 15, lineHeight: 1.6 }}>Direct producer-to-consumer supply with transparent quality and pricing, managed by trained participants.</div>
+                  </div>
                 </div>
              </motion.div>
-             <motion.div {...fu(0.2)}>
+              <motion.div {...fu(0.2)}>
                 <div className="v-card" style={{ padding: 48, background: 'var(--bg)', boxShadow: 'inset 8px 8px 16px rgba(15, 47, 36, 0.05), inset -8px -8px 16px rgba(255, 255, 255, 0.8)' }}>
                   <Truck size={40} color="var(--secondary)" style={{ marginBottom: 24 }} />
-                  <h3 style={{ fontSize: 22, marginBottom: 20 }}>System Flow</h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    {['Farmer Sourcing', 'Logistics Node', 'Final Distribution'].map((step, i) => (
+                  <h3 style={{ fontSize: 22, marginBottom: 20 }}>Operating Flow</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                    {[
+                      'Producers (Direct Sourcing)', 'Quality Check Verification', 'Transparent Pricing Set',
+                      'Trained Participants Handle', 'Household Distribution', 'Repeat Demand Building'
+                    ].map((step, i) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                        <CheckCircle size={20} color="var(--secondary)" />
-                        <div style={{ fontSize: 16, fontWeight: 500 }}>{step}</div>
+                        <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--secondary)', color: '#fff', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{i + 1}</div>
+                        <div style={{ fontSize: 15, fontWeight: 500 }}>{step}</div>
                       </div>
                     ))}
                   </div>
                 </div>
-             </motion.div>
+              </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT CATEGORIES */}
+      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <div className="v-wrap">
+          <div style={{ textAlign: 'center', marginBottom: 80 }}>
+            <span className="v-label">Portfolio</span>
+            <WordReveal text="Product Categories." colorWords={['Categories.']} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
+            {[
+              { title: "Rice & Grains", items: "Basmati, Sona Masoori, Millets" },
+              { title: "Cooking Oils", items: "Sunflower, Groundnut, Coconut, Mustard" },
+              { title: "Vegetables & Farm Produce", items: "Seasonal vegetables, leafy greens" },
+              { title: "Home Essentials", items: "Pulses, Spices, Flour, Groceries" },
+            ].map((cat, i) => (
+              <motion.div key={i} {...fu(i * 0.1)} className="v-card" style={{ padding: 32 }}>
+                <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 12, color: 'var(--secondary)' }}>{cat.title}</div>
+                <div style={{ color: 'var(--text-3)', fontSize: 14, lineHeight: 1.6 }}>{cat.items}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

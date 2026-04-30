@@ -9,6 +9,7 @@ import SkillNetMastery from './pages/SkillNetMastery';
 import FarmToHome from './pages/FarmToHome';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import SeedingSynthesis from './pages/SeedingSynthesis';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/seeding-synthesis" element={<SeedingSynthesis />} />
             <Route path="/core-systems" element={<CoreSystems />} />
             <Route path="/skillnet-mastery" element={<SkillNetMastery />} />
             <Route path="/farm-to-home" element={<FarmToHome />} />

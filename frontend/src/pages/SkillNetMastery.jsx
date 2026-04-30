@@ -6,10 +6,12 @@ import { WordReveal, PageHero, TiltCard, fu } from '../components/UI';
 
 const SkillNetMastery = () => {
   const modules = [
-    { title: "Thinking Clarity", desc: "Developing sharp, logical thinking and problem-solving capabilities." },
-    { title: "Work Discipline", desc: "Building the habits and focus required for professional execution." },
-    { title: "Leadership", desc: "Communicating vision and managing system nodes effectively." },
-    { title: "System Logic", desc: "Understanding how components interact to create value." },
+    { title: "Subconscious Mind Power", desc: "Thought pattern awareness and emotional regulation." },
+    { title: "Leadership & Identity", desc: "Self-leadership and personal responsibility." },
+    { title: "Communication", desc: "Public speaking, clear expression, and confidence." },
+    { title: "Time Management", desc: "Daily planning and work accountability." },
+    { title: "Teamwork", desc: "Understanding personalities and conflict handling." },
+    { title: "Opportunity Awareness", desc: "Decision clarity and growth mindset." },
   ];
 
   return (
@@ -17,8 +19,34 @@ const SkillNetMastery = () => {
       <PageHero 
         label="People System" 
         title="SkillNet Mastery." 
-        subtitle="The foundation of the Valsii ecosystem. We don't just teach skills; we engineer capabilities that are ready for real-world application."
+        subtitle="A People Preparation System. Structured skill training building work discipline, thinking clarity, and real-world execution readiness."
       />
+
+      {/* PHILOSOPHY */}
+      <section className="v-sec" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
+        <div className="v-wrap">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+            <motion.div {...fu()}>
+              <span className="v-label">Approach</span>
+              <h2 style={{ fontSize: 36, marginBottom: 24 }}>No hype. No artificial motivation.</h2>
+              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300 }}>
+                SkillNet is built on the foundation of practical skill building. We don't rely on short-term emotional peaks; we focus on long-term capability development through structured, repeatable processes.
+              </p>
+            </motion.div>
+            <div style={{ display: 'grid', gap: 24 }}>
+              {[
+                { title: "Practical Focus", desc: "Every concept is tied to a real-world application within the supply chain." },
+                { title: "Ethical Foundation", desc: "Training emphasizes responsibility, integrity, and collective growth." }
+              ].map((item, i) => (
+                <motion.div key={i} {...fu(0.1 * i)} className="v-card" style={{ padding: 32 }}>
+                  <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 8, color: 'var(--secondary)' }}>{item.title}</div>
+                  <div style={{ color: 'var(--text-2)', fontSize: 15, lineHeight: 1.6, fontWeight: 300 }}>{item.desc}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)' }}>
         <div className="v-wrap">
@@ -40,18 +68,18 @@ const SkillNetMastery = () => {
             <motion.div {...fu(0.2)}>
               <TiltCard className="v-card" style={{ padding: 48, background: 'var(--primary)', color: '#fff' }}>
                  <Brain size={48} color="var(--accent)" style={{ marginBottom: 32 }} />
-                 <h3 style={{ fontSize: 24, marginBottom: 16 }}>Mastery Pathway</h3>
-                 <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    {[1, 2, 3].map(step => (
-                      <div key={step} style={{ display: 'flex', gap: 16 }}>
-                        <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{step}</div>
-                        <div>
-                          <div style={{ fontWeight: 600 }}>{step === 1 ? 'Orientation' : step === 2 ? 'Active Training' : 'System Integration'}</div>
-                          <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', fontWeight: 300 }}>{step === 1 ? 'Understanding the Valsii vision' : step === 2 ? 'Building core mental and physical skills' : 'Transitioning to field execution'}</div>
-                        </div>
+                  <h3 style={{ fontSize: 24, marginBottom: 16 }}>Training Method</h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                    {[
+                      'Concept Explanation', 'Practical Examples', 'Guided Exercises',
+                      'Field-level Application', 'Review & Feedback'
+                    ].map((step, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+                        <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{i + 1}</div>
+                        <div style={{ fontSize: 15, fontWeight: 500 }}>{step}</div>
                       </div>
                     ))}
-                 </div>
+                  </div>
               </TiltCard>
             </motion.div>
           </div>
@@ -73,6 +101,32 @@ const SkillNetMastery = () => {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* WHAT IT IS NOT */}
+      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <div className="v-wrap">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+            <motion.div {...fu()}>
+              <span className="v-label" style={{ color: '#ff6b6b' }}>Clarity</span>
+              <h2 style={{ fontSize: 36, marginBottom: 24 }}>What SkillNet is NOT.</h2>
+              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300 }}>
+                To understand our system, it is vital to know what we are NOT. We stand against shortcuts and superficial training models.
+              </p>
+            </motion.div>
+            <div style={{ display: 'grid', gap: 16 }}>
+              {[
+                "Not instant success training.",
+                "Not shortcut-based motivation.",
+                "Not personality show programs."
+              ].map((item, i) => (
+                <motion.div key={i} {...fu(0.1 * i)} style={{ padding: '16px 24px', background: 'var(--bg)', borderRadius: 12, border: '1px solid var(--border-md)', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#ff6b6b' }} />
+                  <div style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-1)' }}>{item}</div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

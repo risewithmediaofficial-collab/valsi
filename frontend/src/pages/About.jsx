@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { WordReveal, PageHero, TiltCard, fu } from '../components/UI';
 
 const values = [
-  { icon: <Target size={20} />, title: "Purpose-Driven", body: "Focus on practical skill development and sustainable income pathways." },
+  { icon: <Target size={20} />, title: "Purpose-Driven", body: "Focus on practical skill development and sustainable income." },
   { icon: <Shield size={20} />, title: "Ethics & Transparency", body: "Clear systems, honest communication, no hidden terms." },
-  { icon: <Users size={20} />, title: "People-First", body: "Training and support focused on individual growth and capability." },
+  { icon: <Users size={20} />, title: "People-First", body: "Training and support focused on individual growth." },
   { icon: <TrendingUp size={20} />, title: "Sustainable Growth", body: "Long-term development over short-term gains." },
 ];
 
@@ -32,13 +32,39 @@ const About = () => (
     <PageHero 
       label="Our Story & Values" 
       title="About Valsii." 
-      subtitle="Building skilled individuals and connecting them with sustainable product-based income systems. We bridge the gap between learning and execution."
+      subtitle="A Skill & Supply Company. We bridge the gap between training and real-world application."
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <Link to="/contact" className="v-btn v-btn-p">Join Our Mission</Link>
         <span className="v-blur-tag">Integrated by Design</span>
       </div>
     </PageHero>
+
+    {/* PHILOSOPHY & APPROACH */}
+    <section className="v-sec" style={{ background: 'var(--bg)' }}>
+      <div className="v-wrap">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+          <motion.div {...fu()}>
+            <span className="v-label">Identity</span>
+            <h2 style={{ fontSize: 36, marginBottom: 24 }}>A Skill & Supply Company.</h2>
+            <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300 }}>
+              Valsii operates at the intersection of skill development and practical execution. We believe that skills without application are incomplete, and products without skilled people are unsustainable.
+            </p>
+          </motion.div>
+          <div style={{ display: 'grid', gap: 24 }}>
+            {[
+              { title: "Our Philosophy", desc: "Building skilled individuals and connecting them with sustainable product-based income systems." },
+              { title: "Our Approach", desc: "Operating at the intersection of skill development and practical execution, bridging training with real-world application." }
+            ].map((item, i) => (
+              <motion.div key={i} {...fu(0.1 * i)} className="v-card" style={{ padding: 32 }}>
+                <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 8, color: 'var(--secondary)' }}>{item.title}</div>
+                <div style={{ color: 'var(--text-2)', fontSize: 15, lineHeight: 1.6, fontWeight: 300 }}>{item.desc}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
     {/* MISSION & VISION */}
     <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
@@ -57,7 +83,7 @@ const About = () => (
               </div>
               <h3 style={{ fontSize: 24, marginBottom: 16 }}>Our Mission</h3>
               <p style={{ color: 'var(--text-2)', lineHeight: 1.7, fontSize: 16, marginBottom: 32, fontWeight: 300 }}>
-                To create structured pathways for skill development and practical income generation through integrated systems that work together for sustainable growth.
+                To create structured pathways for skill development and practical income generation through integrated systems.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {['Skill development through training', 'Practical field exposure', 'Sustainable income pathways'].map((p, i) => (
@@ -77,7 +103,7 @@ const About = () => (
               </div>
               <h3 style={{ fontSize: 24, marginBottom: 16 }}>Our Vision</h3>
               <p style={{ color: 'var(--text-2)', lineHeight: 1.7, fontSize: 16, marginBottom: 32, fontWeight: 300 }}>
-                To build an ecosystem where skills meet practical execution, creating responsible individuals who can operate in real-world systems with competence and ethics.
+                To build an ecosystem where skills meet practical execution, creating responsible individuals with competence and ethics.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {['Skilled individuals in communities', 'Ethical product distribution', 'Sustainable income for all'].map((p, i) => (

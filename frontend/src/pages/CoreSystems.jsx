@@ -75,31 +75,88 @@ const CoreSystems = () => {
         </div>
       </section>
 
-      {/* CONNECTION FLOW */}
-      <section className="v-sec" style={{ background: 'var(--bg)' }}>
+      {/* THE CONNECTION */}
+      <section className="v-sec" style={{ background: 'var(--bg)', borderBottom: '1px solid var(--border)' }}>
         <div className="v-wrap">
-          <div style={{ maxWidth: 600, marginBottom: 80 }}>
-            <motion.div {...fu()}><span className="v-label">Execution Flow</span></motion.div>
-            <WordReveal text="How systems connect." colorWords={['connect.']} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
+            <motion.div {...fu()}>
+              <span className="v-label">Integration</span>
+              <h2 style={{ fontSize: 36, marginBottom: 24 }}>Skills create readiness. Products create continuity.</h2>
+              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300, marginBottom: 32 }}>
+                Both systems are designed to work together, not independently. SkillNet Mastery prepares individuals with the human and execution skills needed to operate the Farm-to-Home system effectively.
+              </p>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <div style={{ padding: '12px 20px', background: 'var(--white)', borderRadius: 12, border: '1px solid var(--border-md)', fontSize: 14, fontWeight: 500 }}>Shared Vision</div>
+                <div style={{ padding: '12px 20px', background: 'var(--white)', borderRadius: 12, border: '1px solid var(--border-md)', fontSize: 14, fontWeight: 500 }}>Seamless Flow</div>
+              </div>
+            </motion.div>
+            <motion.div {...fu(0.2)}>
+              <div className="v-card" style={{ padding: 48, background: 'var(--white)' }}>
+                <h3 style={{ fontSize: 24, marginBottom: 24 }}>System Synergy</h3>
+                <div style={{ gridTemplateColumns: '1fr', display: 'grid', gap: 24 }}>
+                  <div style={{ padding: 24, background: 'var(--bg)', borderRadius: 16 }}>
+                    <div style={{ color: 'var(--secondary)', fontWeight: 600, marginBottom: 8 }}>SkillNet Mastery</div>
+                    <div style={{ color: 'var(--text-3)', fontSize: 14 }}>Prepares individuals with human and execution skills.</div>
+                  </div>
+                  <div style={{ padding: 24, background: 'var(--bg)', borderRadius: 16 }}>
+                    <div style={{ color: 'var(--accent)', fontWeight: 600, marginBottom: 8 }}>Farm-to-Home</div>
+                    <div style={{ color: 'var(--text-3)', fontSize: 14 }}>Provides real product-based field exposure.</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SYSTEM FLOW */}
+      <section className="v-sec" style={{ background: 'var(--white)' }}>
+        <div className="v-wrap">
+          <div style={{ textAlign: 'center', marginBottom: 80 }}>
+            <motion.div {...fu()}><span className="v-label">Architecture</span></motion.div>
+            <WordReveal text="The logic of growth." style={{ textAlign: 'center' }} colorWords={['growth.']} />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20 }}>
-            {[
-              { step: 1, title: "Skill Training", sub: "SkillNet Mastery", icon: <Brain size={18} /> },
-              { step: 2, title: "Capability", sub: "Mental clarity", icon: <Target size={18} /> },
-              { step: 3, title: "Integration", sub: "System Bridge", icon: <LinkIcon size={18} /> },
-              { step: 4, title: "Execution", sub: "Farm-to-Home", icon: <Truck size={18} /> },
-              { step: 5, title: "Consistency", sub: "Income Growth", icon: <RefreshCw size={18} /> },
-            ].map((step, i) => (
-              <motion.div key={i} {...fu(i * 0.1)}>
-                <div className="v-card" style={{ padding: 24, textAlign: 'center', height: '100%' }}>
-                   <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'var(--primary)', color: '#fff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>{step.step}</div>
-                   <div style={{ color: 'var(--secondary)', marginBottom: 8 }}>{step.icon}</div>
-                   <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{step.title}</div>
-                   <div style={{ fontSize: 12, color: 'var(--text-3)' }}>{step.sub}</div>
-                </div>
-              </motion.div>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
+            {/* SkillNet Flow */}
+            <motion.div {...fu(0.1)} className="v-card" style={{ padding: 40 }}>
+              <div style={{ color: 'var(--secondary)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 24 }}>SkillNet Mastery Flow</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+                {[
+                  { label: "Training", sub: "Concept & Discipline" },
+                  { label: "Capability", sub: "Mental Readiness" },
+                  { label: "Income Readiness", sub: "System Preparation" }
+                ].map((step, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--bg)', border: '1px solid var(--border-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{i + 1}</div>
+                    <div>
+                      <div style={{ fontWeight: 600 }}>{step.label}</div>
+                      <div style={{ fontSize: 13, color: 'var(--text-3)' }}>{step.sub}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Farm-to-Home Flow */}
+            <motion.div {...fu(0.2)} className="v-card" style={{ padding: 40 }}>
+              <div style={{ color: 'var(--accent)', fontWeight: 700, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 24 }}>Farm-to-Home Flow</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+                {[
+                  { label: "Product", sub: "Sourcing & Quality" },
+                  { label: "Utility", sub: "Customer Value" },
+                  { label: "Repeat Income", sub: "Trust & Continuity" }
+                ].map((step, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--bg)', border: '1px solid var(--border-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{i + 1}</div>
+                    <div>
+                      <div style={{ fontWeight: 600 }}>{step.label}</div>
+                      <div style={{ fontSize: 13, color: 'var(--text-3)' }}>{step.sub}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
