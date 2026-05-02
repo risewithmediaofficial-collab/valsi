@@ -236,10 +236,10 @@ export function FeatureCards({ eyebrow = 'Highlights', title, items }) {
           <h2>{title}</h2>
         </div>
         <div className="feature-grid">
-          {items.map((item) => {
+          {items.map((item, index) => {
             const Icon = iconMap[item.icon] || Sprout;
             return (
-              <article className="feature-card reveal" key={item.title}>
+              <article className={`feature-card ${index === 0 ? 'feature-card--lead' : ''} reveal`} key={item.title}>
                 {item.image && (
                   <OptimizedImage
                     src={item.image}
@@ -270,11 +270,11 @@ export function ContentCards({ eyebrow = 'Highlights', title, items, columns = '
           <span className="eyebrow">{eyebrow}</span>
           <h2>{title}</h2>
         </div>
-        <div className={`content-grid content-grid-${columns}`}>
+        <div className={`content-grid content-grid-${columns} ${warm ? 'content-grid--warm' : ''}`}>
           {items.map((item) => {
             const Icon = iconMap[item.icon] || CheckCircle2;
             return (
-              <article className="content-card reveal" key={item.title}>
+              <article className={`content-card ${item.tone === 'negative' ? 'content-card--caution' : ''} ${item.items?.length ? 'content-card--detailed' : ''} reveal`} key={item.title}>
                 <span className={`icon-chip ${item.tone === 'negative' ? 'is-negative' : ''}`}>
                   <Icon size={20} />
                 </span>
