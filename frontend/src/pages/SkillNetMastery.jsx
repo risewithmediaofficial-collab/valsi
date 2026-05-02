@@ -1,146 +1,66 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Brain, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { WordReveal, PageHero, TiltCard, fu } from '../components/UI';
+import { CTASection, ContentCards, HeroSection, ImageSection, ProcessRail, QuotePanel } from '../components/PremiumSections';
+import { images } from '../data/siteContent';
 
-const SkillNetMastery = () => {
-  const modules = [
-    { title: "Subconscious Mind Power", desc: "Thought pattern awareness and emotional regulation." },
-    { title: "Leadership & Identity", desc: "Self-leadership and personal responsibility." },
-    { title: "Communication", desc: "Public speaking, clear expression, and confidence." },
-    { title: "Time Management", desc: "Daily planning and work accountability." },
-    { title: "Teamwork", desc: "Understanding personalities and conflict handling." },
-    { title: "Opportunity Awareness", desc: "Decision clarity and growth mindset." },
-  ];
+const skills = [
+  { title: 'Subconscious Mind Power', text: 'Objective: Build internal stability and mental clarity', icon: 'Brain', items: ['Thought pattern awareness', 'Emotional regulation', 'Fear handling', 'Habit conditioning'] },
+  { title: 'Leadership & Identity Development', text: 'Objective: Develop individuals who can lead themselves', icon: 'Users', items: ['Self-leadership', 'Personal responsibility', 'Identity clarity', 'Decision-making ownership'] },
+  { title: 'Public Speaking & Communication', text: 'Objective: Enable confident communication', icon: 'MessageCircle', items: ['Clear expression', 'Confidence in speaking', 'Audience understanding', 'Ethical influence'] },
+  { title: 'Time Management & Work Discipline', text: 'Objective: Improve productivity and reduce confusion', icon: 'Clock3', items: ['Daily planning', 'Priority setting', 'Consistency building', 'Work accountability'] },
+  { title: 'Teamwork & People Handling', text: 'Objective: Work effectively within teams', icon: 'Users', items: ['Understanding personalities', 'Collaboration skills', 'Conflict handling', 'Group coordination'] },
+  { title: 'Opportunity Awareness', text: 'Objective: Identify opportunities responsibly', icon: 'Route', items: ['Understanding opportunities', 'Decision clarity', 'Ethical judgement', 'Growth mindset'] },
+];
 
+const methodology = [
+  { title: 'Concept explanation', text: 'Clear foundations before application.' },
+  { title: 'Practical examples', text: 'Relatable examples connected to real work.' },
+  { title: 'Guided exercises', text: 'Structured practice with support.' },
+  { title: 'Field-level application', text: 'Learning moves into real-world execution.' },
+  { title: 'Review and feedback', text: 'Capability improves through measured reflection.' },
+];
+
+const notTraining = [
+  { title: 'Not instant success training', text: 'Capability is built over time.', icon: 'XCircle', tone: 'negative' },
+  { title: 'Not shortcut-based motivation', text: 'We avoid artificial hype and pressure.', icon: 'XCircle', tone: 'negative' },
+  { title: 'Not personality show programs', text: 'The focus stays on practical skill building.', icon: 'XCircle', tone: 'negative' },
+];
+
+const outcomes = [
+  { title: 'Strong mental clarity', text: 'Participants build a steadier operating mindset.', icon: 'CheckCircle2' },
+  { title: 'Confident communication', text: 'Clearer expression and responsible influence.', icon: 'CheckCircle2' },
+  { title: 'Leadership behaviour', text: 'Personal responsibility and self-direction.', icon: 'CheckCircle2' },
+  { title: 'Team coordination ability', text: 'Better collaboration in field contexts.', icon: 'CheckCircle2' },
+  { title: 'Readiness for structured execution', text: 'Prepared for responsible system participation.', icon: 'CheckCircle2' },
+];
+
+export default function SkillNetMastery() {
   return (
-    <div className="v-page-skillnet">
-      <PageHero 
-        label="People System" 
-        title="SkillNet Mastery." 
-        subtitle="A People Preparation System. Structured skill training building work discipline, thinking clarity, and real-world execution readiness."
+    <>
+      <HeroSection
+        eyebrow="Structured Skill Development"
+        title="Build Real Capability & Clarity"
+        text="Structured skill training that builds work discipline, thinking clarity, and readiness for real-world execution. No hype. No artificial motivation."
+        image={images.training}
+        primary={['View Course Curriculum', 'https://training.zoho.com']}
+        secondary={['Contact for Orientation', '/contact']}
       />
-
-      {/* PHILOSOPHY */}
-      <section className="v-sec" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
-            <motion.div {...fu()}>
-              <span className="v-label">Approach</span>
-              <h2 style={{ fontSize: 36, marginBottom: 24 }}>No hype. No artificial motivation.</h2>
-              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300 }}>
-                SkillNet is built on the foundation of practical skill building. We don't rely on short-term emotional peaks; we focus on long-term capability development through structured, repeatable processes.
-              </p>
-            </motion.div>
-            <div style={{ display: 'grid', gap: 24 }}>
-              {[
-                { title: "Practical Focus", desc: "Every concept is tied to a real-world application within the supply chain." },
-                { title: "Ethical Foundation", desc: "Training emphasizes responsibility, integrity, and collective growth." }
-              ].map((item, i) => (
-                <motion.div key={i} {...fu(0.1 * i)} className="v-card" style={{ padding: 32 }}>
-                  <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 8, color: 'var(--secondary)' }}>{item.title}</div>
-                  <div style={{ color: 'var(--text-2)', fontSize: 15, lineHeight: 1.6, fontWeight: 300 }}>{item.desc}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <motion.div {...fu()}>
-              <span className="v-label">The Core</span>
-              <h2 style={{ fontSize: 42, marginBottom: 24 }}>Training that translates to income.</h2>
-              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300, marginBottom: 32 }}>
-                Most training programs fail because they lack application. SkillNet is different—every module is designed with the Farm-to-Home execution system in mind.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 16 }}>
-                {['Structured Learning Modules', 'Peer-to-Peer Review', 'Real-world Simulation', 'Direct System Bridge'].map((item, i) => (
-                  <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 16 }}>
-                    <CheckCircle size={20} color="var(--secondary)" /> {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-            <motion.div {...fu(0.2)}>
-              <TiltCard className="v-card" style={{ padding: 48, background: 'var(--primary)', color: '#fff' }}>
-                 <Brain size={48} color="var(--accent)" style={{ marginBottom: 32 }} />
-                  <h3 style={{ fontSize: 24, marginBottom: 16 }}>Training Method</h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                    {[
-                      'Concept Explanation', 'Practical Examples', 'Guided Exercises',
-                      'Field-level Application', 'Review & Feedback'
-                    ].map((step, i) => (
-                      <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-                        <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{i + 1}</div>
-                        <div style={{ fontSize: 15, fontWeight: 500 }}>{step}</div>
-                      </div>
-                    ))}
-                  </div>
-              </TiltCard>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="v-sec" style={{ background: 'var(--bg)' }}>
-        <div className="v-wrap">
-          <div style={{ textAlign: 'center', marginBottom: 80 }}>
-            <span className="v-label">Curriculum</span>
-            <WordReveal text="What you will master." style={{ textAlign: 'center' }} colorWords={['master.']} />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
-            {modules.map((m, i) => (
-              <motion.div key={i} {...fu(i * 0.1)}>
-                <div className="v-card" style={{ padding: 32, height: '100%' }}>
-                  <h4 style={{ fontSize: 18, marginBottom: 12 }}>{m.title}</h4>
-                  <p style={{ color: 'var(--text-2)', fontSize: 14, lineHeight: 1.6, fontWeight: 300 }}>{m.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* WHAT IT IS NOT */}
-      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
-            <motion.div {...fu()}>
-              <span className="v-label" style={{ color: '#ff6b6b' }}>Clarity</span>
-              <h2 style={{ fontSize: 36, marginBottom: 24 }}>What SkillNet is NOT.</h2>
-              <p style={{ color: 'var(--text-2)', fontSize: 18, lineHeight: 1.7, fontWeight: 300 }}>
-                To understand our system, it is vital to know what we are NOT. We stand against shortcuts and superficial training models.
-              </p>
-            </motion.div>
-            <div style={{ display: 'grid', gap: 16 }}>
-              {[
-                "Not instant success training.",
-                "Not shortcut-based motivation.",
-                "Not personality show programs."
-              ].map((item, i) => (
-                <motion.div key={i} {...fu(0.1 * i)} style={{ padding: '16px 24px', background: 'var(--bg)', borderRadius: 12, border: '1px solid var(--border-md)', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#ff6b6b' }} />
-                  <div style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-1)' }}>{item}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="v-sec" style={{ textAlign: 'center', background: 'var(--white)', borderTop: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <WordReveal text="Ready to build your capability?" style={{ textAlign: 'center' }} colorWords={['capability?']} />
-          <motion.div {...fu(0.3)} style={{ marginTop: 48 }}>
-            <Link to="/contact" className="v-btn v-btn-p">Begin Your Journey</Link>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+      <ContentCards eyebrow="Core Skill Areas" title="Core Skill Areas" items={skills} warm />
+      <ProcessRail eyebrow="Training Methodology" title="Practical, structured approach to skill development" items={methodology} />
+      <QuotePanel quote="No hype. No artificial motivation. Just practical skill building." />
+      <ContentCards eyebrow="Boundaries" title="What This Training Is NOT" items={notTraining} columns="three" />
+      <ContentCards eyebrow="Outcome clarity" title="What you can expect after completing the program" items={outcomes} warm />
+      <ImageSection
+        eyebrow="Connection to Farm-to-Home"
+        title="Skills create readiness. Products create continuity."
+        text="SkillNet Mastery prepares individuals with human and execution skills, while Farm-to-Home provides real product-based field exposure."
+        image={images.supply}
+        imageAlt="Supply activity connected to training readiness"
+      />
+      <CTASection
+        title="Learn about Farm-to-Home System"
+        text="See how product-backed field activity gives trained capability a responsible place to operate."
+        image={images.harvest}
+        cta={['Learn about Farm-to-Home System', '/farm-to-home']}
+      />
+    </>
   );
-};
-
-export default SkillNetMastery;
+}

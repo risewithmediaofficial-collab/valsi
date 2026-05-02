@@ -1,180 +1,153 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, CheckCircle, ArrowRight } from 'lucide-react';
-import { WordReveal, PageHero, fu } from '../components/UI';
+import { useState } from 'react';
+import { CalendarClock, Mail, MapPin, Phone } from 'lucide-react';
+import { ContentCards, FAQSection, OptimizedImage, ProcessRail } from '../components/PremiumSections';
+import { images } from '../data/siteContent';
 
-const contactInfo = [
-  { icon: <Phone size={20} />, title: "Phone", details: "+91 98765 43210", sub: "Mon–Fri, 10 AM – 6 PM" },
-  { icon: <Mail size={20} />, title: "Email", details: "orientation@valsii.com", sub: "Response within 24 hours" },
-  { icon: <MapPin size={20} />, title: "Office", details: "Valsii LLP", sub: "Chennai, Tamil Nadu" },
-  { icon: <Clock size={20} />, title: "Orientation", details: "Weekly Sessions", sub: "By appointment only" },
+const initialValues = { name: '', email: '', phone: '', interest: '', message: '' };
+
+const contactCards = [
+  { title: 'Phone', text: '+91 98765 43210\nMon-Fri, 10 AM - 6 PM', icon: 'Phone' },
+  { title: 'Email', text: 'orientation@valsii.com\nResponse within 24 hours', icon: 'MessageCircle' },
+  { title: 'Office Location', text: 'Valsii LLP (Registered Entity)\nChennai, Tamil Nadu', icon: 'Route' },
+  { title: 'Orientation Hours', text: 'Weekly Orientation Sessions\nBy appointment only', icon: 'Clock3' },
 ];
 
-const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+const process = [
+  { title: 'Request Orientation', text: 'Fill the form or contact us directly' },
+  { title: 'Schedule Session', text: "We'll schedule a convenient time for orientation" },
+  { title: 'System Understanding', text: 'Detailed explanation of both systems' },
+  { title: 'Clarity & Next Steps', text: 'Get clarity and decide on participation' },
+];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1500);
-  };
+const notes = [
+  { title: 'Orientation is completely free', text: 'Start with clarity before making any participation decision.', icon: 'CheckCircle2' },
+  { title: 'No pressure to join after orientation', text: 'All system details are shared transparently and questions are answered honestly.', icon: 'CheckCircle2' },
+  { title: 'Field explanation', text: 'Farm-to-Home is a product supply system where trained individuals handle essential goods responsibly from producers to households.', icon: 'Sprout' },
+];
+
+const faqs = [
+  {
+    question: 'What happens after orientation?',
+    answer: "After orientation, you'll have complete clarity about both systems. You can start with SkillNet Mastery training, understand more before deciding, or ask more questions. No commitment required.",
+  },
+  {
+    question: 'Is there any fee for orientation or training?',
+    answer: 'Orientation is completely free. Training programs have structured fees that are clearly explained during orientation. No hidden costs.',
+  },
+  {
+    question: 'Can I visit your office before orientation?',
+    answer: 'Yes, office visits can be scheduled. However, we recommend starting with orientation, online or in-person, to understand the systems first for better clarity.',
+  },
+];
+
+export default function Contact() {
+  const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState('idle');
+
+  function updateField(event) {
+    const { name, value } = event.target;
+    setValues((current) => ({ ...current, [name]: value }));
+    setErrors((current) => ({ ...current, [name]: '' }));
+    setStatus('idle');
+  }
+
+  function validate() {
+    const nextErrors = {};
+    if (!values.name.trim()) nextErrors.name = 'Please enter your full name.';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) nextErrors.email = 'Enter a valid email address.';
+    if (!/^[+()0-9\s-]{8,}$/.test(values.phone)) nextErrors.phone = 'Enter a valid phone number.';
+    if (!values.interest) nextErrors.interest = 'Choose an area of interest.';
+    return nextErrors;
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const nextErrors = validate();
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sent');
+    setValues(initialValues);
+  }
 
   return (
-    <div className="v-page-contact">
-      {/* HERO */}
-      <PageHero 
-        label="Get in Touch" 
-        title="Contact Valsii." 
-        subtitle="Get clarity about our systems. Understand the process. Start with orientation. Our orientation is training-first and pressure-free."
-      />
-
-      {/* CONTACT INFO */}
-      <section className="v-sec-sm" style={{ borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--white)' }}>
-        <div className="v-wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-            {contactInfo.map((info, i) => (
-              <motion.div key={i} {...fu(i * 0.1)}>
-                <div className="v-card" style={{ padding: 32, height: '100%' }}>
-                  <div style={{ color: 'var(--secondary)', marginBottom: 20 }}>{info.icon}</div>
-                  <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-3)', marginBottom: 8 }}>{info.title}</div>
-                  <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--text-1)', marginBottom: 4 }}>{info.details}</div>
-                  <div style={{ fontSize: 13, color: 'var(--text-3)', fontWeight: 300 }}>{info.sub}</div>
-                </div>
-              </motion.div>
-            ))}
+    <>
+      <section className="contact-page image-depth">
+        <OptimizedImage src={images.contact} alt="" loading="eager" sizes="100vw" className="parallax-image" />
+        <div className="hero-shade" />
+        <div className="section-inner contact-grid">
+          <div className="contact-copy reveal">
+            <span className="eyebrow">Get in Touch</span>
+            <h1>Contact Valsii</h1>
+            <p>Get clarity about our systems. Understand the process. Start with orientation.</p>
+            <div className="contact-list">
+              <span><Mail size={17} /> orientation@valsii.com</span>
+              <span><Phone size={17} /> +91 98765 43210</span>
+              <span><MapPin size={17} /> Chennai, Tamil Nadu</span>
+              <span><CalendarClock size={17} /> Training-first, pressure-free approach</span>
+            </div>
           </div>
+
+          <form className="contact-form reveal" onSubmit={handleSubmit} noValidate>
+            <div>
+              <h2>Request Orientation</h2>
+              <p>Fill this form to schedule a system orientation session</p>
+            </div>
+            <label>
+              Full Name *
+              <input type="text" name="name" value={values.name} onChange={updateField} autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
+              {errors.name && <span className="field-error" id="name-error">{errors.name}</span>}
+            </label>
+            <label>
+              Email Address *
+              <input type="email" name="email" value={values.email} onChange={updateField} autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'email-error' : undefined} />
+              {errors.email && <span className="field-error" id="email-error">{errors.email}</span>}
+            </label>
+            <label>
+              Phone Number *
+              <input type="tel" name="phone" placeholder="+91 98765 43210" value={values.phone} onChange={updateField} autoComplete="tel" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+              {errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}
+            </label>
+            <label>
+              I'm interested in *
+              <select name="interest" value={values.interest} onChange={updateField} aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
+                <option value="" disabled>Select one</option>
+                <option>System Orientation</option>
+                <option>SkillNet Mastery Training</option>
+                <option>Farm-to-Home Participation</option>
+                <option>General Inquiry</option>
+              </select>
+              {errors.interest && <span className="field-error" id="interest-error">{errors.interest}</span>}
+            </label>
+            <label>
+              Message / Questions
+              <textarea name="message" rows="5" placeholder="Any specific questions or requirements..." value={values.message} onChange={updateField} />
+            </label>
+            <button type="submit" className="premium-button">
+              {status === 'sent' ? 'Orientation Request Sent!' : 'Send Orientation Request'}
+            </button>
+            <p className="form-note success">We'll contact you within 24 hours to schedule orientation</p>
+            {status === 'sent' && <p className="form-note success" role="status">We'll contact you within 24 hours to schedule your orientation session. Check your email for confirmation.</p>}
+            {status === 'error' && <p className="form-note" role="alert">Please fix the highlighted fields and try again.</p>}
+          </form>
         </div>
       </section>
 
-      {/* FORM SECTION */}
-      <section className="v-sec" style={{ background: 'var(--bg)' }}>
-        <div className="v-wrap">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            
-            <motion.div {...fu()}>
-              <div style={{ marginBottom: 48 }}>
-                <span className="v-label">Inquiry</span>
-                <h2 style={{ fontSize: 36, marginBottom: 20 }}>Request Orientation</h2>
-                <p style={{ color: 'var(--text-2)', fontSize: 18, fontWeight: 300, lineHeight: 1.6 }}>
-                  Fill this form to schedule a session with our system architects. We usually respond within 24 hours.
-                </p>
-              </div>
-
-              <div className="v-card" style={{ padding: 32, background: 'var(--white)' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>1</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>Request Orientation</div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>2</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>Schedule Session</div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>3</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>System Understanding</div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--green-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--secondary)', fontSize: 14, fontWeight: 600 }}>4</div>
-                    <div style={{ fontSize: 15, fontWeight: 500 }}>Clarity & Next Steps</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div {...fu(0.2)}>
-              <div className="v-card" style={{ padding: 48, background: 'var(--bg)', boxShadow: 'inset 8px 8px 16px rgba(15, 47, 36, 0.05), inset -8px -8px 16px rgba(255, 255, 255, 0.8)' }}>
-                {submitted ? (
-                  <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                    <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--secondary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-                      <CheckCircle size={32} />
-                    </div>
-                    <h3 style={{ fontSize: 24, marginBottom: 12 }}>Request Received</h3>
-                    <p style={{ color: 'var(--text-2)', fontWeight: 300 }}>We'll reach out to you shortly to schedule your orientation.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    <div className="v-field-group">
-                      <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Full Name</label>
-                      <input 
-                        required type="text" placeholder="John Doe" 
-                        style={{ width: '100%', padding: '16px', borderRadius: 12, border: '1px solid var(--border-md)', background: 'var(--bg)', outline: 'none', transition: 'all 0.3s' }} 
-                        className="v-input-neumorphic"
-                      />
-                    </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-                      <div className="v-field-group">
-                        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Email</label>
-                        <input required type="email" placeholder="john@example.com" style={{ width: '100%', padding: '16px', borderRadius: 12, border: '1px solid var(--border-md)', background: 'var(--bg)', outline: 'none' }} />
-                      </div>
-                      <div className="v-field-group">
-                        <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Phone</label>
-                        <input required type="tel" placeholder="+91 00000 00000" style={{ width: '100%', padding: '16px', borderRadius: 12, border: '1px solid var(--border-md)', background: 'var(--bg)', outline: 'none' }} />
-                      </div>
-                    </div>
-                    <div className="v-field-group">
-                      <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Message</label>
-                      <textarea placeholder="Tell us about your goals..." style={{ width: '100%', padding: '16px', borderRadius: 12, border: '1px solid var(--border-md)', background: 'var(--bg)', outline: 'none', minHeight: 120, resize: 'none' }} />
-                    </div>
-                    <button type="submit" disabled={loading} className="v-btn v-btn-p" style={{ width: '100%', height: 56 }}>
-                      {loading ? 'Processing...' : 'Send Orientation Request'} <ArrowRight size={18} />
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-
-          </div>
+      <ContentCards eyebrow="Contact info" title="Start with the right channel." items={contactCards} warm />
+      <ProcessRail eyebrow="Orientation Process" title="Orientation Process" items={process} />
+      <ContentCards eyebrow="Important notes" title="Clear, pressure-free orientation." items={notes} />
+      <FAQSection title="Common Questions" subtitle="Quick answers to help you prepare for orientation" items={faqs} />
+      <section className="reading-panel">
+        <div className="section-inner narrow direct-contact reveal">
+          <span className="eyebrow">Prefer Direct Contact?</span>
+          <h2>Call us directly for immediate assistance with orientation scheduling</h2>
+          <a className="premium-button" href="tel:+919876543210">Call Now: +91 98765 43210</a>
+          <p>Available Monday to Friday, 10 AM - 6 PM</p>
         </div>
       </section>
-
-      {/* KEY COMMITMENTS */}
-      <section className="v-sec" style={{ background: 'var(--white)', borderTop: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="v-label">Commitment</span>
-            <WordReveal text="Our promise to you." colorWords={['promise', 'you.']} />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
-            {[
-              { title: "Completely Free", desc: "Our orientation sessions are designed for clarity, not commerce. No fees involved." },
-              { title: "Pressure-Free", desc: "Decide on your own terms. We never pressure participants to join after orientation." },
-              { title: "Full Transparency", desc: "Every aspect of both SkillNet and Farm-to-Home systems is shared openly." },
-            ].map((c, i) => (
-              <motion.div key={i} {...fu(i * 0.1)} className="v-card" style={{ padding: 40, textAlign: 'center' }}>
-                <div style={{ color: 'var(--secondary)', marginBottom: 20 }}><CheckCircle size={32} /></div>
-                <h4 style={{ fontSize: 20, marginBottom: 12 }}>{c.title}</h4>
-                <p style={{ color: 'var(--text-3)', fontSize: 15, lineHeight: 1.6, fontWeight: 300 }}>{c.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="v-sec" style={{ textAlign: 'center', borderTop: '1px solid var(--border)' }}>
-        <div className="v-wrap">
-          <WordReveal text="Prefer to talk now?" colorWords={['talk', 'now?']} />
-          <motion.div {...fu(0.2)} style={{ marginTop: 40, display: 'flex', justifyContent: 'center', gap: 16 }}>
-             <a href="tel:+919876543210" className="v-btn v-btn-neumorphic"><Phone size={18} /> +91 98765 43210</a>
-             <a href="mailto:orientation@valsii.com" className="v-btn v-btn-neumorphic"><Mail size={18} /> orientation@valsii.com</a>
-          </motion.div>
-        </div>
-      </section>
-
-      <style>{`
-        .v-input-neumorphic:focus {
-          box-shadow: inset 4px 4px 8px rgba(15, 47, 36, 0.05), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
-          border-color: var(--secondary) !important;
-        }
-      `}</style>
-    </div>
+    </>
   );
-};
-
-export default Contact;
+}
