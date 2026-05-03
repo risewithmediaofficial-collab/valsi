@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Heart, Mail, MapPin, Phone, Sprout } from 'lucide-react';
+import { ArrowUpRight, Globe2, Heart, Mail, MapPin, Phone, ShieldCheck, Sprout } from 'lucide-react';
 import { OptimizedImage } from './PremiumSections';
 import logo from '../assets/logo.png';
 
@@ -60,11 +60,18 @@ export default function Footer() {
           <a href="tel:+919876543210"><Phone size={15} /> +91 98765 43210</a>
           <a href="mailto:orientation@valsii.com"><Mail size={15} /> orientation@valsii.com</a>
         </div>
+
+        <div className="footer-column footer-social reveal">
+          <h2>Channels</h2>
+          <a href="https://training.zoho.com" target="_blank" rel="noreferrer"><Globe2 size={17} /> Portal</a>
+          <a href="mailto:orientation@valsii.com"><Mail size={17} /> Email</a>
+          <a href="tel:+919876543210"><Phone size={17} /> Call</a>
+        </div>
       </div>
       <div className="footer-bottom">
-        <span>&copy; 2025 Valsii LLP. All rights reserved.</span>
-        <span>Training-first, pressure-free, transparent model</span>
-        <span>Quick links: Home | About | Contact</span>
+        <span>&copy; 2026 Valsii LLP. All rights reserved.</span>
+        <span><ShieldCheck size={13} /> Cookies</span>
+        <span><Globe2 size={13} /> English</span>
         <span>Made with <Heart size={13} /> in India</span>
       </div>
       <p className="footer-tagline">Building real capabilities and sustainable systems for meaningful growth</p>

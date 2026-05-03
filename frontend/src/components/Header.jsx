@@ -36,6 +36,19 @@ export default function Header() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.style.colorScheme = 'light';
+    window.localStorage.setItem('theme', 'light');
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="nav-wrap">
@@ -50,12 +63,12 @@ export default function Header() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navItems.map((item) => (
             <NavLink key={item.path} to={item.path} className="nav-link">
-              {item.label}
+              <span>+</span>{item.label}
             </NavLink>
           ))}
           <div className="nav-dropdown">
             <NavLink to="/core-systems" className="nav-link dropdown-trigger">
-              Our Core Systems <ChevronDown size={14} />
+              <span>+</span>Core Systems <ChevronDown size={14} />
             </NavLink>
             <div className="dropdown-menu">
               {coreLinks.map((item) => (
@@ -67,7 +80,9 @@ export default function Header() {
           </div>
         </nav>
 
-        <a href="https://training.zoho.com" className="nav-cta" target="_blank" rel="noreferrer">Join Now</a>
+        <div className="nav-actions">
+          <a href="https://training.zoho.com" className="nav-cta magnetic" target="_blank" rel="noreferrer">Explore <span aria-hidden="true">&rarr;</span></a>
+        </div>
 
         <button
           className="menu-toggle"

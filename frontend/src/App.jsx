@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Component, lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -12,15 +12,87 @@ const CoreSystems = lazy(() => import('./pages/CoreSystems'));
 const SkillNetMastery = lazy(() => import('./pages/SkillNetMastery'));
 const FarmToHome = lazy(() => import('./pages/FarmToHome'));
 
-function App() {
+const routeMeta = {
+  '/': {
+    title: 'Valsii - Skill & Supply Systems',
+    description: 'Valsii builds practical skill development and ethical product distribution systems for sustainable income pathways.',
+  },
+  '/about': {
+    title: 'About Valsii - Skill & Supply Company',
+    description: 'Learn about Valsii values, mission, and the integrated SkillNet Mastery and Farm-to-Home systems.',
+  },
+  '/contact': {
+    title: 'Contact Valsii - Request Orientation',
+    description: 'Request a pressure-free orientation to understand Valsii training and product execution systems.',
+  },
+  '/core-systems': {
+    title: 'Valsii Core Systems - SkillNet and Farm-to-Home',
+    description: 'See how Valsii combines structured skill training with responsible product execution.',
+  },
+  '/skillnet-mastery': {
+    title: 'SkillNet Mastery - Structured Skill Development',
+    description: 'Build real capability, clarity, communication, leadership, and field readiness through SkillNet Mastery.',
+  },
+  '/farm-to-home': {
+    title: 'Farm-to-Home - Responsible Product Execution',
+    description: 'Direct farm product sourcing, transparent pricing, and trained field execution for households and communities.',
+  },
+};
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <section className="page-intro error-state">
+          <div className="section-inner narrow">
+            <span className="eyebrow">Something went wrong</span>
+            <h1>We could not load this page.</h1>
+            <p>Please refresh the page or return home. If the issue continues, contact Valsii for orientation support.</p>
+            <a className="premium-button" href="/">Return Home</a>
+          </div>
+        </section>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+function RouteMetadata() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const meta = routeMeta[pathname] || routeMeta['/'];
+    document.title = meta.title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', meta.description);
+  }, [pathname]);
+
+  return null;
+}
+
+function AppRoutes() {
+  const { pathname } = useLocation();
+
   return (
-    <Router>
+    <>
+      <RouteMetadata />
       <ScrollToTop />
       <div className="site-shell">
         <CinematicBackdrop />
         <Header />
         <main>
-          <Suspense fallback={<div className="route-loader" role="status" aria-live="polite">Loading Valsii</div>}>
+          <ErrorBoundary key={pathname}>
+            <Suspense fallback={<div className="route-loader" role="status" aria-live="polite">Loading Valsii</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
@@ -31,13 +103,22 @@ function App() {
               <Route path="/core-systems" element={<CoreSystems />} />
               <Route path="/skillnet-mastery" element={<SkillNetMastery />} />
               <Route path="/farm-to-home" element={<FarmToHome />} />
-              <Route path="/seeding-synthesis" element={<Navigate to="/impact" replace />} />
+              <Route path="/seeding-synthesis" element={<Navigate to="/core-systems" replace />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </Suspense>
+            </Suspense>
+          </ErrorBoundary>
         </main>
         <Footer />
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 }

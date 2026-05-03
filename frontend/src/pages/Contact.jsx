@@ -69,6 +69,17 @@ export default function Contact() {
       setStatus('error');
       return;
     }
+    setStatus('sending');
+    const subject = encodeURIComponent(`Orientation request from ${values.name.trim()}`);
+    const body = encodeURIComponent([
+      `Name: ${values.name.trim()}`,
+      `Email: ${values.email.trim()}`,
+      `Phone: ${values.phone.trim()}`,
+      `Interest: ${values.interest}`,
+      '',
+      `Message: ${values.message.trim() || 'No additional message.'}`,
+    ].join('\n'));
+    window.location.href = `mailto:orientation@valsii.com?subject=${subject}&body=${body}`;
     setStatus('sent');
     setValues(initialValues);
   }
@@ -98,22 +109,22 @@ export default function Contact() {
             </div>
             <label>
               Full Name *
-              <input type="text" name="name" value={values.name} onChange={updateField} autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
+              <input type="text" name="name" value={values.name} onChange={updateField} autoComplete="name" required aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
               {errors.name && <span className="field-error" id="name-error">{errors.name}</span>}
             </label>
             <label>
               Email Address *
-              <input type="email" name="email" value={values.email} onChange={updateField} autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'email-error' : undefined} />
+              <input type="email" name="email" value={values.email} onChange={updateField} autoComplete="email" required aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'email-error' : undefined} />
               {errors.email && <span className="field-error" id="email-error">{errors.email}</span>}
             </label>
             <label>
               Phone Number *
-              <input type="tel" name="phone" placeholder="+91 98765 43210" value={values.phone} onChange={updateField} autoComplete="tel" aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+              <input type="tel" name="phone" placeholder="+91 98765 43210" value={values.phone} onChange={updateField} autoComplete="tel" required aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
               {errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}
             </label>
             <label>
               I'm interested in *
-              <select name="interest" value={values.interest} onChange={updateField} aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
+              <select name="interest" value={values.interest} onChange={updateField} required aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
                 <option value="" disabled>Select one</option>
                 <option>System Orientation</option>
                 <option>SkillNet Mastery Training</option>
@@ -126,11 +137,11 @@ export default function Contact() {
               Message / Questions
               <textarea name="message" rows="5" placeholder="Any specific questions or requirements..." value={values.message} onChange={updateField} />
             </label>
-            <button type="submit" className="premium-button">
-              {status === 'sent' ? 'Orientation Request Sent!' : 'Send Orientation Request'}
+            <button type="submit" className="premium-button" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Preparing Request...' : status === 'sent' ? 'Email Draft Opened' : 'Send Orientation Request'}
             </button>
-            <p className="form-note success">We'll contact you within 24 hours to schedule orientation</p>
-            {status === 'sent' && <p className="form-note success" role="status">We'll contact you within 24 hours to schedule your orientation session. Check your email for confirmation.</p>}
+            {status === 'idle' && <p className="form-note success">We'll contact you within 24 hours after your request is sent.</p>}
+            {status === 'sent' && <p className="form-note success" role="status">Your email app should now have a prepared orientation request. Send it to complete the request.</p>}
             {status === 'error' && <p className="form-note" role="alert">Please fix the highlighted fields and try again.</p>}
           </form>
         </div>

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
+  ArrowDown,
+  ArrowLeft,
   ArrowRight,
   BookOpen,
   Brain,
@@ -7,6 +9,7 @@ import {
   Clock3,
   Droplets,
   CalendarClock,
+  Leaf,
   MessageCircle,
   PackageCheck,
   Phone,
@@ -110,15 +113,527 @@ function BackdropImage({ src, alt = '', eager = false, position = 'center' }) {
 }
 
 export function CinematicBackdrop() {
+  const [loaded, setLoaded] = useState(() => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false);
+
+  useEffect(() => {
+    let progress = 0;
+    const root = document.documentElement;
+    const cursor = document.querySelector('.custom-cursor');
+    const counter = document.querySelector('.preloader-count');
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+    const loader = reduceMotion
+      ? undefined
+      : window.setInterval(() => {
+          progress = Math.min(progress + Math.ceil(Math.random() * 12), 100);
+          if (counter) counter.textContent = `${progress}%`;
+          if (progress >= 100) {
+            window.clearInterval(loader);
+            window.setTimeout(() => setLoaded(true), 220);
+          }
+        }, 58);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+
+    const observedRevealNodes = new Set();
+    const observedCountNodes = new Set();
+    const interactiveNodes = new Set();
+    const magneticNodes = new Set();
+
+    const observeRevealNodes = () => {
+      document.querySelectorAll('.reveal, .zoom-reveal').forEach((node) => {
+        if (observedRevealNodes.has(node)) return;
+        observedRevealNodes.add(node);
+        revealObserver.observe(node);
+      });
+    };
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.target.dataset.counted === 'true') return;
+        entry.target.dataset.counted = 'true';
+        const target = Number(entry.target.dataset.target || 0);
+        const suffix = entry.target.dataset.suffix || '';
+        const start = performance.now();
+        const tick = (time) => {
+          const progressValue = Math.min((time - start) / 1300, 1);
+          const eased = 1 - Math.pow(1 - progressValue, 3);
+          entry.target.textContent = `${Math.round(target * eased)}${suffix}`;
+          if (progressValue < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.45 });
+
+    const observeCountNodes = () => {
+      document.querySelectorAll('[data-countup]').forEach((node) => {
+        if (observedCountNodes.has(node)) return;
+        observedCountNodes.add(node);
+        countObserver.observe(node);
+      });
+    };
+
+    const moveCursor = (event) => {
+      root.style.setProperty('--mouse-x', `${event.clientX}px`);
+      root.style.setProperty('--mouse-y', `${event.clientY}px`);
+    };
+
+    const growCursor = () => cursor?.classList.add('is-hovering');
+    const shrinkCursor = () => cursor?.classList.remove('is-hovering');
+    const bindInteractiveNodes = () => {
+      document.querySelectorAll('a, button, .editorial-card, .process-step, .quote-card').forEach((node) => {
+        if (interactiveNodes.has(node)) return;
+        interactiveNodes.add(node);
+        node.addEventListener('pointerenter', growCursor);
+        node.addEventListener('pointerleave', shrinkCursor);
+      });
+    };
+
+    const moveMagnet = (event) => {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 16;
+      const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 16;
+      event.currentTarget.style.transform = `translate(${x}px, ${y}px)`;
+    };
+    const resetMagnet = (event) => {
+      event.currentTarget.style.transform = '';
+    };
+    const bindMagneticNodes = () => {
+      document.querySelectorAll('.magnetic').forEach((node) => {
+        if (magneticNodes.has(node)) return;
+        magneticNodes.add(node);
+        node.addEventListener('pointermove', moveMagnet);
+        node.addEventListener('pointerleave', resetMagnet);
+      });
+    };
+
+    const hydrateInteractions = () => {
+      observeRevealNodes();
+      observeCountNodes();
+      bindInteractiveNodes();
+      bindMagneticNodes();
+    };
+
+    const mutationObserver = new MutationObserver(hydrateInteractions);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    hydrateInteractions();
+
+    const onScroll = () => root.style.setProperty('--scroll-parallax', String(window.scrollY * -0.035));
+
+    window.addEventListener('pointermove', moveCursor, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      if (loader) window.clearInterval(loader);
+      revealObserver.disconnect();
+      countObserver.disconnect();
+      mutationObserver.disconnect();
+      window.removeEventListener('pointermove', moveCursor);
+      window.removeEventListener('scroll', onScroll);
+      interactiveNodes.forEach((node) => {
+        node.removeEventListener('pointerenter', growCursor);
+        node.removeEventListener('pointerleave', shrinkCursor);
+      });
+      magneticNodes.forEach((node) => {
+        node.removeEventListener('pointermove', moveMagnet);
+        node.removeEventListener('pointerleave', resetMagnet);
+      });
+    };
+  }, []);
+
   return (
     <>
+      <div className={`preloader ${loaded ? 'is-hidden' : ''}`} aria-hidden={loaded ? 'true' : 'false'}>
+        <span className="preloader-mark"><Leaf size={24} /></span>
+        <span className="preloader-count">0%</span>
+      </div>
+      <div className="custom-cursor" aria-hidden="true" />
       <div className="grain-layer" aria-hidden="true" />
+      <div className="ambient-blobs" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="particle-field" aria-hidden="true">
         {Array.from({ length: 12 }).map((_, index) => (
           <span key={index} style={{ '--i': index }} />
         ))}
       </div>
     </>
+  );
+}
+
+export function BotanicalMark() {
+  return (
+    <div className="botanical-mark" aria-hidden="true">
+      <svg viewBox="0 0 180 180" role="img">
+        <path d="M90 86C62 58 62 26 90 10c28 16 28 48 0 76Z" />
+        <path d="M94 90c28-28 60-28 76 0-16 28-48 28-76 0Z" />
+        <path d="M90 94c28 28 28 60 0 76-28-16-28-48 0-76Z" />
+        <path d="M86 90c-28 28-60 28-76 0 16-28 48-28 76 0Z" />
+        <circle cx="90" cy="90" r="14" />
+      </svg>
+    </div>
+  );
+}
+
+function OrganicDivider() {
+  return (
+    <div className="organic-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0 72c143-58 274-58 394 0s250 58 390 0 277-58 410 0 212 58 246 28v20H0Z" />
+      </svg>
+    </div>
+  );
+}
+
+export function MarqueeTicker() {
+  const line = 'EXPLORE NATURE / DISCOVER KNOWLEDGE / GROW TOGETHER /';
+  return (
+    <section className="marquee-section" aria-label="Valsii values">
+      <div className="marquee-track">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <span key={index}>
+            {line}
+            <Leaf className="marquee-leaf" size={34} />
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function EditorialHero({ eyebrow, title, text }) {
+  return (
+    <section className="editorial-hero">
+      <div className="hero-blob hero-blob-a" aria-hidden="true" />
+      <div className="hero-blob hero-blob-b" aria-hidden="true" />
+      <div className="section-inner editorial-hero-inner">
+        <span className="eyebrow reveal">{eyebrow}</span>
+        <div className="hero-title-wrap">
+          <h1 className="reveal">{title}</h1>
+        </div>
+        <p className="reveal">{text}</p>
+        <a href="#editorial-cards" className="scroll-cue magnetic" aria-label="Scroll to services">
+          <ArrowDown size={28} />
+        </a>
+      </div>
+      <OrganicDivider />
+    </section>
+  );
+}
+
+export function EditorialCards({ eyebrow, title, items }) {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <section className="cinematic-section editorial-cards-section" id="editorial-cards">
+      <div className="section-inner">
+        <div className="section-heading reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+        </div>
+        <div className="editorial-card-stack">
+          {items.map((item, index) => {
+            const expanded = openIndex === index;
+            return (
+              <article className={`editorial-card zoom-reveal ${expanded ? 'is-open' : ''}`} key={item.title}>
+                <OptimizedImage src={item.image} alt={item.alt || item.title} position={item.position || 'center'} sizes="100vw" />
+                <div className="editorial-card-overlay" />
+                <span className="editorial-card-number">{String(index + 1).padStart(2, '0')}</span>
+                <div className="editorial-card-body">
+                  <span className="eyebrow">{item.kicker}</span>
+                  <h3>{item.title}</h3>
+                  <button type="button" className="accordion-trigger magnetic" onClick={() => setOpenIndex(expanded ? -1 : index)} aria-expanded={expanded}>
+                    {expanded ? 'Close' : 'Explore'} <ArrowRight size={17} />
+                  </button>
+                  <div className="accordion-content">
+                    <dl>
+                      <div>
+                        <dt>What it is</dt>
+                        <dd>{item.what}</dd>
+                      </div>
+                      <div>
+                        <dt>How it helps</dt>
+                        <dd>{item.how}</dd>
+                      </div>
+                      <div>
+                        <dt>Key features</dt>
+                        <dd>{item.features}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function EditorialProcess({ eyebrow, title, items }) {
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="cinematic-section process-section">
+      <div className="section-inner">
+        <div className="section-heading reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+        </div>
+        <div className="process-grid">
+          {items.map((item, index) => (
+            <article className={`process-step reveal ${active === index ? 'is-active' : ''}`} key={item.title} onClick={() => setActive(index)}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <OptimizedImage src={item.image} alt="" position={item.position || 'center'} sizes="(min-width: 980px) 25vw, 100vw" />
+            </article>
+          ))}
+        </div>
+      </div>
+      <OrganicDivider />
+    </section>
+  );
+}
+
+export function EditorialQuotes({ items }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sliderRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, scrollLeft: 0 });
+
+  const goTo = (index) => {
+    const nextIndex = Math.max(0, Math.min(items.length - 1, index));
+    const slider = sliderRef.current;
+    const card = slider?.querySelector(`[data-quote-index="${nextIndex}"]`);
+    setActiveIndex(nextIndex);
+    card?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  };
+
+  const handleScroll = () => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+    const cards = Array.from(slider.querySelectorAll('[data-quote-index]'));
+    const current = cards.reduce((closest, card) => {
+      const distance = Math.abs(card.offsetLeft - slider.scrollLeft);
+      return distance < closest.distance ? { index: Number(card.dataset.quoteIndex), distance } : closest;
+    }, { index: 0, distance: Number.POSITIVE_INFINITY });
+    setActiveIndex(current.index);
+  };
+
+  const handlePointerDown = (event) => {
+    const slider = sliderRef.current;
+    if (!slider || event.pointerType === 'touch') return;
+    dragState.current = { active: true, startX: event.clientX, scrollLeft: slider.scrollLeft };
+    slider.setPointerCapture(event.pointerId);
+    slider.classList.add('is-dragging');
+  };
+
+  const handlePointerMove = (event) => {
+    const slider = sliderRef.current;
+    if (!slider || !dragState.current.active) return;
+    slider.scrollLeft = dragState.current.scrollLeft - (event.clientX - dragState.current.startX);
+  };
+
+  const stopDrag = (event) => {
+    const slider = sliderRef.current;
+    if (!slider || !dragState.current.active) return;
+    dragState.current.active = false;
+    slider.classList.remove('is-dragging');
+    if (slider.hasPointerCapture?.(event.pointerId)) slider.releasePointerCapture(event.pointerId);
+  };
+
+  return (
+    <section className="quote-carousel-section">
+      <div className="quote-section-inner">
+        <div className="quote-section-heading reveal">
+          <span className="eyebrow">Voices</span>
+          <h2>What the Valsii network says.</h2>
+        </div>
+        <div className="quote-controls" aria-label="Quote navigation">
+          <button type="button" aria-label="Previous quote" onClick={() => goTo(activeIndex - 1)}>
+            <ArrowLeft size={18} />
+          </button>
+          <button type="button" aria-label="Next quote" onClick={() => goTo(activeIndex + 1)}>
+            <ArrowRight size={18} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="quote-slider"
+        aria-label="Testimonials"
+        ref={sliderRef}
+        onScroll={handleScroll}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        onPointerLeave={stopDrag}
+      >
+        {items.map((item, index) => (
+          <blockquote
+            className="quote-card reveal"
+            key={item.author}
+            data-quote-index={index}
+            style={{ '--quote-delay': `${index * 0.1}s` }}
+          >
+            <div className="quote-card-copy">
+              <span className="quote-mark" aria-hidden="true">"</span>
+              <p>{item.quote}</p>
+              <div className="quote-divider" aria-hidden="true" />
+              <div className="quote-author">
+                <span>{item.author}</span>
+                <cite>{item.role}</cite>
+              </div>
+            </div>
+          </blockquote>
+        ))}
+      </div>
+      <div className="quote-dots" aria-label="Quote progress">
+        {items.map((item, index) => (
+          <button
+            type="button"
+            key={item.author}
+            className={index === activeIndex ? 'is-active' : ''}
+            aria-label={`Show quote ${index + 1}`}
+            aria-current={index === activeIndex ? 'true' : undefined}
+            onClick={() => goTo(index)}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function MinimalCards({ eyebrow, title, items }) {
+  return (
+    <section className="cinematic-section minimal-card-section">
+      <div className="section-inner">
+        <div className="section-heading reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+        </div>
+
+        <div className="minimal-card-grid">
+          {items.map((item) => (
+            <article className="minimal-card reveal" key={item.title}>
+              {item.image && (
+                <figure className="minimal-card-media">
+                  <OptimizedImage
+                    src={item.image}
+                    alt={item.alt || item.title}
+                    position={item.position || 'center'}
+                    sizes="(min-width: 980px) 28vw, (min-width: 640px) 45vw, 92vw"
+                  />
+                </figure>
+              )}
+              <div className="minimal-card-copy">
+                <span>{item.kicker || item.label || 'Valsii system'}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description || item.text || item.what}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function HorizontalSlideCards({ eyebrow, title, items }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const touchStart = useRef(null);
+  const wheelLock = useRef(false);
+
+  const goTo = (index) => {
+    const nextIndex = Math.max(0, Math.min(index, items.length - 1));
+    setActiveIndex(nextIndex);
+  };
+
+  const goNext = () => goTo(activeIndex + 1);
+  const goPrev = () => goTo(activeIndex - 1);
+
+  function handleWheel(event) {
+    if (Math.abs(event.deltaY) < 18 || wheelLock.current) return;
+    wheelLock.current = true;
+    if (event.deltaY > 0) goNext();
+    else goPrev();
+    window.setTimeout(() => {
+      wheelLock.current = false;
+    }, 640);
+  }
+
+  function handleTouchStart(event) {
+    touchStart.current = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd(event) {
+    if (touchStart.current === null) return;
+    const delta = event.changedTouches[0].clientX - touchStart.current;
+    if (Math.abs(delta) > 42) {
+      if (delta < 0) goNext();
+      else goPrev();
+    }
+    touchStart.current = null;
+  }
+
+  return (
+    <section className="cinematic-section slide-card-section">
+      <div className="section-inner">
+        <div className="section-heading reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+        </div>
+
+        <div
+          className="slide-card-shell reveal"
+          onWheel={handleWheel}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="slide-card-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+            {items.map((item, index) => (
+              <article className="slide-card" key={item.title}>
+                <figure className="slide-card-image">
+                  <OptimizedImage src={item.image} alt={item.alt || item.title} position={item.position || 'center'} sizes="100vw" />
+                </figure>
+                <div className="slide-card-body">
+                  <span className="slide-card-number">{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.description || item.text || item.what}</p>
+                    <div className="slide-card-tags" aria-label={`${item.title} tags`}>
+                      {(item.tags || []).map((tag) => <span key={tag}>{tag}</span>)}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="slide-card-dots" aria-label="Card navigation">
+          {items.map((item, index) => (
+            <button
+              type="button"
+              key={item.title}
+              className={index === activeIndex ? 'is-active' : ''}
+              aria-label={`Show ${item.title}`}
+              aria-current={index === activeIndex ? 'true' : undefined}
+              onClick={() => goTo(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
