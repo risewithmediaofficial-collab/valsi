@@ -90,7 +90,7 @@ function AppRoutes() {
       <div className="site-shell">
         <CinematicBackdrop />
         <Header />
-        <main>
+        <main id="main-content">
           <ErrorBoundary key={pathname}>
             <Suspense fallback={<div className="route-loader" role="status" aria-live="polite">Loading Valsii</div>}>
             <Routes>

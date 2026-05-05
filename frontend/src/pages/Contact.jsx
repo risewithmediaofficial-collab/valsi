@@ -107,24 +107,24 @@ export default function Contact() {
               <h2>Request Orientation</h2>
               <p>Fill this form to schedule a system orientation session</p>
             </div>
-            <label>
+            <label htmlFor="field-name">
               Full Name *
-              <input type="text" name="name" value={values.name} onChange={updateField} autoComplete="name" required aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
+              <input id="field-name" type="text" name="name" value={values.name} onChange={updateField} autoComplete="name" required aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'name-error' : undefined} />
               {errors.name && <span className="field-error" id="name-error">{errors.name}</span>}
             </label>
-            <label>
+            <label htmlFor="field-email">
               Email Address *
-              <input type="email" name="email" value={values.email} onChange={updateField} autoComplete="email" required aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'email-error' : undefined} />
+              <input id="field-email" type="email" name="email" value={values.email} onChange={updateField} autoComplete="email" required aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'email-error' : undefined} />
               {errors.email && <span className="field-error" id="email-error">{errors.email}</span>}
             </label>
-            <label>
+            <label htmlFor="field-phone">
               Phone Number *
-              <input type="tel" name="phone" placeholder="+91 98765 43210" value={values.phone} onChange={updateField} autoComplete="tel" required aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
+              <input id="field-phone" type="tel" name="phone" placeholder="+91 98765 43210" value={values.phone} onChange={updateField} autoComplete="tel" required aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'phone-error' : undefined} />
               {errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}
             </label>
-            <label>
+            <label htmlFor="field-interest">
               I'm interested in *
-              <select name="interest" value={values.interest} onChange={updateField} required aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
+              <select id="field-interest" name="interest" value={values.interest} onChange={updateField} required aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
                 <option value="" disabled>Select one</option>
                 <option>System Orientation</option>
                 <option>SkillNet Mastery Training</option>
@@ -133,9 +133,9 @@ export default function Contact() {
               </select>
               {errors.interest && <span className="field-error" id="interest-error">{errors.interest}</span>}
             </label>
-            <label>
+            <label htmlFor="field-message">
               Message / Questions
-              <textarea name="message" rows="5" placeholder="Any specific questions or requirements..." value={values.message} onChange={updateField} />
+              <textarea id="field-message" name="message" rows="5" placeholder="Any specific questions or requirements..." value={values.message} onChange={updateField} />
             </label>
             <button type="submit" className="premium-button" disabled={status === 'sending'}>
               {status === 'sending' ? 'Preparing Request...' : status === 'sent' ? 'Email Draft Opened' : 'Send Orientation Request'}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowDown,
   ArrowLeft,
@@ -177,7 +177,11 @@ export function CinematicBackdrop() {
       });
     };
 
+    let lastX = 0, lastY = 0;
     const moveCursor = (event) => {
+      if (Math.abs(event.clientX - lastX) < 5 && Math.abs(event.clientY - lastY) < 5) return;
+      lastX = event.clientX;
+      lastY = event.clientY;
       root.style.setProperty('--mouse-x', `${event.clientX}px`);
       root.style.setProperty('--mouse-y', `${event.clientY}px`);
     };
@@ -409,13 +413,25 @@ export function EditorialQuotes({ items }) {
   const sliderRef = useRef(null);
   const dragState = useRef({ active: false, startX: 0, scrollLeft: 0 });
 
-  const goTo = (index) => {
+  const goTo = useCallback((index) => {
     const nextIndex = Math.max(0, Math.min(items.length - 1, index));
     const slider = sliderRef.current;
     const card = slider?.querySelector(`[data-quote-index="${nextIndex}"]`);
     setActiveIndex(nextIndex);
     card?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  };
+  }, [items.length]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowLeft') goTo(activeIndex - 1);
+      if (event.key === 'ArrowRight') goTo(activeIndex + 1);
+    };
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.addEventListener('keydown', handleKeyDown);
+      return () => slider.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [activeIndex, goTo]);
 
   const handleScroll = () => {
     const slider = sliderRef.current;

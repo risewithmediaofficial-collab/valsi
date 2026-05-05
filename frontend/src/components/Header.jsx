@@ -30,7 +30,9 @@ export default function Header() {
   useEffect(() => {
     if (!open) return undefined;
     const onKeyDown = (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
@@ -52,7 +54,7 @@ export default function Header() {
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="nav-wrap">
-        <Link to="/" className="brand-link" aria-label="Valsii home" onClick={() => setOpen(false)}>
+        <Link to="/" className="brand-link" aria-label="Valsii - Home" onClick={() => setOpen(false)}>
           <OptimizedImage src={logo} alt="" className="brand-mark" width="38" height="38" decoding="async" />
           <span>
             <strong>Valsii</strong>
@@ -62,17 +64,17 @@ export default function Header() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <NavLink key={item.path} to={item.path} className="nav-link">
-              <span>+</span>{item.label}
+            <NavLink key={item.path} to={item.path} className="nav-link" aria-label={item.label}>
+              <span aria-hidden="true">+</span>{item.label}
             </NavLink>
           ))}
           <div className="nav-dropdown">
-            <NavLink to="/core-systems" className="nav-link dropdown-trigger">
-              <span>+</span>Core Systems <ChevronDown size={14} />
+            <NavLink to="/core-systems" className="nav-link dropdown-trigger" aria-label="Core Systems">
+              <span aria-hidden="true">+</span>Core Systems <ChevronDown size={14} aria-hidden="true" />
             </NavLink>
             <div className="dropdown-menu">
               {coreLinks.map((item) => (
-                <NavLink key={item.path} to={item.path} className="dropdown-link">
+                <NavLink key={item.path} to={item.path} className="dropdown-link" aria-label={item.label}>
                   {item.label}
                 </NavLink>
               ))}
@@ -81,7 +83,7 @@ export default function Header() {
         </nav>
 
         <div className="nav-actions">
-          <a href="https://training.zoho.com" className="nav-cta magnetic" target="_blank" rel="noreferrer">Explore <span aria-hidden="true">&rarr;</span></a>
+          <a href="https://training.zoho.com" className="nav-cta magnetic" target="_blank" rel="noreferrer" aria-label="Explore training portal (opens in new window)">Explore <span aria-hidden="true">&rarr;</span></a>
         </div>
 
         <button
@@ -92,7 +94,7 @@ export default function Header() {
           aria-controls="mobile-navigation"
           onClick={() => setOpen((value) => !value)}
         >
-          {open ? <X size={19} /> : <Menu size={19} />}
+          {open ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
         </button>
       </div>
 
@@ -109,8 +111,8 @@ export default function Header() {
           <NavLink to="/farm-to-home" className="mobile-nav-link" onClick={() => setOpen(false)}>
             Farm-to-Home
           </NavLink>
-          <a href="https://training.zoho.com" className="mobile-nav-link" onClick={() => setOpen(false)}>
-            Join Now
+          <a href="https://training.zoho.com" className="mobile-nav-link" onClick={() => setOpen(false)} target="_blank" rel="noreferrer">
+            Join Now (opens in new window)
           </a>
         </nav>
       )}
