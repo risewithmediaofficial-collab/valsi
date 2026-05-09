@@ -1,118 +1,217 @@
-import { CTASection, ContentCards, FeatureCards, HeroSection, ImageSection, ProcessRail, QuotePanel } from '../components/PremiumSections';
-import { images, productCategories } from '../data/siteContent';
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowRight, CheckCircle2, Leaf, PackageCheck, Route, ShieldCheck, Sprout, Users, Wheat } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { farmToHomeTimeline, images, productCategories } from '../data/siteContent';
 
-const groundReality = [
-  { title: 'Farmers lack stable market access', text: 'Ground reality', icon: 'XCircle', tone: 'negative' },
-  { title: 'Consumers face inconsistent quality and pricing', text: 'Ground reality', icon: 'XCircle', tone: 'negative' },
-  { title: 'Middle layers reduce trust and value', text: 'Ground reality', icon: 'XCircle', tone: 'negative' },
-  { title: 'Youth lack real product-based field exposure', text: 'Ground reality', icon: 'XCircle', tone: 'negative' },
+gsap.registerPlugin(ScrollTrigger);
+
+const scenes = [
+  {
+    eyebrow: 'Farm-to-Home',
+    title: 'Honest food supply, filmed like a living system.',
+    text: 'Farmers, trained handlers, and families connected through clear sourcing, fair pricing, and repeat trust.',
+    image: images.delivery,
+    align: 'left',
+    meta: ['Direct supply', 'Clear pricing', 'Trained handling'],
+  },
+  {
+    eyebrow: 'The Problem',
+    title: 'Markets move fast. Trust moves slowly.',
+    text: 'Farmers need stable access. Families need visible quality. Young people need real product-based field experience.',
+    image: images.farmer,
+    align: 'right',
+    meta: ['Market access', 'Quality clarity', 'Field work'],
+  },
+  {
+    eyebrow: 'The Model',
+    title: 'No retail noise. Just product movement with responsibility.',
+    text: 'Products are sourced, checked, explained, and delivered through a disciplined process instead of pressure selling.',
+    image: images.supply,
+    align: 'left',
+    meta: ['Source', 'Check', 'Deliver'],
+  },
+  {
+    eyebrow: 'Daily Essentials',
+    title: 'Repeat demand creates a steadier rhythm.',
+    text: 'Rice, oils, vegetables, spices, and core home essentials keep the system practical and grounded.',
+    image: images.essentials,
+    align: 'right',
+    meta: productCategories.map((item) => item.title),
+  },
 ];
 
-const solution = [
-  { title: 'Direct producer-to-consumer supply', text: 'Production, people, and consumption connected ethically.', icon: 'CheckCircle2' },
-  { title: 'Transparent quality and pricing', text: 'Clear product value without hidden pressure.', icon: 'CheckCircle2' },
-  { title: 'Skill-based field execution', text: 'Prepared people handle products responsibly.', icon: 'CheckCircle2' },
+const principles = [
+  { icon: Wheat, label: 'Source', text: 'Direct farmer relationships and seasonal understanding.' },
+  { icon: ShieldCheck, label: 'Check', text: 'Quality inspection before products move forward.' },
+  { icon: Users, label: 'Prepare', text: 'Trained people handle, explain, and serve responsibly.' },
+  { icon: Route, label: 'Deliver', text: 'Clear home supply with direct customer feedback.' },
 ];
 
-const flow = [
-  { title: 'Producers / Farmers', text: 'Direct sourcing from verified producers' },
-  { title: 'Quality Check & Sourcing', text: 'Thorough quality verification process' },
-  { title: 'Transparent Pricing', text: 'Clear pricing without hidden margins' },
-  { title: 'Trained Participants', text: 'SkillNet Mastery trained individuals' },
-  { title: 'Household Distribution', text: 'Direct to consumer delivery' },
-  { title: 'Repeat Demand', text: 'Building trust for continuous business' },
-];
-
-const participantTraining = [
-  { title: 'Understand product value', text: 'Participants learn what they handle and why it matters.', icon: 'CheckCircle2' },
-  { title: 'Explain usage and quality clearly', text: 'Communication stays responsible and practical.', icon: 'MessageCircle' },
-  { title: 'Handle customers responsibly', text: 'Trust is built through discipline and respect.', icon: 'Users' },
-  { title: 'Manage distribution discipline', text: 'Consistency matters more than pressure.', icon: 'Clock3' },
-  { title: 'Build long-term trust', text: 'The system is designed for repeat demand.', icon: 'Sprout' },
-];
-
-const requirements = [
-  { title: 'Complete SkillNet Mastery training', text: 'Preparation comes first.', icon: 'CheckCircle2' },
-  { title: 'System orientation and clarity', text: 'Participants understand the flow before acting.', icon: 'CheckCircle2' },
-  { title: 'Readiness assessment', text: 'Capability is checked before field participation.', icon: 'CheckCircle2' },
-  { title: 'Ethical commitment', text: 'Responsible conduct is part of the system.', icon: 'CheckCircle2' },
-];
-
-const different = [
-  { title: 'Product-backed system', text: 'Real goods, real demand.', icon: 'PackageCheck' },
-  { title: 'Transparent sourcing and pricing', text: 'Clear product movement and value.', icon: 'CheckCircle2' },
-  { title: 'Skill-based field execution', text: 'Prepared people, not random selling.', icon: 'Users' },
-  { title: 'No stock-pressure mindset', text: 'Responsibility before volume.', icon: 'XCircle', tone: 'negative' },
-  { title: 'Built for stability, not shortcuts', text: 'Long-term growth over instant claims.', icon: 'Sprout' },
-];
-
-const notSystem = [
-  { title: 'Not quick-profit trading', text: 'No shortcut framing.', icon: 'XCircle', tone: 'negative' },
-  { title: 'Not inventory dumping', text: 'No pressure-based stock movement.', icon: 'XCircle', tone: 'negative' },
-  { title: 'Not commission-only selling', text: 'Training and responsibility come first.', icon: 'XCircle', tone: 'negative' },
-  { title: 'Not MLM retail hype', text: 'The system is supply-led and transparent.', icon: 'XCircle', tone: 'negative' },
-];
-
-const outcomes = [
-  { title: 'Real product handling experience', text: 'Practical exposure with essential goods.', icon: 'CheckCircle2' },
-  { title: 'Field confidence development', text: 'Confidence comes from responsible practice.', icon: 'CheckCircle2' },
-  { title: 'Customer interaction skills', text: 'Clear, respectful household communication.', icon: 'CheckCircle2' },
-  { title: 'Understanding of supply systems', text: 'Participants learn how product flow works.', icon: 'CheckCircle2' },
-  { title: 'Consistent activity exposure', text: 'Repeat-demand products support continuity.', icon: 'CheckCircle2' },
-  { title: 'Long-term growth mindset', text: 'This supports long-term growth, not instant results.', icon: 'CheckCircle2' },
-];
-
-const entry = [
-  { title: 'Orientation', text: 'Understand the complete system first.' },
-  { title: 'Skill Readiness', text: 'Prepare through the essential training path.' },
-  { title: 'System Clarity', text: 'Participate only with no pressure and no forced commitment.' },
+const boundaries = [
+  'Not quick-profit trading',
+  'Not inventory dumping',
+  'Not random selling',
+  'Not MLM retail hype',
 ];
 
 export default function FarmToHome() {
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return undefined;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.cinema-scene').forEach((section) => {
+        const image = section.querySelector('.cinema-scene-bg img');
+        const copy = section.querySelectorAll('.cinema-kicker, .cinema-title, .cinema-copy, .cinema-meta, .cinema-action');
+
+        gsap.fromTo(copy, { y: 42, opacity: 0 }, {
+          y: 0,
+          opacity: 1,
+          duration: reduceMotion ? 0.01 : 0.9,
+          stagger: reduceMotion ? 0 : 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 68%',
+            end: 'center 42%',
+            toggleActions: 'play none none reverse',
+          },
+        });
+
+        if (!reduceMotion) {
+          gsap.fromTo(image, { scale: 1.06 }, {
+            scale: 1.015,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 72%',
+              toggleActions: 'play none none reverse',
+            },
+          });
+        }
+      });
+    }, root);
+
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
   return (
-    <>
-      <HeroSection
-        eyebrow="Product Execution System"
-        title="Farm Direct to Homes & Communities"
-        text="Essential product supply & field execution system. Direct sourcing from producers, transparent pricing, and skill-driven distribution to households."
-        image={images.harvest}
-        primary={['Contact Us for Orientation', '/contact']}
-        secondary={['Learn SkillNet Mastery', '/skillnet-mastery']}
-      />
-      <QuotePanel quote="Not retail hype. Structured product movement with responsibility." />
-      <ContentCards eyebrow="Why Farm-to-Home Exists" title="Solving real problems in agricultural supply chains" items={groundReality} warm />
-      <ContentCards eyebrow="Our solution" title="Farm-to-Home connects production, people, and consumption ethically" items={solution} />
-      <FeatureCards eyebrow="Products We Handle" title="Essential daily-use products from trusted sources" items={productCategories} />
-      <QuotePanel quote="Only repeat-demand, necessity-based products. Not luxury, not impulse items." />
-      <ProcessRail eyebrow="How the System Works" title="Six-step integrated supply flow" items={flow} />
-      <ImageSection
-        eyebrow="Role of Trained Participants"
-        title="Farm-to-Home is not open selling."
-        text="Only individuals trained through SkillNet Mastery participate in this system. Products are handled by prepared people, not random sellers."
-        image={images.fieldHands}
-        imageAlt="Prepared people handling field supply responsibly"
-      />
-      <ContentCards eyebrow="Participants are trained to" title="Responsible handling starts with readiness" items={participantTraining} warm />
-      <ContentCards eyebrow="System requirements" title="Entry requires clarity and preparation" items={requirements} columns="two" />
-      <ContentCards eyebrow="Differentiators" title="What Makes Farm-to-Home Different" items={different} warm />
-      <ContentCards eyebrow="Boundaries" title="What Farm-to-Home Is NOT" items={notSystem} />
-      <QuotePanel quote="It is a responsibility-driven supply system." />
-      <ContentCards eyebrow="Outcome clarity" title="What participants gain from Farm-to-Home" items={outcomes} warm />
-      <ImageSection
-        eyebrow="Connection to SkillNet Mastery"
-        title="Skills prepare individuals. Products sustain real-world activity."
-        text="Both systems are designed to work together, not independently. SkillNet Mastery prepares people; Farm-to-Home creates continuity through real product activity."
-        image={images.training}
-        imageAlt="Training connected with product execution"
-        reverse
-      />
-      <ProcessRail eyebrow="Entry & Orientation Process" title="Participation begins only after completing essential steps" items={entry} />
-      <CTASection
-        title="There is no pressure and no forced commitment."
-        text="Start with orientation, understand the model clearly, and choose the next step only when the system makes sense to you."
-        image={images.landscape}
-        cta={['Contact Us for Orientation', '/contact']}
-      />
-    </>
+    <main className="farm-cinema-page" ref={pageRef}>
+      {scenes.map((scene, index) => (
+        <section className={`cinema-scene cinema-scene--${scene.align}`} key={scene.title}>
+          <figure className="cinema-scene-bg" aria-hidden="true">
+            <img src={scene.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+          </figure>
+          <div className="cinema-noise" aria-hidden="true" />
+          <div className="cinema-ambient" aria-hidden="true" />
+          <div className="cinema-vignette" aria-hidden="true" />
+          <div className="cinema-inner">
+            <motion.span
+              className="cinema-kicker"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index === 0 ? 0.25 : 0 }}
+            >
+              {scene.eyebrow}
+            </motion.span>
+            <h1 className="cinema-title">{scene.title}</h1>
+            <p className="cinema-copy">{scene.text}</p>
+            <div className="cinema-meta" aria-label={`${scene.title} highlights`}>
+              {scene.meta.map((item) => <span key={item}>{item}</span>)}
+            </div>
+            {index === 0 && (
+              <Link className="cinema-action" to="/contact">
+                Start with an introduction <ArrowRight size={18} />
+              </Link>
+            )}
+          </div>
+        </section>
+      ))}
+
+      <section className="cinema-scene cinema-process-scene">
+        <figure className="cinema-scene-bg" aria-hidden="true">
+          <img src={images.crops} alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div className="cinema-noise" aria-hidden="true" />
+        <div className="cinema-ambient" aria-hidden="true" />
+        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="cinema-inner cinema-inner--wide">
+          <span className="cinema-kicker">Supply Flow</span>
+          <h2 className="cinema-title">A clear movement from farm to doorstep.</h2>
+          <div className="cinema-process-line">
+            {farmToHomeTimeline.slice(0, 6).map((item, index) => (
+              <article className="cinema-step" key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cinema-scene cinema-principles-scene">
+        <figure className="cinema-scene-bg" aria-hidden="true">
+          <img src={images.fieldHands} alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div className="cinema-noise" aria-hidden="true" />
+        <div className="cinema-ambient" aria-hidden="true" />
+        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="cinema-inner cinema-inner--wide">
+          <span className="cinema-kicker">Trained Handling</span>
+          <h2 className="cinema-title">Products move through people who understand responsibility.</h2>
+          <div className="cinema-principles">
+            {principles.map(({ icon: Icon, label, text }) => (
+              <article className="cinema-principle" key={label}>
+                <Icon size={24} />
+                <h3>{label}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cinema-scene cinema-final-scene">
+        <figure className="cinema-scene-bg" aria-hidden="true">
+          <img src={images.landscape} alt="" loading="lazy" decoding="async" />
+        </figure>
+        <div className="cinema-noise" aria-hidden="true" />
+        <div className="cinema-ambient" aria-hidden="true" />
+        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="cinema-inner">
+          <span className="cinema-kicker">Boundaries</span>
+          <h2 className="cinema-title">Built for stable trust, not hype.</h2>
+          <p className="cinema-copy">Start with a calm introduction, understand the model clearly, and choose the next step only when it makes sense.</p>
+          <div className="cinema-meta">
+            {boundaries.map((item) => <span key={item}>{item}</span>)}
+          </div>
+          <div className="cinema-final-actions">
+            <Link className="cinema-action" to="/contact">
+              Contact for introduction <ArrowRight size={18} />
+            </Link>
+            <Link className="cinema-secondary-action" to="/skillnet-mastery">
+              SkillNet Mastery
+            </Link>
+          </div>
+        </div>
+        <div className="cinema-orbit" aria-hidden="true">
+          <Leaf size={30} />
+          <PackageCheck size={30} />
+          <CheckCircle2 size={30} />
+          <Sprout size={30} />
+        </div>
+      </section>
+    </main>
   );
 }

@@ -23,8 +23,8 @@ export default function Learn() {
     <>
       <PageIntro
         eyebrow="Learn"
-        title="A knowledge hub for organic agriculture and sustainable systems."
-        text="Read field notes, frameworks, and reflections designed for calm, useful learning."
+        title="A simple learning space for organic farming and better systems."
+        text="Read field notes, practical ideas, and reflections made for useful learning."
       />
       <section className="cinematic-section">
         <div className="section-inner">
@@ -71,8 +71,8 @@ export default function Learn() {
             <h2>{article.title}</h2>
             <p>{article.excerpt}</p>
             <p>
-              Long-form articles use generous line height, quiet contrast, warm backgrounds,
-              and strong image pacing so complex sustainability ideas stay easy to absorb.
+              Articles are written in a calm and simple style so important farming,
+              supply, and sustainability ideas are easy to understand.
             </p>
           </div>
           <OptimizedImage

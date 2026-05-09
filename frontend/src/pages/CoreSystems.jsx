@@ -4,67 +4,67 @@ import { images } from '../data/siteContent';
 const systems = [
   {
     title: 'SkillNet Mastery',
-    text: 'People Preparation System. Structured skill training that builds work discipline, thinking clarity, and readiness for real-world execution.',
+    text: 'People training program. Step-by-step skill training that builds work discipline, clear thinking, and preparation for real work.',
     icon: 'BookOpen',
-    items: ['Skill development through structured modules', 'Mental clarity and work discipline', 'Leadership and communication training', 'Field readiness preparation'],
-    link: ['Explore This System', '/skillnet-mastery'],
+    items: ['Skill development through simple lessons', 'Clear thinking and work discipline', 'Leadership and communication training', 'Preparation for field work'],
+    link: ['Explore This Program', '/skillnet-mastery'],
   },
   {
     title: 'Farm-to-Home',
-    text: 'Product Execution System. Direct sourcing of essential products from producers to households through transparent, skill-driven field execution.',
+    text: 'Product supply program. Essential products move from farmers to households through clear pricing and trained field work.',
     icon: 'Sprout',
-    items: ['Essential daily-use product handling', 'Direct farmer-to-consumer supply', 'Transparent pricing structure', 'Field exposure and customer interaction'],
-    link: ['Explore This System', '/farm-to-home'],
+    items: ['Daily-use product handling', 'Direct farmer-to-consumer supply', 'Clear pricing', 'Field practice and customer interaction'],
+    link: ['Explore This Program', '/farm-to-home'],
   },
 ];
 
 const flow = [
   { title: 'Skill Development', text: 'Training in SkillNet Mastery' },
-  { title: 'Capability Building', text: 'Mental clarity & execution skills' },
-  { title: 'System Orientation', text: 'Understanding Farm-to-Home flow' },
-  { title: 'Product Handling', text: 'Field execution with real products' },
-  { title: 'Continuous Activity', text: 'Income + Experience + Trust' },
+  { title: 'Skill Building', text: 'Clear thinking and work skills' },
+  { title: 'Program Introduction', text: 'Understanding the Farm-to-Home process' },
+  { title: 'Product Handling', text: 'Field work with real products' },
+  { title: 'Regular Activity', text: 'Income, experience, and trust' },
 ];
 
 const comparison = [
-  { title: 'Skills alone lack practical application', text: 'Single-system limitation', icon: 'XCircle', tone: 'negative' },
-  { title: 'Products fail without skilled people', text: 'Single-system limitation', icon: 'XCircle', tone: 'negative' },
-  { title: 'Theoretical knowledge without execution', text: 'Single-system limitation', icon: 'XCircle', tone: 'negative' },
-  { title: 'Skills prepare individuals for execution', text: 'Integrated approach benefit', icon: 'CheckCircle2' },
-  { title: 'Products sustain real-world activity', text: 'Integrated approach benefit', icon: 'CheckCircle2' },
-  { title: 'Practical learning with continuous growth', text: 'Integrated approach benefit', icon: 'CheckCircle2' },
+  { title: 'Skills alone need practical use', text: 'One-program limitation', icon: 'XCircle', tone: 'negative' },
+  { title: 'Products need trained people', text: 'One-program limitation', icon: 'XCircle', tone: 'negative' },
+  { title: 'Only theory is not enough', text: 'One-program limitation', icon: 'XCircle', tone: 'negative' },
+  { title: 'Skills prepare people for real work', text: 'Benefit of the combined model', icon: 'CheckCircle2' },
+  { title: 'Products create regular field activity', text: 'Benefit of the combined model', icon: 'CheckCircle2' },
+  { title: 'Practical learning supports steady growth', text: 'Benefit of the combined model', icon: 'CheckCircle2' },
 ];
 
 export default function CoreSystems() {
   return (
     <>
       <HeroSection
-        eyebrow="Integrated Systems Approach"
+        eyebrow="Connected Program Model"
         title="How Our Two Systems Work Together"
-        text="Skills prepare individuals. Products sustain real-world activity. Together, they create sustainable growth pathways."
+        text="Skills prepare people. Products create real work. Together, they support steady growth."
         image={images.supply}
-        primary={['Contact for Orientation', '/contact']}
+        primary={['Contact for Introduction', '/contact']}
         secondary={['View Training Portal', 'https://training.zoho.com']}
       />
-      <ContentCards eyebrow="Two Systems, One Purpose" title="Two Systems, One Purpose" items={systems} columns="two" warm />
-      <ProcessRail eyebrow="How Systems Connect" title="Training creates capability. Products create consistency." items={flow} />
+      <ContentCards eyebrow="Two programs, one purpose" title="Two Programs, One Purpose" items={systems} columns="two" warm variant="spotlight" />
+      <ProcessRail eyebrow="How Programs Connect" title="Training builds skills. Products create regular practice." items={flow} />
       <ImageSection
-        eyebrow="System indicator"
-        title="Skills to products, preparation to continuity."
-        text="Each system serves a specific function, and together they create complete growth pathways for people, producers, and households."
+        eyebrow="How it works"
+        title="Skills to products, training to regular work."
+        text="Each program has a clear role, and together they support people, farmers, and households."
         image={images.training}
-        imageAlt="Skill development session connected to product execution"
+        imageAlt="Skill training session connected to product work"
       />
-      <ContentCards eyebrow="Why two systems?" title="Each system alone is incomplete." items={comparison} />
+      <ContentCards eyebrow="Why two programs?" title="Each program alone is incomplete." items={comparison} variant="bento" />
       <QuotePanel
-        quote="Skills alone are incomplete. Products alone fail without skilled people."
-        byline="Valsii System Design Principle"
+        quote="Skills need practical use. Product work needs trained people."
+        byline="Valsii Working Principle"
       />
       <CTASection
         title="Ready to Experience Both Systems?"
-        text="Start with SkillNet Mastery training and progress to Farm-to-Home execution. Complete growth pathway with structured guidance."
+        text="Start with SkillNet Mastery training and then understand Farm-to-Home work with clear guidance."
         image={images.landscape}
-        cta={['Contact for Orientation', '/contact']}
+        cta={['Contact for Introduction', '/contact']}
       />
     </>
   );

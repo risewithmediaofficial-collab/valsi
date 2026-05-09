@@ -15,27 +15,27 @@ const FarmToHome = lazy(() => import('./pages/FarmToHome'));
 const routeMeta = {
   '/': {
     title: 'Valsii - Skill & Supply Systems',
-    description: 'Valsii builds practical skill development and ethical product distribution systems for sustainable income pathways.',
+    description: 'Valsii builds practical skill training and honest product supply systems for steady earning opportunities.',
   },
   '/about': {
     title: 'About Valsii - Skill & Supply Company',
-    description: 'Learn about Valsii values, mission, and the integrated SkillNet Mastery and Farm-to-Home systems.',
+    description: 'Learn about Valsii values, mission, SkillNet Mastery, and Farm-to-Home.',
   },
   '/contact': {
-    title: 'Contact Valsii - Request Orientation',
-    description: 'Request a pressure-free orientation to understand Valsii training and product execution systems.',
+    title: 'Contact Valsii - Request Introduction',
+    description: 'Request a free, pressure-free introduction to understand Valsii training and product supply programs.',
   },
   '/core-systems': {
     title: 'Valsii Core Systems - SkillNet and Farm-to-Home',
-    description: 'See how Valsii combines structured skill training with responsible product execution.',
+    description: 'See how Valsii combines practical skill training with honest product supply work.',
   },
   '/skillnet-mastery': {
     title: 'SkillNet Mastery - Structured Skill Development',
-    description: 'Build real capability, clarity, communication, leadership, and field readiness through SkillNet Mastery.',
+    description: 'Build real skills, clear thinking, communication, leadership, and preparation for field work through SkillNet Mastery.',
   },
   '/farm-to-home': {
-    title: 'Farm-to-Home - Responsible Product Execution',
-    description: 'Direct farm product sourcing, transparent pricing, and trained field execution for households and communities.',
+    title: 'Farm-to-Home - Honest Product Supply',
+    description: 'Direct farm product sourcing, clear pricing, and trained field work for households and communities.',
   },
 };
 
@@ -56,7 +56,7 @@ class ErrorBoundary extends Component {
           <div className="section-inner narrow">
             <span className="eyebrow">Something went wrong</span>
             <h1>We could not load this page.</h1>
-            <p>Please refresh the page or return home. If the issue continues, contact Valsii for orientation support.</p>
+            <p>Please refresh the page or return home. If the issue continues, contact Valsii for support.</p>
             <a className="premium-button" href="/">Return Home</a>
           </div>
         </section>

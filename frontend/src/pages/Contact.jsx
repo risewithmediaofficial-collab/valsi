@@ -9,34 +9,34 @@ const contactCards = [
   { title: 'Phone', text: '+91 98765 43210\nMon-Fri, 10 AM - 6 PM', icon: 'Phone' },
   { title: 'Email', text: 'orientation@valsii.com\nResponse within 24 hours', icon: 'MessageCircle' },
   { title: 'Office Location', text: 'Valsii LLP (Registered Entity)\nChennai, Tamil Nadu', icon: 'Route' },
-  { title: 'Orientation Hours', text: 'Weekly Orientation Sessions\nBy appointment only', icon: 'Clock3' },
+  { title: 'Intro Session Hours', text: 'Weekly introduction sessions\nBy appointment only', icon: 'Clock3' },
 ];
 
 const process = [
-  { title: 'Request Orientation', text: 'Fill the form or contact us directly' },
-  { title: 'Schedule Session', text: "We'll schedule a convenient time for orientation" },
-  { title: 'System Understanding', text: 'Detailed explanation of both systems' },
-  { title: 'Clarity & Next Steps', text: 'Get clarity and decide on participation' },
+  { title: 'Request Introduction', text: 'Fill the form or contact us directly' },
+  { title: 'Schedule Session', text: "We'll schedule a convenient time for the session" },
+  { title: 'Understand the Programs', text: 'Clear explanation of SkillNet and Farm-to-Home' },
+  { title: 'Next Steps', text: 'Ask questions and decide without pressure' },
 ];
 
 const notes = [
-  { title: 'Orientation is completely free', text: 'Start with clarity before making any participation decision.', icon: 'CheckCircle2' },
-  { title: 'No pressure to join after orientation', text: 'All system details are shared transparently and questions are answered honestly.', icon: 'CheckCircle2' },
-  { title: 'Field explanation', text: 'Farm-to-Home is a product supply system where trained individuals handle essential goods responsibly from producers to households.', icon: 'Sprout' },
+  { title: 'Introduction is completely free', text: 'Understand everything before making any decision.', icon: 'CheckCircle2' },
+  { title: 'No pressure to join after the session', text: 'All details are shared clearly and questions are answered honestly.', icon: 'CheckCircle2' },
+  { title: 'Field work explanation', text: 'Farm-to-Home is a product supply model where trained people handle essential goods from farmers to households.', icon: 'Sprout' },
 ];
 
 const faqs = [
   {
-    question: 'What happens after orientation?',
-    answer: "After orientation, you'll have complete clarity about both systems. You can start with SkillNet Mastery training, understand more before deciding, or ask more questions. No commitment required.",
+    question: 'What happens after the introduction?',
+    answer: "After the session, you'll understand both programs. You can start SkillNet Mastery training, take more time, or ask more questions. No commitment required.",
   },
   {
-    question: 'Is there any fee for orientation or training?',
-    answer: 'Orientation is completely free. Training programs have structured fees that are clearly explained during orientation. No hidden costs.',
+    question: 'Is there any fee for the introduction or training?',
+    answer: 'The introduction is completely free. Training fees are explained clearly during the session. No hidden costs.',
   },
   {
-    question: 'Can I visit your office before orientation?',
-    answer: 'Yes, office visits can be scheduled. However, we recommend starting with orientation, online or in-person, to understand the systems first for better clarity.',
+    question: 'Can I visit your office before the introduction?',
+    answer: 'Yes, office visits can be scheduled. We recommend starting with an online or in-person introduction so you understand the programs first.',
   },
 ];
 
@@ -70,7 +70,7 @@ export default function Contact() {
       return;
     }
     setStatus('sending');
-    const subject = encodeURIComponent(`Orientation request from ${values.name.trim()}`);
+    const subject = encodeURIComponent(`Introduction request from ${values.name.trim()}`);
     const body = encodeURIComponent([
       `Name: ${values.name.trim()}`,
       `Email: ${values.email.trim()}`,
@@ -93,19 +93,19 @@ export default function Contact() {
           <div className="contact-copy reveal">
             <span className="eyebrow">Get in Touch</span>
             <h1>Contact Valsii</h1>
-            <p>Get clarity about our systems. Understand the process. Start with orientation.</p>
+            <p>Understand our programs, ask questions, and start with a free introduction.</p>
             <div className="contact-list">
               <span><Mail size={17} /> orientation@valsii.com</span>
               <span><Phone size={17} /> +91 98765 43210</span>
               <span><MapPin size={17} /> Chennai, Tamil Nadu</span>
-              <span><CalendarClock size={17} /> Training-first, pressure-free approach</span>
+              <span><CalendarClock size={17} /> Training-first, no-pressure approach</span>
             </div>
           </div>
 
           <form className="contact-form reveal" onSubmit={handleSubmit} noValidate>
             <div>
-              <h2>Request Orientation</h2>
-              <p>Fill this form to schedule a system orientation session</p>
+              <h2>Request Introduction</h2>
+              <p>Fill this form to schedule a free introduction session</p>
             </div>
             <label htmlFor="field-name">
               Full Name *
@@ -126,7 +126,7 @@ export default function Contact() {
               I'm interested in *
               <select id="field-interest" name="interest" value={values.interest} onChange={updateField} required aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? 'interest-error' : undefined}>
                 <option value="" disabled>Select one</option>
-                <option>System Orientation</option>
+                <option>Program Introduction</option>
                 <option>SkillNet Mastery Training</option>
                 <option>Farm-to-Home Participation</option>
                 <option>General Inquiry</option>
@@ -135,26 +135,26 @@ export default function Contact() {
             </label>
             <label htmlFor="field-message">
               Message / Questions
-              <textarea id="field-message" name="message" rows="5" placeholder="Any specific questions or requirements..." value={values.message} onChange={updateField} />
+              <textarea id="field-message" name="message" rows="5" placeholder="Any specific questions..." value={values.message} onChange={updateField} />
             </label>
             <button type="submit" className="premium-button" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Preparing Request...' : status === 'sent' ? 'Email Draft Opened' : 'Send Orientation Request'}
+              {status === 'sending' ? 'Preparing Request...' : status === 'sent' ? 'Email Draft Opened' : 'Send Introduction Request'}
             </button>
             {status === 'idle' && <p className="form-note success">We'll contact you within 24 hours after your request is sent.</p>}
-            {status === 'sent' && <p className="form-note success" role="status">Your email app should now have a prepared orientation request. Send it to complete the request.</p>}
+            {status === 'sent' && <p className="form-note success" role="status">Your email app should now have a prepared request. Send it to complete the request.</p>}
             {status === 'error' && <p className="form-note" role="alert">Please fix the highlighted fields and try again.</p>}
           </form>
         </div>
       </section>
 
-      <ContentCards eyebrow="Contact info" title="Start with the right channel." items={contactCards} warm />
-      <ProcessRail eyebrow="Orientation Process" title="Orientation Process" items={process} />
-      <ContentCards eyebrow="Important notes" title="Clear, pressure-free orientation." items={notes} />
-      <FAQSection title="Common Questions" subtitle="Quick answers to help you prepare for orientation" items={faqs} />
+      <ContentCards eyebrow="Contact info" title="Start with the right channel." items={contactCards} warm variant="glass" />
+      <ProcessRail eyebrow="Introduction Process" title="Introduction Process" items={process} />
+      <ContentCards eyebrow="Important notes" title="Clear, pressure-free introduction." items={notes} variant="spotlight" />
+      <FAQSection title="Common Questions" subtitle="Quick answers to help you prepare for the session" items={faqs} />
       <section className="reading-panel">
         <div className="section-inner narrow direct-contact reveal">
           <span className="eyebrow">Prefer Direct Contact?</span>
-          <h2>Call us directly for immediate assistance with orientation scheduling</h2>
+          <h2>Call us directly for help with session scheduling</h2>
           <a className="premium-button" href="tel:+919876543210">Call Now: +91 98765 43210</a>
           <p>Available Monday to Friday, 10 AM - 6 PM</p>
         </div>

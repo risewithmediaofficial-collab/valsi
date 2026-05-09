@@ -9,6 +9,7 @@ import {
   Clock3,
   Droplets,
   CalendarClock,
+  DollarSign,
   Leaf,
   MessageCircle,
   PackageCheck,
@@ -28,6 +29,7 @@ const iconMap = {
   CalendarClock,
   CheckCircle2,
   Clock3,
+  DollarSign,
   Droplets,
   MessageCircle,
   PackageCheck,
@@ -39,8 +41,6 @@ const iconMap = {
   Wheat,
   XCircle,
 };
-const imageWidths = [640, 960, 1280, 1600, 2200];
-
 function SmartLink({ to, className, children }) {
   if (to?.startsWith('http')) {
     return (
@@ -52,22 +52,13 @@ function SmartLink({ to, className, children }) {
   return <Link to={to} className={className}>{children}</Link>;
 }
 
-function imageUrl(src, width = 1200) {
+function imageUrl(src) {
   if (!src) return '';
-  if (!src.includes('images.unsplash.com')) {
-    return src;
-  }
-  const url = new URL(src);
-  url.searchParams.set('auto', 'format');
-  url.searchParams.set('fit', 'crop');
-  url.searchParams.set('w', String(width));
-  url.searchParams.set('q', width > 1600 ? '78' : '82');
-  return url.toString();
+  return src;
 }
 
-function imageSet(src) {
-  if (!src.includes('images.unsplash.com')) return undefined;
-  return imageWidths.map((width) => `${imageUrl(src, width)} ${width}w`).join(', ');
+function imageSet() {
+  return undefined;
 }
 
 export function OptimizedImage({
@@ -258,16 +249,6 @@ export function CinematicBackdrop() {
       </div>
       <div className="custom-cursor" aria-hidden="true" />
       <div className="grain-layer" aria-hidden="true" />
-      <div className="ambient-blobs" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-      <div className="particle-field" aria-hidden="true">
-        {Array.from({ length: 12 }).map((_, index) => (
-          <span key={index} style={{ '--i': index }} />
-        ))}
-      </div>
     </>
   );
 }
@@ -304,7 +285,7 @@ export function MarqueeTicker() {
         {Array.from({ length: 6 }).map((_, index) => (
           <span key={index}>
             {line}
-            <Leaf className="marquee-leaf" size={34} />
+            <Leaf className="marquee-leaf" size={28} />
           </span>
         ))}
       </div>
@@ -312,20 +293,25 @@ export function MarqueeTicker() {
   );
 }
 
-export function EditorialHero({ eyebrow, title, text }) {
+export function EditorialHero({ eyebrow, title, text, image, imageAlt = '', imagePosition = 'center' }) {
   return (
-    <section className="editorial-hero">
-      <div className="hero-blob hero-blob-a" aria-hidden="true" />
-      <div className="hero-blob hero-blob-b" aria-hidden="true" />
+    <section className="editorial-hero cinematic-split-hero">
       <div className="section-inner editorial-hero-inner">
-        <span className="eyebrow reveal">{eyebrow}</span>
-        <div className="hero-title-wrap">
-          <h1 className="reveal">{title}</h1>
+        <div className="hero-copy-panel">
+          <span className="eyebrow reveal">{eyebrow}</span>
+          <div className="hero-title-wrap">
+            <h1 className="reveal">{title}</h1>
+          </div>
+          <p className="reveal">{text}</p>
+          <a href="#editorial-cards" className="scroll-cue magnetic" aria-label="Scroll to services">
+            <ArrowDown size={28} />
+          </a>
         </div>
-        <p className="reveal">{text}</p>
-        <a href="#editorial-cards" className="scroll-cue magnetic" aria-label="Scroll to services">
-          <ArrowDown size={28} />
-        </a>
+        {image && (
+          <figure className="hero-media-panel reveal image-depth">
+            <OptimizedImage src={image} alt={imageAlt} position={imagePosition} sizes="(min-width: 980px) 50vw, 100vw" />
+          </figure>
+        )}
       </div>
       <OrganicDivider />
     </section>
@@ -530,6 +516,18 @@ export function EditorialQuotes({ items }) {
 }
 
 export function MinimalCards({ eyebrow, title, items }) {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleCard = (index) => {
+    setActiveIndex((current) => (current === index ? null : index));
+  };
+
+  const handleKeyDown = (event, index) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    toggleCard(index);
+  };
+
   return (
     <section className="cinematic-section minimal-card-section">
       <div className="section-inner">
@@ -538,26 +536,70 @@ export function MinimalCards({ eyebrow, title, items }) {
           <h2>{title}</h2>
         </div>
 
-        <div className="minimal-card-grid">
-          {items.map((item) => (
-            <article className="minimal-card reveal" key={item.title}>
-              {item.image && (
-                <figure className="minimal-card-media">
-                  <OptimizedImage
-                    src={item.image}
-                    alt={item.alt || item.title}
-                    position={item.position || 'center'}
-                    sizes="(min-width: 980px) 28vw, (min-width: 640px) 45vw, 92vw"
-                  />
-                </figure>
-              )}
-              <div className="minimal-card-copy">
-                <span>{item.kicker || item.label || 'Valsii system'}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description || item.text || item.what}</p>
-              </div>
-            </article>
-          ))}
+        <div className={`minimal-card-grid ${activeIndex !== null ? 'is-focused' : ''}`}>
+          {items.map((item, index) => {
+            const isActive = activeIndex === index;
+            return (
+              <article
+                className={`minimal-card ${isActive ? 'is-active' : ''} ${activeIndex !== null && !isActive ? 'is-muted' : ''}`}
+                key={item.title}
+                tabIndex={0}
+                role="button"
+                aria-expanded={isActive}
+                aria-label={`${item.title}. ${isActive ? 'Collapse details' : 'Expand details'}`}
+                onPointerEnter={(event) => {
+                  if (event.pointerType !== 'touch') setActiveIndex(index);
+                }}
+                onPointerLeave={(event) => {
+                  if (event.pointerType !== 'touch') setActiveIndex(null);
+                }}
+                onFocus={() => {
+                  if (window.matchMedia?.('(hover: hover)').matches) setActiveIndex(index);
+                }}
+                onBlur={() => setActiveIndex(null)}
+                onClick={() => {
+                  if (!window.matchMedia?.('(hover: hover)').matches) toggleCard(index);
+                }}
+                onKeyDown={(event) => handleKeyDown(event, index)}
+              >
+                {item.image && (
+                  <figure className="minimal-card-media">
+                    <OptimizedImage
+                      src={item.image}
+                      alt={item.alt || item.title}
+                      position={item.position || 'center'}
+                      sizes="(min-width: 1180px) 340px, (min-width: 760px) 42vw, 86vw"
+                    />
+                    <div className="minimal-card-shade" aria-hidden="true" />
+                  </figure>
+                )}
+                <div className="minimal-card-copy">
+                  <span className="minimal-card-kicker">{item.kicker || item.label || 'Valsii system'}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.description || item.text || item.what}</p>
+                  <div className="minimal-card-reveal" aria-hidden={!isActive}>
+                    <dl>
+                      <div>
+                        <dt>Model</dt>
+                        <dd>{item.how || item.description || item.text}</dd>
+                      </div>
+                      <div>
+                        <dt>Focus</dt>
+                        <dd>{item.features || (item.tags || []).join(', ')}</dd>
+                      </div>
+                    </dl>
+                    <div className="minimal-card-tags" aria-label={`${item.title} tags`}>
+                      {(item.tags || []).slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
+                    </div>
+                    <div className="minimal-card-actions" aria-hidden="true">
+                      <span>Explore <ArrowRight size={15} /></span>
+                      <span>Details</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -677,20 +719,22 @@ export function HeroSection({
   }
 
   return (
-    <section className="hero-section image-depth interactive-field" onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
-      <BackdropImage src={image} alt={imageAlt} eager position={imagePosition} />
-      <div className="hero-shade" />
-      <div className="light-sweep" aria-hidden="true" />
-      <div className="section-inner hero-content reveal">
-        <span className="eyebrow">{eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{text}</p>
-        <div className="button-row">
-          <SmartLink to={primary[1]} className="premium-button">
-            {primary[0]} <ArrowRight size={18} />
-          </SmartLink>
-          <SmartLink to={secondary[1]} className="quiet-button">{secondary[0]}</SmartLink>
+    <section className="hero-section cinematic-split-hero interactive-field" onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
+      <div className="section-inner hero-split-shell">
+        <div className="hero-content reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h1>{title}</h1>
+          <p>{text}</p>
+          <div className="button-row">
+            <SmartLink to={primary[1]} className="premium-button magnetic">
+              {primary[0]} <ArrowRight size={18} />
+            </SmartLink>
+            <SmartLink to={secondary[1]} className="quiet-button magnetic">{secondary[0]}</SmartLink>
+          </div>
         </div>
+        <figure className="hero-media-panel reveal">
+          <OptimizedImage src={image} alt={imageAlt} eager position={imagePosition} sizes="(min-width: 980px) 50vw, 100vw" />
+        </figure>
       </div>
     </section>
   );
@@ -698,7 +742,7 @@ export function HeroSection({
 
 export function ImageSection({ eyebrow, title, text, image, imageAlt = '', imagePosition = 'center', reverse = false, children }) {
   return (
-    <section className="cinematic-section">
+    <section className={`cinematic-section editorial-image-section ${reverse ? 'editorial-image-section--reverse' : ''}`}>
       <div className={`section-inner split-section ${reverse ? 'is-reverse' : ''}`}>
         <div className="copy-block reveal">
           <span className="eyebrow">{eyebrow}</span>
@@ -716,15 +760,15 @@ export function ImageSection({ eyebrow, title, text, image, imageAlt = '', image
 
 export function StoryRail({ items }) {
   return (
-    <section className="cinematic-section compact">
+    <section className="cinematic-section compact workflow-section">
       <div className="section-inner">
         <div className="section-heading reveal">
           <span className="eyebrow">Story arc</span>
           <h2>Origin to growth to future.</h2>
         </div>
-        <div className="story-rail">
+        <div className="story-rail workflow-rail">
           {items.map((item, index) => (
-            <article className="story-step reveal" key={item.title}>
+            <article className="story-step workflow-step reveal" key={item.title}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -760,17 +804,17 @@ export function ProcessRail({ eyebrow = 'Process', title, items }) {
 
 export function FeatureCards({ eyebrow = 'Highlights', title, items }) {
   return (
-    <section className="cinematic-section warm-band">
+    <section className="cinematic-section warm-band feature-section">
       <div className="section-inner">
         <div className="section-heading reveal">
           <span className="eyebrow">{eyebrow}</span>
           <h2>{title}</h2>
         </div>
         <div className="feature-grid">
-          {items.map((item, index) => {
+          {items.map((item) => {
             const Icon = iconMap[item.icon] || Sprout;
             return (
-              <article className={`feature-card ${index === 0 ? 'feature-card--lead' : ''} reveal`} key={item.title}>
+              <article className="feature-card reveal magnetic" key={item.title}>
                 {item.image && (
                   <OptimizedImage
                     src={item.image}
@@ -793,19 +837,19 @@ export function FeatureCards({ eyebrow = 'Highlights', title, items }) {
   );
 }
 
-export function ContentCards({ eyebrow = 'Highlights', title, items, columns = 'three', warm = false }) {
+export function ContentCards({ eyebrow = 'Highlights', title, items, columns = 'three', warm = false, variant = 'ledger' }) {
   return (
-    <section className={`cinematic-section ${warm ? 'warm-band' : ''}`}>
+    <section className={`cinematic-section content-system-section content-system-${variant} ${warm ? 'warm-band' : ''}`}>
       <div className="section-inner">
         <div className="section-heading reveal">
           <span className="eyebrow">{eyebrow}</span>
           <h2>{title}</h2>
         </div>
-        <div className={`content-grid content-grid-${columns} ${warm ? 'content-grid--warm' : ''}`}>
-          {items.map((item) => {
+        <div className={`content-grid content-grid-${columns} content-grid-${variant} ${warm ? 'content-grid--warm' : ''}`}>
+          {items.map((item, index) => {
             const Icon = iconMap[item.icon] || CheckCircle2;
             return (
-              <article className={`content-card ${item.tone === 'negative' ? 'content-card--caution' : ''} ${item.items?.length ? 'content-card--detailed' : ''} reveal`} key={item.title}>
+              <article className={`content-card ${item.tone === 'negative' ? 'content-card--caution' : ''} ${item.items?.length ? 'content-card--detailed' : ''} reveal`} style={{ '--card-index': index }} key={item.title}>
                 <span className={`icon-chip ${item.tone === 'negative' ? 'is-negative' : ''}`}>
                   <Icon size={20} />
                 </span>
@@ -896,7 +940,7 @@ function CountNumber({ value }) {
 
 export function StatsBlock({ stats }) {
   return (
-    <section className="cinematic-section compact">
+    <section className="cinematic-section compact stats-section">
       <div className="section-inner stats-grid">
         {stats.map((stat) => (
           <article className="stat-card reveal" key={stat.label}>
@@ -914,7 +958,6 @@ export function CTASection({ title, text, image, imageAlt = '', imagePosition = 
     <section className="cta-section image-depth">
       <BackdropImage src={image} alt={imageAlt} position={imagePosition} />
       <div className="hero-shade" />
-      <div className="light-sweep" aria-hidden="true" />
       <div className="section-inner cta-content reveal">
         <h2>{title}</h2>
         <p>{text}</p>
@@ -931,6 +974,97 @@ export function PageIntro({ eyebrow, title, text }) {
         <span className="eyebrow">{eyebrow}</span>
         <h1 id={`page-title-${title.replace(/\W+/g, '-').toLowerCase()}`}>{title}</h1>
         <p>{text}</p>
+      </div>
+    </section>
+  );
+}
+
+export function TimelineStory({ eyebrow, title, items, variant = 'vertical' }) {
+  const [expandedIndex, setExpandedIndex] = useState(0);
+
+  const toggleExpanded = useCallback((index) => {
+    setExpandedIndex(expandedIndex === index ? -1 : index);
+  }, [expandedIndex]);
+
+  return (
+    <section className="timeline-story-section">
+      <div className="section-inner">
+        <div className="section-heading reveal">
+          <span className="eyebrow">{eyebrow}</span>
+          <h2>{title}</h2>
+        </div>
+
+        <div className={`timeline-container timeline-${variant}`}>
+          {items.map((item, index) => {
+            const Icon = iconMap[item.icon] || Sprout;
+            const isExpanded = expandedIndex === index;
+
+            return (
+              <div
+                key={item.title}
+                className={`timeline-item reveal ${isExpanded ? 'is-expanded' : ''}`}
+                onClick={() => toggleExpanded(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    toggleExpanded(index);
+                  }
+                }}
+              >
+                <div className="timeline-marker">
+                  <div className="timeline-icon">
+                    <Icon size={24} />
+                  </div>
+                  <div className="timeline-number">{String(index + 1).padStart(2, '0')}</div>
+                </div>
+
+                <div className="timeline-content">
+                  <h3>{item.title}</h3>
+                  <p className="timeline-description">{item.description || item.text}</p>
+
+                  {item.details && (
+                    <details className={`timeline-details ${isExpanded ? 'open' : ''}`}>
+                      <summary className="timeline-summary">
+                        {item.details.title || 'Learn more'}
+                      </summary>
+                      <div className="timeline-details-content">
+                        {item.details.text && <p>{item.details.text}</p>}
+                        {item.details.points && (
+                          <ul className="timeline-points">
+                            {item.details.points.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </details>
+                  )}
+
+                  {item.image && (
+                    <figure className="timeline-image">
+                      <OptimizedImage
+                        src={item.image}
+                        alt={item.title}
+                        sizes="(min-width: 980px) 45vw, (min-width: 640px) 80vw, 100vw"
+                      />
+                    </figure>
+                  )}
+
+                  {item.tags && (
+                    <div className="timeline-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="timeline-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

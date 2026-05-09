@@ -25,7 +25,6 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-glow" aria-hidden="true" />
       <div className="footer-grid">
         <div className="footer-brand reveal">
           <Link to="/" className="brand-link footer-logo">
@@ -36,11 +35,11 @@ export default function Footer() {
             </span>
           </Link>
           <p>
-            Building skilled individuals and connecting them with sustainable
-            product-based income systems.
+            Training people and connecting them with steady
+            product-based earning opportunities.
           </p>
           <Link to="/contact" className="text-link">
-            Ethics & Transparency <ArrowUpRight size={16} />
+            Ethics & Clear Process <ArrowUpRight size={16} />
           </Link>
         </div>
 
@@ -74,7 +73,7 @@ export default function Footer() {
         <span><Globe2 size={13} /> English</span>
         <span>Made with <Heart size={13} /> in India</span>
       </div>
-      <p className="footer-tagline">Building real capabilities and sustainable systems for meaningful growth</p>
+      <p className="footer-tagline">Building real skills and steady systems for meaningful growth</p>
     </footer>
   );
 }

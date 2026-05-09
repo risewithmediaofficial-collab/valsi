@@ -1,22 +1,29 @@
+const valsiiImage = (name) => new URL(`../VALSI IMAGES/${name}`, import.meta.url).href;
+
 export const images = {
-  hero: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2200&q=82',
-  origin: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=82',
-  learning: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=82',
-  crops: 'https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1600&q=82',
-  landscape: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=82',
-  farmer: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=82',
-  greenhouse: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1600&q=82',
-  soil: 'https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&w=1600&q=82',
-  harvest: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=82',
-  contact: 'https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=1800&q=82',
-  study: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=82',
-  fieldHands: 'https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=1500&q=82',
-  training: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1700&q=82',
-  orientation: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1700&q=82',
-  supply: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=1700&q=82',
-  grain: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1600&q=82',
-  vegetables: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=82',
-  teamwork: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=82',
+  hero: valsiiImage('FARMING.png'),
+  origin: valsiiImage('VALSII IN VILLAGE DISCUSSION.png'),
+  learning: valsiiImage('TEACHING IN VALSII.png'),
+  crops: valsiiImage('VEGGIES , GRAINS , ETC.png'),
+  landscape: valsiiImage('EMPOWERING FARMERS.png'),
+  farmer: valsiiImage('FARMER MAN.png'),
+  greenhouse: valsiiImage('YOUNGSTERS RESEARCH FARMS.png'),
+  soil: valsiiImage('TEACHING ABOUT FARM.png'),
+  harvest: valsiiImage('FARMER-FAMILY.png'),
+  contact: valsiiImage('VALSII - DELIVERY.png'),
+  study: valsiiImage('VALSII IT TECH.png'),
+  fieldHands: valsiiImage('GUIDING YOUNGSTERS.png'),
+  training: valsiiImage('TEACHING IN VALSII.png'),
+  orientation: valsiiImage('YOUNG MAN DISCUSSION.png'),
+  supply: valsiiImage('SUPPLY CHAIN DISCUSSION.png'),
+  grain: valsiiImage('GRAINS.png'),
+  rice: valsiiImage('RICE.png'),
+  oils: valsiiImage('OILS.png'),
+  spices: valsiiImage('SPICES.png'),
+  vegetables: valsiiImage('VEGGIES.png'),
+  essentials: valsiiImage('VEGGIES , GRAINS , ETC.png'),
+  delivery: valsiiImage('DOOR DELIVERY.png'),
+  teamwork: valsiiImage('VALSII YOUNGSTERSS.png'),
 };
 
 export const solutions = [
@@ -25,21 +32,21 @@ export const solutions = [
     icon: 'BookOpen',
     image: images.training,
     position: 'center',
-    text: 'Structured skill training programs focused on mental clarity, work discipline, and real-world readiness.',
+    text: 'Step-by-step skill training focused on clear thinking, work discipline, and preparation for real work.',
   },
   {
     title: 'Farm-to-Home',
     icon: 'Sprout',
-    image: images.harvest,
+    image: images.delivery,
     position: 'center 58%',
-    text: 'Direct sourcing from farmers with transparent pricing, quality assurance, and responsible distribution.',
+    text: 'Direct sourcing from farmers with clear pricing, quality checks, and honest supply.',
   },
   {
     title: 'How Systems Connect',
     icon: 'Route',
     image: images.supply,
     position: 'center 48%',
-    text: 'Skills prepare individuals. Products sustain real-world activity. Together, they create sustainable growth.',
+    text: 'Skills prepare people. Products create real work. Together, they support steady growth.',
   },
 ];
 
@@ -48,13 +55,13 @@ export const skillAreas = [
     title: 'Mental Clarity',
     icon: 'Brain',
     image: images.study,
-    text: 'Subconscious mind power for consistent performance.',
+    text: 'Mindset training for focus and steady performance.',
   },
   {
     title: 'Leadership',
     icon: 'Users',
     image: images.teamwork,
-    text: 'Self-leadership and identity clarity.',
+    text: 'Self-leadership and confidence.',
   },
   {
     title: 'Communication',
@@ -74,13 +81,13 @@ export const productCategories = [
   {
     title: 'Rice & Grains',
     icon: 'Wheat',
-    image: images.grain,
+    image: images.rice,
     text: 'Basmati Rice, Sona Masoori, Brown Rice, Millets.',
   },
   {
     title: 'Cooking Oils',
     icon: 'Droplets',
-    image: images.harvest,
+    image: images.oils,
     text: 'Sunflower Oil, Groundnut Oil, Coconut Oil, Mustard Oil.',
   },
   {
@@ -92,26 +99,26 @@ export const productCategories = [
   {
     title: 'Home Essentials',
     icon: 'PackageCheck',
-    image: images.supply,
+    image: images.spices,
     text: 'Pulses, Spices, Flour, Basic Groceries.',
   },
 ];
 
 export const articles = [
   {
-    title: 'Why skills need practical execution',
+    title: 'Why skills need practical use',
     category: 'Training',
     image: images.training,
     read: '6 min',
-    excerpt: 'Skills become meaningful when they are connected to field exposure, discipline, and responsible activity.',
+    excerpt: 'Skills become useful when they are connected to field practice, discipline, and honest work.',
   },
   {
-    title: 'Transparent product systems build trust',
+    title: 'Clear product systems build trust',
     category: 'Supply',
-    image: images.harvest,
+    image: images.supply,
     position: 'center 58%',
     read: '5 min',
-    excerpt: 'Direct sourcing, clear pricing, and trained handling help producers and households work with more confidence.',
+    excerpt: 'Direct sourcing, clear pricing, and trained handling help farmers and households trust the process.',
   },
 ];
 
@@ -120,12 +127,330 @@ export const caseStudies = [
     title: 'Learning circles for first-generation growers',
     image: images.fieldHands,
     position: 'center 48%',
-    text: 'A practical knowledge model helped growers document field patterns and improve weekly decisions.',
+    text: 'A practical learning model helped growers record field patterns and improve weekly decisions.',
+  },
+];
+
+export const farmToHomeTimeline = [
+  {
+    title: 'Source from Verified Farmers',
+    icon: 'Wheat',
+    description: 'We identify and partner with farmers who follow sustainable practices.',
+    image: images.farmer,
+    details: {
+      title: 'Verification Process',
+      points: [
+        'Field assessment and practice review',
+        'Soil health and farming method evaluation',
+        'Building direct relationships with farmer communities',
+        'Understanding seasonal harvest patterns',
+      ],
+    },
+    tags: ['Sourcing', 'Trust', 'Direct Connection'],
   },
   {
-    title: 'Premium sourcing with stronger local trust',
+    title: 'Quality Check & Documentation',
+    icon: 'PackageCheck',
+    description: 'Every batch undergoes careful quality inspection before processing.',
+    image: images.crops,
+    details: {
+      title: 'Quality Standards',
+      points: [
+        'Visual inspection for freshness and quality',
+        'Documentation of source and harvest date',
+        'Testing for cleanliness and safety',
+        'Recording of handling practices',
+      ],
+    },
+    tags: ['Quality', 'Safety', 'Transparency'],
+  },
+  {
+    title: 'Clear Pricing Setup',
+    icon: 'DollarSign',
+    description: 'Prices are set with fairness to farmers and clarity for customers.',
+    image: images.supply,
+    details: {
+      title: 'Pricing Structure',
+      points: [
+        'Fair compensation to farmers',
+        'Transparent cost breakdown',
+        'Minimal middleman margins',
+        'No hidden charges or pressure pricing',
+      ],
+    },
+    tags: ['Pricing', 'Transparency', 'Fair Trade'],
+  },
+  {
+    title: 'Trained Handlers Prepare Products',
+    icon: 'Users',
+    description: 'SkillNet Mastery trained individuals prepare and package products.',
+    image: images.fieldHands,
+    details: {
+      title: 'Preparation Standards',
+      points: [
+        'Cleaning and sorting by trained hands',
+        'Proper packaging for freshness',
+        'Quality verification at each step',
+        'Attention to detail and cleanliness',
+      ],
+    },
+    tags: ['Skill', 'Care', 'Discipline'],
+  },
+  {
+    title: 'Delivery to Your Home',
+    icon: 'Route',
+    description: 'Direct delivery ensures freshness and gives customers direct feedback.',
+    image: images.delivery,
+    details: {
+      title: 'Delivery Process',
+      points: [
+        'Scheduled deliveries to customer homes',
+        'Fresh products at consistent quality',
+        'Direct communication with customers',
+        'Opportunity for feedback and questions',
+      ],
+    },
+    tags: ['Delivery', 'Fresh', 'Direct'],
+  },
+  {
+    title: 'Build Repeat Relationships',
+    icon: 'Sprout',
+    description: 'Trust and reliability create consistent demand and steady business.',
     image: images.harvest,
-    position: 'center 58%',
-    text: 'Clear quality rituals and transparent communication increased confidence across the supply chain.',
+    details: {
+      title: 'Long-term Benefits',
+      points: [
+        'Regular customers appreciate consistent quality',
+        'Predictable demand helps farmers plan',
+        'Trained people get steady work',
+        'System becomes more stable over time',
+      ],
+    },
+    tags: ['Relationship', 'Trust', 'Growth'],
+  },
+];
+
+export const trainingWorkflowTimeline = [
+  {
+    title: 'Program Introduction',
+    icon: 'BookOpen',
+    description: 'Understand what SkillNet Mastery is and how it works.',
+    image: images.learning,
+    details: {
+      title: 'What You\'ll Learn',
+      points: [
+        'Overview of the SkillNet Mastery program',
+        'Connection between skills and real work',
+        'Expectations and commitment required',
+        'How practical training supports growth',
+      ],
+    },
+    tags: ['Foundation', 'Orientation', 'Clarity'],
+  },
+  {
+    title: 'Mental Clarity Training',
+    icon: 'Brain',
+    description: 'Develop focus, discipline, and clear thinking for consistent work.',
+    image: images.study,
+    details: {
+      title: 'Mental Foundation',
+      points: [
+        'Techniques for focus and concentration',
+        'Building work discipline habits',
+        'Developing clear thinking patterns',
+        'Managing distractions and challenges',
+      ],
+    },
+    tags: ['Mindset', 'Foundation', 'Focus'],
+  },
+  {
+    title: 'Leadership & Self-Development',
+    icon: 'Users',
+    description: 'Build confidence and self-leadership for honest work.',
+    image: images.orientation,
+    details: {
+      title: 'Personal Growth',
+      points: [
+        'Understanding personal strengths',
+        'Building confidence through small wins',
+        'Developing leadership in daily tasks',
+        'Preparing for responsibility',
+      ],
+    },
+    tags: ['Leadership', 'Confidence', 'Growth'],
+  },
+  {
+    title: 'Communication Skills',
+    icon: 'MessageCircle',
+    description: 'Learn to communicate clearly and respectfully with others.',
+    image: images.soil,
+    details: {
+      title: 'Communication Techniques',
+      points: [
+        'Clear and honest communication',
+        'Listening and understanding others',
+        'Explaining ideas and products',
+        'Building trust through words',
+      ],
+    },
+    tags: ['Communication', 'Connection', 'Trust'],
+  },
+  {
+    title: 'Work Discipline & Time Management',
+    icon: 'Clock3',
+    description: 'Master the discipline and organization needed for reliable work.',
+    image: images.training,
+    details: {
+      title: 'Work Excellence',
+      points: [
+        'Time management and prioritization',
+        'Maintaining consistent performance',
+        'Following procedures with care',
+        'Accountability and responsibility',
+      ],
+    },
+    tags: ['Discipline', 'Reliability', 'Excellence'],
+  },
+  {
+    title: 'Field Work & Practice',
+    icon: 'Sprout',
+    description: 'Apply skills in real work situations with guidance and feedback.',
+    image: images.greenhouse,
+    details: {
+      title: 'Practical Application',
+      points: [
+        'Supervised field assignments',
+        'Real product handling experience',
+        'Customer interaction practice',
+        'Regular feedback and improvement',
+      ],
+    },
+    tags: ['Practice', 'Experience', 'Application'],
+  },
+  {
+    title: 'Certification & Opportunity',
+    icon: 'CheckCircle2',
+    description: 'Earn certification and access to Farm-to-Home work opportunities.',
+    image: images.teamwork,
+    details: {
+      title: 'Next Steps',
+      points: [
+        'Official SkillNet Mastery certification',
+        'Qualification for product handling roles',
+        'Access to regular work opportunities',
+        'Continued growth and advancement',
+      ],
+    },
+    tags: ['Certification', 'Opportunity', 'Career'],
+  },
+];
+
+export const logisticsTimeline = [
+  {
+    title: 'Order Placement',
+    icon: 'BookOpen',
+    description: 'Customers place orders through our simple and clear ordering system.',
+    details: {
+      title: 'How to Order',
+      points: [
+        'Browse available products and farmers',
+        'Select quantities and preferences',
+        'Choose delivery date and location',
+        'Transparent pricing shown upfront',
+      ],
+    },
+    tags: ['Ordering', 'Transparency', 'Easy'],
+  },
+  {
+    title: 'Farmer Confirmation',
+    icon: 'CheckCircle2',
+    description: 'Verified farmers confirm product availability and readiness.',
+    details: {
+      title: 'Farmer Process',
+      points: [
+        'Farmers review order requirements',
+        'Confirm harvest readiness',
+        'Plan pickup and delivery timing',
+        'Ensure quality standards are met',
+      ],
+    },
+    tags: ['Coordination', 'Planning', 'Farming'],
+  },
+  {
+    title: 'Product Preparation',
+    icon: 'PackageCheck',
+    description: 'Trained handlers prepare products with care and attention.',
+    image: images.crops,
+    details: {
+      title: 'Preparation Steps',
+      points: [
+        'Careful sorting and cleaning',
+        'Quality verification',
+        'Proper packaging for safety',
+        'Freshness and hygiene checks',
+      ],
+    },
+    tags: ['Preparation', 'Quality', 'Care'],
+  },
+  {
+    title: 'Route Optimization',
+    icon: 'Route',
+    description: 'Logistics team plans efficient delivery routes and schedules.',
+    details: {
+      title: 'Logistics Planning',
+      points: [
+        'Route optimization for speed',
+        'Temperature and freshness control',
+        'Delivery time confirmation',
+        'Coordination with multiple households',
+      ],
+    },
+    tags: ['Logistics', 'Efficiency', 'Planning'],
+  },
+  {
+    title: 'Quality Verification',
+    icon: 'CheckCircle2',
+    description: 'Final inspection ensures products meet all standards before delivery.',
+    details: {
+      title: 'Pre-Delivery Checks',
+      points: [
+        'Final quality inspection',
+        'Temperature maintenance verification',
+        'Packaging integrity check',
+        'Documentation and tracking',
+      ],
+    },
+    tags: ['Quality', 'Verification', 'Standards'],
+  },
+  {
+    title: 'Delivery to Home',
+    icon: 'Route',
+    description: 'Trained delivery personnel bring fresh products directly to customers.',
+    image: images.delivery,
+    details: {
+      title: 'Delivery Experience',
+      points: [
+        'Scheduled and reliable delivery',
+        'Professional and courteous service',
+        'Direct customer interaction',
+        'Feedback collection and follow-up',
+      ],
+    },
+    tags: ['Delivery', 'Service', 'Care'],
+  },
+  {
+    title: 'Customer Feedback & Improvement',
+    icon: 'MessageCircle',
+    description: 'We collect feedback to continuously improve quality and service.',
+    details: {
+      title: 'Continuous Improvement',
+      points: [
+        'Customer satisfaction surveys',
+        'Quality feedback loops',
+        'Service improvement tracking',
+        'Building better relationships',
+      ],
+    },
+    tags: ['Feedback', 'Improvement', 'Service'],
   },
 ];
