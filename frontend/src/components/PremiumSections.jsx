@@ -517,6 +517,8 @@ export function EditorialQuotes({ items }) {
 
 export function MinimalCards({ eyebrow, title, items }) {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [scrollState, setScrollState] = useState({ canPrev: false, canNext: false });
+  const gridRef = useRef(null);
 
   const toggleCard = (index) => {
     setActiveIndex((current) => (current === index ? null : index));
@@ -528,15 +530,56 @@ export function MinimalCards({ eyebrow, title, items }) {
     toggleCard(index);
   };
 
+  const updateScrollState = useCallback(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+    setScrollState({
+      canPrev: grid.scrollLeft > 4,
+      canNext: grid.scrollLeft < maxScrollLeft - 4,
+    });
+  }, []);
+
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener('resize', updateScrollState);
+    return () => window.removeEventListener('resize', updateScrollState);
+  }, [items.length, updateScrollState]);
+
+  const scrollCards = (direction) => {
+    const grid = gridRef.current;
+    const card = grid?.querySelector('.minimal-card');
+    if (!grid || !card) return;
+
+    const styles = window.getComputedStyle(grid);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap) || 24;
+    const distance = card.getBoundingClientRect().width + gap;
+    grid.scrollBy({ left: direction * distance, behavior: 'smooth' });
+  };
+
   return (
     <section className="cinematic-section minimal-card-section">
       <div className="section-inner">
-        <div className="section-heading reveal">
-          <span className="eyebrow">{eyebrow}</span>
-          <h2>{title}</h2>
+        <div className="minimal-card-heading-row reveal">
+          <div className="section-heading">
+            <span className="eyebrow">{eyebrow}</span>
+            <h2>{title}</h2>
+          </div>
+          <div className="minimal-card-controls" aria-label="Card navigation">
+            <button type="button" aria-label="Previous cards" onClick={() => scrollCards(-1)} disabled={!scrollState.canPrev}>
+              <ArrowLeft size={18} />
+            </button>
+            <button type="button" aria-label="Next cards" onClick={() => scrollCards(1)} disabled={!scrollState.canNext}>
+              <ArrowRight size={18} />
+            </button>
+          </div>
         </div>
 
-        <div className={`minimal-card-grid ${activeIndex !== null ? 'is-focused' : ''}`}>
+        <div
+          className={`minimal-card-grid ${activeIndex !== null ? 'is-focused' : ''}`}
+          ref={gridRef}
+          onScroll={updateScrollState}
+        >
           {items.map((item, index) => {
             const isActive = activeIndex === index;
             return (
