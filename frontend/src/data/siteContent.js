@@ -102,15 +102,15 @@ export const routeMeta = {
 export const homepage = {
   hero: {
     eyebrow: 'Valsii LLP',
-    heading: 'Premium ecosystems for future-ready growth.',
+    heading: 'Future-focused growth, shaped to last.',
     subheading:
-      'SkillNet Mastery leads with leadership and self-development. Farm-to-Home expands the Valsii ecosystem into healthier living.',
+      'SkillNet Mastery leads with leadership and self-development. Farm-to-Home carries the vision into healthier everyday living.',
     description:
-      'Designed as a calm, cinematic parent brand with one active flagship, one future lifestyle branch, and room for disciplined expansion.',
+      'From personal growth to trusted living, Valsii is creating connected journeys guided by clarity, care, and long-term intent.',
     backgroundImage: images.startup,
     backgroundPosition: 'center 34%',
     theme: 'skillnet',
-    badges: ['Cinematic brand system', 'Leadership + healthy living', 'Expansion-ready architecture'],
+    badges: ['Leadership journeys', 'Healthier living', 'Built for the long term'],
     stats: [
       { label: 'Parent brand', value: 'Valsii LLP' },
       { label: 'Live flagship', value: 'SkillNet Mastery' },
@@ -123,53 +123,53 @@ export const homepage = {
   },
   overviewBento: {
     eyebrow: 'Ecosystem Overview',
-    heading: 'Designed as a premium ecosystem, not a one-product website.',
+    heading: 'One evolving vision. More than one way forward.',
     text:
-      'Valsii aligns leadership growth, healthier living, and long-horizon expansion through one calm, scalable system.',
+      'Leadership, healthier living, and future growth come together through a brand built to move with people over time.',
     featured: {
-      label: 'Operating philosophy',
-      title: 'One parent company. Distinct journeys. Shared trust.',
+      label: 'Shared vision',
+      title: 'One company, with room for distinct journeys.',
       text:
-        'The Valsii architecture allows each platform to stay emotionally specific while preserving one premium standard of clarity, tone, and future readiness.',
-      pills: ['Leadership development', 'Healthy living', 'Expansion-ready governance'],
+        'Each Valsii platform is shaped to feel complete on its own while remaining connected through one steady, evolving vision.',
+      pills: ['Leadership', 'Healthier living', 'Long-term growth'],
       image: images.team,
       imagePosition: 'center 36%',
     },
     items: [
       {
-        title: 'Calm brand logic',
-        text: 'No poster-style clutter. Each experience is designed to feel clear, intentional, and elevated.',
+        title: 'Clear direction',
+        text: 'A calmer, sharper experience that keeps the focus on what truly matters.',
         icon: 'Sparkles',
       },
       {
-        title: 'Audience-specific paths',
-        text: 'SkillNet and Farm-to-Home solve different emotional jobs without diluting each other.',
+        title: 'Distinct paths',
+        text: 'SkillNet and Farm-to-Home speak to different moments in life without losing their connection.',
         icon: 'Layers3',
       },
       {
-        title: 'Built to scale',
-        text: 'New initiatives can plug into the ecosystem without breaking the parent brand experience.',
+        title: 'Built to evolve',
+        text: 'New ideas can grow naturally without losing the soul of the brand.',
         icon: 'TrendingUp',
         value: '02',
       },
       {
-        title: 'Trust as infrastructure',
-        text: 'Every page, motion choice, and interaction should feel reliable, warm, and premium.',
+        title: 'Care in every detail',
+        text: 'From words to motion to interaction, everything is shaped to feel warm, composed, and deliberate.',
         icon: 'ShieldCheck',
       },
     ],
   },
   philosophy: {
-    eyebrow: 'Brand Philosophy',
-    heading: 'A premium ecosystem should feel clear before it feels loud.',
+    eyebrow: 'Our Perspective',
+    heading: 'Growth is strongest when it feels clear, calm, and human.',
     content:
-      'Valsii is intentionally moving away from tuition-center clutter, hype-heavy startup tropes, and grocery-app utility. The goal is a cinematic ecosystem brand with emotional depth, calmer interfaces, and future-facing clarity.',
+      'Valsii is built around experiences that feel composed rather than loud, warm rather than transactional, and modern without losing emotional depth.',
     image: images.founder,
     imagePosition: 'center 24%',
     bullets: [
-      'Premium negative space instead of empty darkness',
-      'Distinct tone for each platform without losing one parent-brand identity',
-      'Story-led design that feels global, scalable, and calm',
+      'Clarity over clutter',
+      'Distinct journeys connected by one vision',
+      'A quieter, more enduring approach to modern growth',
     ],
     buttons: [
       { label: 'About Valsii', to: '/about', variant: 'secondary' },
@@ -178,13 +178,13 @@ export const homepage = {
   },
   brands: {
     eyebrow: 'Platform Experiences',
-    heading: 'Two front doors. One premium operating standard.',
-    text: 'Each platform serves a different emotional need while protecting the same parent-brand trust.',
+    heading: 'Distinct journeys connected by one vision.',
+    text: 'Each platform carries its own emotional world while staying part of something larger.',
     items: [
       {
-        eyebrow: 'Active flagship',
+        eyebrow: 'Today',
         title: 'SkillNet Mastery',
-        text: 'Leadership and self-development for students who need more than degrees.',
+        text: 'Leadership, confidence, and self-development for students who want more from their future.',
         icon: 'Users',
         image: images.learning,
         imagePosition: 'center 34%',
@@ -192,9 +192,9 @@ export const homepage = {
         link: { label: 'Enter SkillNet', to: '/skillnet-mastery' },
       },
       {
-        eyebrow: 'Lifestyle expansion',
+        eyebrow: 'Next chapter',
         title: 'Farm-to-Home',
-        text: 'A cleaner, healthier, more trusted path from farm networks to family homes.',
+        text: 'A warmer path into trusted sourcing, healthier routines, and everyday living.',
         icon: 'Sprout',
         image: images.family,
         imagePosition: 'center 40%',
@@ -206,7 +206,7 @@ export const homepage = {
   ecosystemFlow: {
     eyebrow: 'Ecosystem Logic',
     heading: 'Learn. Lead. Live well.',
-    text: 'Each layer of the Valsii ecosystem plays a clear role inside one longer-term brand narrative.',
+    text: 'The journey begins with personal growth and opens into a broader way of living.',
     items: [
       {
         label: '01',
@@ -216,23 +216,23 @@ export const homepage = {
       {
         label: '02',
         title: 'Grow Through Community',
-        text: 'Bring people together through a premium student ecosystem centered on transformation and future opportunity.',
+        text: 'Grow with a community shaped by confidence, support, and shared momentum.',
       },
       {
         label: '03',
         title: 'Expand Into Healthy Living',
-        text: 'Move into Farm-to-Home as the Valsii ecosystem extends into trusted food, family wellness, and natural sourcing.',
+        text: 'Step into Farm-to-Home as the story continues through trusted food, family wellness, and natural sourcing.',
       },
     ],
   },
   quote: {
-    text: 'Valsii should feel like a premium ecosystem company, not a local institute or commodity storefront.',
-    byline: 'Brand Direction',
+    text: 'The strongest brands do more than look modern. They make growth feel clear, calm, and worth stepping into.',
+    byline: 'Valsii',
   },
   finalCta: {
-    heading: 'Begin with the flagship brand. Grow with the ecosystem.',
+    heading: 'Begin with what moves you forward.',
     description:
-      'SkillNet Mastery is the front door today, with Farm-to-Home ready to evolve as a separate premium experience.',
+      'SkillNet Mastery leads the journey today, while Farm-to-Home continues the story in a different rhythm.',
     buttons: [
       { label: 'Join SkillNet', href: siteConfig.whatsappSkillNetUrl, external: true, variant: 'primary' },
       { label: 'Contact Valsii', to: '/contact', variant: 'secondary' },
@@ -312,7 +312,7 @@ export const skillNetMastery = {
         title: 'Future Opportunity',
         icon: 'TrendingUp',
         description:
-          'Grow through business exposure, networking, opportunity awareness, and an ecosystem mindset for what comes next.',
+          'Grow through business exposure, networking, and opportunity awareness that opens the future with confidence.',
         image: images.fieldGuidance,
         imagePosition: 'center 32%',
       },
@@ -357,7 +357,7 @@ export const skillNetMastery = {
     eyebrow: 'Community Layer',
     heading: 'Join the SkillNet community.',
     content:
-      'SkillNet Mastery is more than training. It is a growth-focused student ecosystem where individuals learn leadership, communication, mindset, and future opportunity together.',
+      'SkillNet Mastery is more than training. It is a growth-focused community where students build leadership, communication, mindset, and future confidence together.',
     image: images.team,
     imagePosition: 'center 34%',
     bullets: ['Peer energy and accountability', 'Leadership exposure in a supportive culture', 'Premium learning environment and brand feel'],
@@ -375,9 +375,9 @@ export const skillNetMastery = {
   },
   futureEcosystem: {
     eyebrow: 'Future Expansion',
-    heading: 'Future ecosystem expansion',
+    heading: 'Where the journey can lead next.',
     content:
-      'Valsii is building future-focused ecosystem concepts that extend beyond leadership development into healthy living and trusted farm-to-home initiatives.',
+      'The Valsii story reaches beyond leadership training, opening into healthier living, trusted products, and wider possibilities over time.',
     buttons: [
       { label: 'Explore FTH', href: '/farm-to-home', newTab: true, variant: 'primary' },
       { label: 'See the Ecosystem', to: '/core-systems', variant: 'secondary' },
@@ -399,11 +399,11 @@ export const farmToHome = {
     heading: 'Fresh from farm to family.',
     subheading: 'Healthy sourcing. Natural living. Premium trust.',
     description:
-      'Farm-to-Home is the lifestyle branch of Valsii designed around warmer imagery, family trust, and a cleaner everyday relationship with food.',
+      'Farm-to-Home brings the Valsii vision into everyday living through trusted sourcing, warmer experiences, and a healthier relationship with food.',
     backgroundImage: images.family,
     backgroundPosition: 'center 40%',
     theme: 'farm',
-    badges: ['Warmer lifestyle direction', 'Trusted sourcing', 'Premium family-first tone'],
+    badges: ['Natural warmth', 'Trusted sourcing', 'Family-first living'],
     stats: [
       { label: 'Core promise', value: 'Fresh and trusted' },
       { label: 'Experience', value: 'Healthy family-first' },
@@ -426,39 +426,39 @@ export const farmToHome = {
     ],
   },
   promiseBento: {
-    eyebrow: 'Lifestyle Direction',
-    heading: 'Designed to feel warm, natural, and premium.',
+    eyebrow: 'A Different Rhythm',
+    heading: 'Warmer. Lighter. Closer to daily life.',
     text:
-      'Farm-to-Home should never feel like a discount marketplace. It should feel like a trusted lifestyle layer inside the Valsii ecosystem.',
+      'Farm-to-Home brings a softer, more grounded energy to the wider Valsii story.',
     theme: 'farm',
     featured: {
-      label: 'Brand tone',
-      title: 'Natural warmth with premium discipline.',
+      label: 'Farm-to-Home',
+      title: 'Healthy living, shaped with care.',
       text:
-        'The experience should balance sunlight, freshness, and everyday trust while staying polished enough to scale as a serious consumer brand.',
-      pills: ['Healthy households', 'Direct farm trust', 'Future-ready brand system'],
+        'The experience balances freshness, trust, and everyday beauty while growing into a serious long-term brand.',
+      pills: ['Healthy households', 'Trusted sourcing', 'Natural routines'],
       image: images.landscape,
       imagePosition: 'center 44%',
     },
     items: [
       {
-        title: 'Human trust first',
-        text: 'Families should feel care, honesty, and product confidence before they feel transaction.',
+        title: 'Care first',
+        text: 'Families should feel honesty, reassurance, and quality in every choice.',
         icon: 'Heart',
       },
       {
-        title: 'Warm visual language',
-        text: 'Sunlit greens, earthy neutrals, and cleaner imagery help the brand feel healthy and premium.',
+        title: 'Natural warmth',
+        text: 'Sunlit tones and grounded storytelling create a calmer, more reassuring experience.',
         icon: 'Leaf',
       },
       {
-        title: 'Lifestyle over marketplace',
-        text: 'The promise is not just delivery. It is a better everyday relationship with food and sourcing.',
+        title: 'More than convenience',
+        text: 'This is about daily wellbeing, not just delivery.',
         icon: 'BadgeCheck',
       },
       {
-        title: 'Expansion-ready structure',
-        text: 'Farm-to-Home can mature as a separate premium experience without losing its place in the ecosystem.',
+        title: 'Room to grow',
+        text: 'Farm-to-Home is being shaped to grow with families over time.',
         icon: 'TrendingUp',
       },
     ],
@@ -543,15 +543,15 @@ export const farmToHome = {
   },
   futureVision: {
     eyebrow: 'Future Vision',
-    heading: 'Building a healthier ecosystem.',
+    heading: 'A healthier way forward.',
     content:
-      'Valsii Farm-to-Home aims to support healthy living through trusted farm connections and natural food systems that can scale into a premium consumer brand.',
+      'Farm-to-Home looks ahead to a more thoughtful way of sourcing, sharing, and living well every day.',
     image: images.landscape,
     imagePosition: 'center 44%',
     benefits: [
-      'Future-ready lifestyle positioning',
-      'Space for trusted sourcing narratives',
-      'A calmer premium route into healthy living',
+      'Healthier routines at home',
+      'Stories rooted in trust and origin',
+      'A more graceful path to better living',
     ],
   },
   finalCta: {
@@ -567,39 +567,39 @@ export const farmToHome = {
 export const aboutPage = {
   intro: {
     eyebrow: 'About Valsii',
-    heading: 'A premium ecosystem company in the making.',
+    heading: 'A company shaped for what comes next.',
     subheading:
-      'Valsii LLP is designed to hold distinct brands with different customer experiences while preserving a shared standard of trust, clarity, and future readiness.',
+      'Valsii brings together distinct journeys in growth and healthier living through one evolving vision.',
   },
   story: {
-    eyebrow: 'Why The Structure Matters',
-    heading: 'Why the structure matters.',
+    eyebrow: 'The Story',
+    heading: 'Why it takes this shape.',
     content:
-      'The company is being built to hold more than one customer promise without losing clarity. SkillNet needs a transformation-led tone. Farm-to-Home needs family trust. Valsii allows both to grow under one premium governance layer.',
+      'Some experiences ask for ambition and momentum. Others ask for trust and everyday warmth. Valsii was created to hold both with clarity.',
     image: images.village,
     imagePosition: 'center 38%',
-    bullets: ['Clear parent and sub-brand hierarchy', 'Scalable architecture for future launches', 'Premium positioning across every touchpoint'],
+    bullets: ['A clear central vision', 'Space for future chapters', 'Consistency across every touchpoint'],
   },
   architecture: {
-    eyebrow: 'Brand Architecture',
-    heading: 'One parent brand. Two experience languages.',
-    text: 'Valsii operates like a premium umbrella with distinct emotional jobs beneath it.',
+    eyebrow: 'How It Connects',
+    heading: 'One vision. Two distinct expressions.',
+    text: 'SkillNet Mastery and Farm-to-Home move differently, but they belong to the same unfolding story.',
     parent: {
-      eyebrow: 'Parent Brand',
+      eyebrow: 'At the center',
       title: 'Valsii LLP',
-      text: 'The corporate anchor for trust, governance, expansion discipline, and the long-horizon ecosystem vision.',
-      badges: ['Brand governance', 'Shared trust', 'Future expansion'],
+      text: 'The steady center that holds the vision together and gives each journey room to grow.',
+      badges: ['Clarity', 'Trust', 'Long-term vision'],
     },
     branches: [
       {
-        eyebrow: 'Active Flagship',
+        eyebrow: 'Leading today',
         title: 'SkillNet Mastery',
         text: 'Leadership, communication, mindset, and student transformation under a cinematic growth platform.',
         icon: 'Brain',
         bullets: ['Dark premium tone', 'Transformation-first narrative', 'Confidence and leadership outcomes'],
       },
       {
-        eyebrow: 'Lifestyle Expansion',
+        eyebrow: 'Evolving next',
         title: 'Farm-to-Home',
         text: 'Healthy living, trusted sourcing, and premium family-first experiences built for warmth and trust.',
         icon: 'Leaf',
@@ -609,74 +609,74 @@ export const aboutPage = {
     ],
     notes: [
       {
-        title: 'Clear governance',
-        text: 'The parent brand protects tone, trust, and expansion discipline across every branch.',
+        title: 'A steady center',
+        text: 'Everything begins from one clear vision that keeps the brand grounded as it grows.',
       },
       {
-        title: 'Separated journeys',
-        text: 'Each platform can deepen its own emotional language without confusing the audience.',
+        title: 'Different energies',
+        text: 'Each journey can deepen its own tone without losing the connection to the whole.',
       },
       {
-        title: 'Future scalability',
-        text: 'New ecosystem ideas can enter without fragmenting the overall brand story.',
+        title: 'Built for the long term',
+        text: 'New chapters can arrive over time without breaking the continuity of the story.',
       },
     ],
   },
   philosophy: {
-    eyebrow: 'Operating Principles',
-    heading: 'Four promises shape every Valsii touchpoint.',
+    eyebrow: 'What We Value',
+    heading: 'Certain qualities stay constant.',
     text:
-      'The brand should feel composed, premium, and future-facing across education, healthy living, and whatever comes next.',
+      'Across every experience, Valsii returns to the same essentials: clarity, trust, progress, and room to grow.',
     featured: {
-      label: 'Premium standard',
-      title: 'Clarity, trust, transformation, and scalability are the non-negotiables.',
+      label: 'The thread',
+      title: 'A quiet sense of confidence ties everything together.',
       text:
-        'These principles keep the ecosystem calm, emotionally credible, and globally competitive rather than noisy, local, or transactional.',
+        'The brand is shaped to feel thoughtful, human, and enduring.',
       pills: ['Clarity', 'Transformation', 'Trust', 'Scalability'],
     },
     items: [
       {
         title: 'Clarity',
-        text: 'Every message should feel intentional, simple, and premium rather than noisy or overcrowded.',
+        text: 'Messages stay simple, deliberate, and easy to trust.',
         icon: 'Sparkles',
       },
       {
         title: 'Transformation',
-        text: 'People should feel growth, self-belief, and progress instead of empty motivation.',
+        text: 'Growth is felt in confidence, self-belief, and steady change over time.',
         icon: 'TrendingUp',
       },
       {
         title: 'Trust',
-        text: 'Healthy living and student development both rely on brand reliability and honest communication.',
+        text: 'Trust is earned through honesty, care, and consistency.',
         icon: 'ShieldCheck',
       },
       {
         title: 'Scalability',
-        text: 'The company should be able to launch new ecosystem ideas without losing premium coherence.',
+        text: 'The vision is wide enough to keep unfolding without losing its center.',
         icon: 'Globe',
       },
     ],
   },
   roadmap: {
-    eyebrow: 'Ecosystem Roadmap',
-    heading: 'How the company matures without losing coherence.',
+    eyebrow: 'The Road Ahead',
+    heading: 'A vision that opens in stages.',
     text:
-      'The expansion path is intentional: build the flagship, separate the lifestyle brand, then scale with shared standards.',
+      'Each step strengthens the one before it, allowing the brand to grow without losing its clarity.',
     items: [
       {
         label: '01',
         title: 'Strengthen the flagship',
-        text: 'SkillNet Mastery becomes the public growth platform that sets the tone for the ecosystem.',
+        text: 'SkillNet Mastery continues to lead with confidence, clarity, and personal growth.',
       },
       {
         label: '02',
-        title: 'Separate the lifestyle language',
-        text: 'Farm-to-Home develops its own warmer identity without inheriting the visual logic of a training platform.',
+        title: 'Shape the lifestyle journey',
+        text: 'Farm-to-Home grows into its own warmer identity, rooted in trust and everyday living.',
       },
       {
         label: '03',
-        title: 'Expand the umbrella',
-        text: 'Future concepts can launch through Valsii with one shared standard for trust, design, and story.',
+        title: 'Open to what is next',
+        text: 'Future ideas can arrive naturally, guided by the same clarity, care, and sense of purpose.',
       },
     ],
   },
@@ -688,7 +688,7 @@ export const aboutPage = {
     eyebrow: 'Founder View',
     heading: 'Founder vision',
     content:
-      'Valsii was created to support a stronger future through confidence-building education and healthy ecosystem thinking. The goal is not to look like a local course center or commodity seller, but to grow as a premium and trusted company with distinct, future-facing brand experiences.',
+      'Valsii began with a belief that people deserve growth experiences and everyday essentials delivered with more care, more clarity, and more respect.',
     founderName: siteConfig.founderName,
     founderTitle: siteConfig.founderTitle,
     founderLocation: siteConfig.founderLocation,
@@ -700,18 +700,18 @@ export const aboutPage = {
 export const coreSystemsPage = {
   hero: {
     eyebrow: 'Core Systems',
-    heading: 'Two distinct systems. One premium ecosystem.',
+    heading: 'Distinct journeys. One evolving vision.',
     subheading:
-      'Valsii separates experiences by audience while keeping brand discipline, trust, and future expansion aligned.',
+      'Leadership, healthier living, and future growth remain connected without losing their individuality.',
     description:
-      'SkillNet Mastery is the main active experience on the Valsii website today. Farm-to-Home is prepared as a separate healthy living brand with its own tone and path.',
+      'SkillNet Mastery leads the public experience today, while Farm-to-Home continues to grow in its own warmer rhythm.',
     backgroundImage: images.supply,
     backgroundPosition: 'center 34%',
     theme: 'corporate',
     stats: [
       { label: 'Parent brand', value: 'Valsii LLP' },
       { label: 'Distinct systems', value: '2' },
-      { label: 'Design logic', value: 'One ecosystem' },
+      { label: 'Shared vision', value: 'One story' },
     ],
     buttons: [
       { label: 'Explore SkillNet', to: '/skillnet-mastery', variant: 'primary' },
@@ -719,26 +719,26 @@ export const coreSystemsPage = {
     ],
   },
   visualArchitecture: {
-    eyebrow: 'System Visualization',
-    heading: 'A premium architecture with clear separation of roles.',
+    eyebrow: 'How It Connects',
+    heading: 'Each journey moves differently, but the vision stays whole.',
     text:
-      'The ecosystem works when governance, storytelling, and customer journeys stay distinct instead of collapsing into one generic brand layer.',
+      'What begins in personal growth can open into healthier living, trusted products, and future platforms with the same sense of clarity.',
     parent: {
-      eyebrow: 'Governance Layer',
+      eyebrow: 'At the center',
       title: 'Valsii LLP',
-      text: 'Holds the ecosystem strategy, protects premium tone, and keeps every expansion path structurally clean.',
-      badges: ['Trust anchor', 'Brand discipline', 'Scalable umbrella'],
+      text: 'The quiet center that holds the vision together and keeps each journey aligned.',
+      badges: ['Clarity', 'Trust', 'Long horizon'],
     },
     branches: [
       {
-        eyebrow: 'Transformation Layer',
+        eyebrow: 'Leading today',
         title: 'SkillNet Mastery',
         text: 'The active flagship for leadership, communication, self-belief, and future readiness.',
         icon: 'Brain',
         bullets: ['Cinematic dark presentation', 'Student-growth narrative', 'Transformation-first outcomes'],
       },
       {
-        eyebrow: 'Lifestyle Layer',
+        eyebrow: 'Growing next',
         title: 'Farm-to-Home',
         text: 'The future healthy living branch for trusted sourcing, family warmth, and natural daily routines.',
         icon: 'Leaf',
@@ -748,98 +748,98 @@ export const coreSystemsPage = {
     ],
     notes: [
       {
-        title: 'Governance stays central',
-        text: 'The parent brand carries the trust architecture so sub-brands stay free to specialize.',
+        title: 'A clear center',
+        text: 'One vision keeps the story coherent even as each journey grows in its own direction.',
       },
       {
-        title: 'Journeys stay specific',
-        text: 'Education and healthy living should not share the same emotional tone or visual language.',
+        title: 'Different energies',
+        text: 'Leadership and healthier living ask for different moods, different rhythms, and different forms of trust.',
       },
       {
-        title: 'Expansion stays clean',
-        text: 'Future concepts can join through the umbrella without diluting what is already working.',
+        title: 'Room to grow',
+        text: 'Future chapters can arrive naturally without diluting what already feels strong.',
       },
     ],
   },
   systems: {
-    eyebrow: 'Brand Systems',
-    heading: 'Each brand serves a different emotional job.',
+    eyebrow: 'Platform Character',
+    heading: 'Each journey carries its own energy.',
     text:
-      'The strongest ecosystem brands protect the role of each platform instead of forcing one shared experience everywhere.',
+      'The strength of the brand comes from letting each experience speak in its own tone.',
     items: [
       {
         title: 'SkillNet Mastery',
-        text: 'Should feel cinematic, aspirational, and transformation-led. Its role is to build confidence, leadership, communication, and growth mindset.',
+        text: 'SkillNet Mastery moves with momentum, confidence, and personal change.',
         icon: 'Brain',
-        items: ['Premium dark theme', 'Youth leadership energy', 'Transformation-first content'],
+        items: ['Cinematic tone', 'Youthful ambition', 'Transformation-led story'],
       },
       {
         title: 'Farm-to-Home',
-        text: 'Should feel fresh, calm, healthy, and family-trust oriented. Its role is to support a natural lifestyle brand experience.',
+        text: 'Farm-to-Home moves with warmth, ease, and family trust.',
         icon: 'Leaf',
-        items: ['Cream and green palette', 'Farm freshness and sunlight tone', 'Healthy family positioning'],
+        items: ['Warmer palette', 'Fresh, grounded atmosphere', 'Healthy living focus'],
       },
     ],
   },
   experienceModel: {
-    eyebrow: 'Experience Model',
-    heading: 'Each layer has a different responsibility inside the system.',
+    eyebrow: 'What Holds It Together',
+    heading: 'Different journeys, shared values.',
     text:
-      'The ecosystem works when governance, storytelling, and lead routing are intentionally designed rather than blended together.',
+      'The connection is not sameness. It is a common standard of clarity, trust, and care.',
     featured: {
-      label: 'System discipline',
-      title: 'Do not collapse every audience into one visual language.',
+      label: 'One thread',
+      title: 'What connects the journeys matters as much as what separates them.',
       text:
-        'Premium ecosystems scale because each layer knows its role: the parent governs, the flagship transforms, and the lifestyle branch nurtures trust in a different emotional register.',
-      pills: ['Governance', 'Storytelling', 'Lead flow'],
+        'Each expression can grow in its own direction while staying recognizably part of Valsii.',
+      pills: ['Clarity', 'Trust', 'Care'],
     },
     items: [
       {
-        title: 'Brand governance',
-        text: 'Valsii sets the trust, tone discipline, and future expansion rules.',
+        title: 'Steady center',
+        text: 'A clear vision keeps the brand grounded, even as new paths begin to open.',
         icon: 'ShieldCheck',
       },
       {
-        title: 'Audience language',
-        text: 'SkillNet stays transformation-led while Farm-to-Home stays lifestyle-led.',
+        title: 'Distinct voice',
+        text: 'Each platform can speak in its own emotional language without losing connection.',
         icon: 'Sparkles',
       },
       {
-        title: 'Lead routing',
-        text: 'Inquiries, actions, and offers stay clear instead of mixing brand promises.',
+        title: 'Clear path',
+        text: 'People should always know where they are, what they are stepping into, and where to go next.',
         icon: 'Workflow',
       },
       {
-        title: 'Expansion readiness',
-        text: 'New concepts can enter through the parent without diluting the flagship.',
+        title: 'Room to grow',
+        text: 'New chapters can arrive over time without taking away from what already feels complete.',
         icon: 'TrendingUp',
       },
     ],
   },
   flow: {
-    eyebrow: 'Scalable Logic',
-    heading: 'How the ecosystem expands without confusion.',
+    eyebrow: 'A Growing Vision',
+    heading: 'How the story unfolds.',
     text: 'The sequence matters because it protects clarity, trust, and brand maturity at every stage.',
     items: [
-      { label: '01', title: 'Parent Brand', text: 'Valsii LLP holds the full ecosystem strategy and corporate trust.' },
-      { label: '02', title: 'Flagship Experience', text: 'SkillNet Mastery remains the main active growth platform on the primary website.' },
-      { label: '03', title: 'Separate Expansion', text: 'Farm-to-Home opens independently when the healthy living brand is ready to scale.' },
+      { label: '01', title: 'Valsii LLP', text: 'The central vision stays steady, giving every journey a clear sense of direction.' },
+      { label: '02', title: 'SkillNet Mastery', text: 'The public journey begins through confidence, leadership, and self-development.' },
+      { label: '03', title: 'Farm-to-Home', text: 'The story opens further into warmer, healthier, more trusted everyday living.' },
     ],
   },
   comparison: {
-    eyebrow: 'Positioning Principles',
-    heading: 'What Valsii should and should not feel like.',
+    eyebrow: 'What Defines Us',
+    heading: 'The difference is in the details.',
     items: [
-      { title: 'Premium ecosystem company', text: 'Clear, calm, modern, and trustworthy.', icon: 'BadgeCheck' },
-      { title: 'Not a tuition center', text: 'Avoid poster-style layouts and classroom cliches.', icon: 'XCircle' },
-      { title: 'Not an MLM website', text: 'Avoid hype-driven claims or pushy growth language.', icon: 'XCircle' },
-      { title: 'Not a grocery app', text: 'Farm-to-Home should feel branded and healthy, not transactional or cheap.', icon: 'XCircle' },
+      { title: 'Clear and modern', text: 'Calm, thoughtful, and built to last.', icon: 'BadgeCheck' },
+      { title: 'No tuition-center clutter', text: 'The experience stays composed rather than crowded.', icon: 'XCircle' },
+      { title: 'No hype-driven language', text: 'Confidence comes from clarity, not noise.', icon: 'XCircle' },
+      { title: 'No bargain-market feel', text: 'Farm-to-Home stays rooted in trust, care, and quality.', icon: 'XCircle' },
     ],
   },
   cta: {
-    heading: 'Keep the flagship focused and the future scalable.',
+    heading: 'Keep the story focused. Let the future open naturally.',
     description:
-      'That is the design logic behind the Valsii web structure: one polished parent company, one active public flagship, and one separate expansion path.',
+      'That balance is what gives Valsii its clarity today and its room to grow tomorrow.',
     buttons: [
       { label: 'Talk to Valsii', href: siteConfig.whatsappGeneralUrl, external: true, variant: 'primary' },
       { label: 'Explore SkillNet', to: '/skillnet-mastery', variant: 'secondary' },
@@ -852,9 +852,9 @@ export const contactPage = {
     eyebrow: 'Contact Valsii',
     heading: 'Start the conversation with clarity.',
     subheading:
-      'Ask about SkillNet Mastery, Farm-to-Home, collaborations, or the broader Valsii ecosystem through the channel that suits you best.',
+      'Whether you are exploring SkillNet Mastery, Farm-to-Home, partnerships, or the wider Valsii vision, the right conversation starts here.',
     description:
-      'The contact experience should feel calm, premium, and reassuring. No pressure. No clutter. Just a clear route into the right part of the ecosystem.',
+      'A calm first step into the Valsii world.',
     backgroundImage: images.village,
     backgroundPosition: 'center 38%',
     theme: 'corporate',
@@ -867,7 +867,7 @@ export const contactPage = {
     eyebrow: 'Reach Valsii',
     heading: 'Choose the calmest route in.',
     text:
-      'Whether you want admissions guidance, future brand conversations, or partnership dialogue, the website should make the first step feel clear and premium.',
+      'From quick questions to more thoughtful conversations, every path is simple, direct, and personal.',
     items: [
       { title: 'WhatsApp', text: 'Fastest for first contact, admissions guidance, and direct follow-up.', icon: 'MessageCircle' },
       { title: 'Email', text: `${siteConfig.email}`, icon: 'Mail' },
@@ -879,7 +879,7 @@ export const contactPage = {
     eyebrow: 'What Happens Next',
     heading: 'A simple, pressure-free flow.',
     text:
-      'Every inquiry should move into the right conversation clearly, whether it is for SkillNet, Farm-to-Home, or the broader ecosystem.',
+      'From the first message to the next step, the experience stays clear, personal, and easy to follow.',
     items: [
       { label: '01', title: 'Send Your Interest', text: 'Choose SkillNet, Farm-to-Home, or a general brand conversation.' },
       { label: '02', title: 'Receive Guidance', text: 'Valsii routes you to the right next step with a direct response.' },
