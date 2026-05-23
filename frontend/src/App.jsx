@@ -1,9 +1,10 @@
 import { Component, lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import { CinematicBackdrop } from './components/PremiumSections';
+import { CinematicBackdrop, FloatingWhatsApp } from './components/PremiumSections';
+import { routeMeta, siteConfig } from './data/siteContent';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -11,33 +12,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const CoreSystems = lazy(() => import('./pages/CoreSystems'));
 const SkillNetMastery = lazy(() => import('./pages/SkillNetMastery'));
 const FarmToHome = lazy(() => import('./pages/FarmToHome'));
-
-const routeMeta = {
-  '/': {
-    title: 'Valsii - Skill & Supply Systems',
-    description: 'Valsii builds practical skill training and honest product supply systems for steady earning opportunities.',
-  },
-  '/about': {
-    title: 'About Valsii - Skill & Supply Company',
-    description: 'Learn about Valsii values, mission, SkillNet Mastery, and Farm-to-Home.',
-  },
-  '/contact': {
-    title: 'Contact Valsii - Request Introduction',
-    description: 'Request a free, pressure-free introduction to understand Valsii training and product supply programs.',
-  },
-  '/core-systems': {
-    title: 'Valsii Core Systems - SkillNet and Farm-to-Home',
-    description: 'See how Valsii combines practical skill training with honest product supply work.',
-  },
-  '/skillnet-mastery': {
-    title: 'SkillNet Mastery - Structured Skill Development',
-    description: 'Build real skills, clear thinking, communication, leadership, and preparation for field work through SkillNet Mastery.',
-  },
-  '/farm-to-home': {
-    title: 'Farm-to-Home - Honest Product Supply',
-    description: 'Direct farm product sourcing, clear pricing, and trained field work for households and communities.',
-  },
-};
+const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -52,12 +27,14 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <section className="page-intro error-state">
+        <section className="section-shell error-shell">
           <div className="section-inner narrow">
-            <span className="eyebrow">Something went wrong</span>
+            <span className="section-eyebrow">Something went wrong</span>
             <h1>We could not load this page.</h1>
-            <p>Please refresh the page or return home. If the issue continues, contact Valsii for support.</p>
-            <a className="premium-button" href="/">Return Home</a>
+            <p>Please refresh the page or return to the Valsii home experience.</p>
+            <a className="premium-button primary" href="/">
+              <span>Return Home</span>
+            </a>
           </div>
         </section>
       );
@@ -67,14 +44,43 @@ class ErrorBoundary extends Component {
   }
 }
 
+function upsertMeta(attribute, key, content) {
+  let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', content);
+}
+
+function upsertLink(rel, href) {
+  let element = document.head.querySelector(`link[rel="${rel}"]`);
+  if (!element) {
+    element = document.createElement('link');
+    element.setAttribute('rel', rel);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('href', href);
+}
+
 function RouteMetadata() {
   const { pathname } = useLocation();
 
   useEffect(() => {
     const meta = routeMeta[pathname] || routeMeta['/'];
+    const canonicalPath = pathname === '/' ? '/' : pathname;
+    const canonicalUrl = `${siteConfig.domain}${canonicalPath}`;
+
     document.title = meta.title;
-    const description = document.querySelector('meta[name="description"]');
-    if (description) description.setAttribute('content', meta.description);
+    upsertMeta('name', 'description', meta.description);
+    upsertMeta('name', 'keywords', meta.keywords);
+    upsertMeta('property', 'og:title', meta.title);
+    upsertMeta('property', 'og:description', meta.description);
+    upsertMeta('property', 'og:url', canonicalUrl);
+    upsertMeta('name', 'twitter:title', meta.title);
+    upsertMeta('name', 'twitter:description', meta.description);
+    upsertLink('canonical', canonicalUrl);
   }, [pathname]);
 
   return null;
@@ -92,35 +98,35 @@ function AppRoutes() {
         <Header />
         <main id="main-content">
           <ErrorBoundary key={pathname}>
-            <Suspense fallback={<div className="route-loader" role="status" aria-live="polite">Loading Valsii</div>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/solutions" element={<Navigate to="/core-systems" replace />} />
-              <Route path="/impact" element={<Navigate to="/core-systems" replace />} />
-              <Route path="/learn" element={<Navigate to="/skillnet-mastery" replace />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/core-systems" element={<CoreSystems />} />
-              <Route path="/skillnet-mastery" element={<SkillNetMastery />} />
-              <Route path="/farm-to-home" element={<FarmToHome />} />
-              <Route path="/seeding-synthesis" element={<Navigate to="/core-systems" replace />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <Suspense fallback={<div className="route-loader">Loading Valsii...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/core-systems" element={<CoreSystems />} />
+                <Route path="/skillnet-mastery" element={<SkillNetMastery />} />
+                <Route path="/farm-to-home" element={<FarmToHome />} />
+                <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/solutions" element={<Navigate to="/core-systems" replace />} />
+                <Route path="/impact" element={<Navigate to="/core-systems" replace />} />
+                <Route path="/learn" element={<Navigate to="/skillnet-mastery" replace />} />
+                <Route path="/seeding-synthesis" element={<Navigate to="/core-systems" replace />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
             </Suspense>
           </ErrorBoundary>
         </main>
         <Footer />
+        <FloatingWhatsApp href={siteConfig.whatsappGeneralUrl} />
       </div>
     </>
   );
 }
 
-function App() {
+export default function App() {
   return (
     <Router>
       <AppRoutes />
     </Router>
   );
 }
-
-export default App;
