@@ -1,31 +1,67 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script>
-      const t = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', t);
-    </script>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="rgb(245, 245, 240)" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-
-    <title>Valsii - A Skill & Supply Company</title>
-
-    <meta name="description" content="Valsii builds practical skill development and ethical product distribution systems for sustainable income pathways." />
-    <meta name="keywords" content="Valsii, SkillNet Mastery, Farm-to-Home, skill development, sustainable income, product distribution" />
+    <meta name="theme-color" content="#0f1110" />
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="description"
+      content="Valsii LLP presents SkillNet Mastery for premium youth leadership and future-ready self-development, with Farm-to-Home as a healthy living ecosystem expansion."
+    />
+    <meta
+      name="keywords"
+      content="Valsii LLP, SkillNet Mastery, Farm-to-Home, leadership training, self development, healthy living, premium ecosystem"
+    />
     <meta name="author" content="Valsii LLP" />
 
-    <meta property="og:title" content="Valsii - A Skill & Supply Company" />
-    <meta property="og:description" content="Building skilled individuals and connecting them with sustainable product-based income systems." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-  </head>
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="canonical" href="https://www.valsii.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <meta property="og:site_name" content="Valsii LLP" />
+    <meta property="og:title" content="Valsii LLP | Premium Leadership and Healthy Living Ecosystem" />
+    <meta
+      property="og:description"
+      content="SkillNet Mastery is the active Valsii flagship brand, with Farm-to-Home positioned as a future premium healthy living expansion."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.valsii.com/" />
+    <meta property="og:image" content="https://www.valsii.com/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Valsii LLP | Premium Leadership and Healthy Living Ecosystem" />
+    <meta
+      name="twitter:description"
+      content="Premium brand architecture for SkillNet Mastery and the future Farm-to-Home ecosystem."
+    />
+    <meta name="twitter:image" content="https://www.valsii.com/logo.png" />
+
+    <title>Valsii LLP | Premium Leadership and Healthy Living Ecosystem</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Valsii LLP",
+        "url": "https://www.valsii.com",
+        "logo": "https://www.valsii.com/logo.png",
+        "email": "hello@valsii.com",
+        "telephone": "+91 98765 43210",
+        "subOrganization": [
+          {
+            "@type": "Organization",
+            "name": "SkillNet Mastery"
+          },
+          {
+            "@type": "Organization",
+            "name": "Valsii Farm-to-Home"
+          }
+        ]
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
