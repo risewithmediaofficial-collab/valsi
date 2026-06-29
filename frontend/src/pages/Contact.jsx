@@ -1,330 +1,207 @@
-import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Mail, MessageCircle, Phone } from 'lucide-react';
-import {
-  CTASection,
-  ContentCards,
-  FAQSection,
-  HeroSection,
-  ProcessRail,
-} from '../components/PremiumSections';
-import { contactPage, siteConfig } from '../data/siteContent';
-
-const initialValues = {
-  name: '',
-  email: '',
-  phone: '',
-  interest: '',
-  message: '',
-};
-
-const closingCta = {
-  heading: 'Prefer a faster response?',
-  description: 'WhatsApp is the quickest path for first contact, introductions, and direct follow-up.',
-  buttons: [
-    { label: 'Open WhatsApp', href: siteConfig.whatsappGeneralUrl, external: true, variant: 'primary' },
-    { label: 'Call Valsii', href: `tel:${siteConfig.phoneDigits}`, external: true, variant: 'secondary' },
-  ],
-};
-
-const interestOptions = [
-  { value: '', label: 'Select one' },
-  { value: 'SkillNet Mastery', label: 'SkillNet Mastery' },
-  { value: 'Farm-to-Home', label: 'Farm-to-Home' },
-  { value: 'Partnership', label: 'Partnership' },
-  { value: 'General Valsii Inquiry', label: 'General Valsii Inquiry' },
-];
-
-function FieldShell({ id, label, value, error, children, spanTwo = false, active = false, className = '' }) {
-  return (
-    <div
-      className={`field-shell ${value || active ? 'filled' : ''} ${error ? 'has-error' : ''} ${spanTwo ? 'field-span-2' : ''} ${className}`.trim()}
-    >
-      {children}
-      <label htmlFor={id}>{label}</label>
-      {error ? <span className="field-error">{error}</span> : null}
-    </div>
-  );
-}
-
-function SelectField({ id, label, name, value, error, open, onToggle, onSelect, onClose }) {
-  const shellRef = useRef(null);
-  const selectedLabel = interestOptions.find((option) => option.value === value)?.label || 'Select one';
-
-  useEffect(() => {
-    if (!open) return undefined;
-
-    function handlePointerDown(event) {
-      if (shellRef.current && !shellRef.current.contains(event.target)) {
-        onClose();
-      }
-    }
-
-    function handleKeyDown(event) {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    }
-
-    document.addEventListener('mousedown', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('mousedown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose, open]);
-
-  return (
-    <FieldShell
-      id={id}
-      label={label}
-      value={value}
-      error={error}
-      active={open}
-      className={`select-shell ${open ? 'open' : ''}`}
-    >
-      <div ref={shellRef} className="custom-select">
-        <input type="hidden" name={name} value={value} />
-
-        <button
-          id={id}
-          type="button"
-          className="select-button"
-          aria-haspopup="listbox"
-          aria-expanded={open}
-          aria-controls={`${id}-listbox`}
-          aria-invalid={Boolean(error)}
-          onClick={onToggle}
-        >
-          <span className={`select-button-value ${value ? 'selected' : ''}`}>{selectedLabel}</span>
-          <ChevronDown size={18} />
-        </button>
-
-        {open ? (
-          <div className="select-panel" id={`${id}-listbox`} role="listbox" aria-labelledby={id}>
-            {interestOptions.map((option) => (
-              <button
-                key={option.label}
-                type="button"
-                role="option"
-                className={`select-option ${value === option.value ? 'selected' : ''}`.trim()}
-                aria-selected={value === option.value}
-                onClick={() => onSelect(option.value)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-        ) : null}
-      </div>
-    </FieldShell>
-  );
-}
+import { useState } from 'react';
+import { Mail, MessageCircle, Phone, MapPin, Send } from 'lucide-react';
+import { siteConfig } from '../data/siteContent';
+import { useLang, t } from '../context/LanguageContext';
 
 export default function Contact() {
-  const [values, setValues] = useState(initialValues);
+  const { lang } = useLang();
+  const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle');
-  const [interestOpen, setInterestOpen] = useState(false);
 
-  function updateField(event) {
-    const { name, value } = event.target;
-    setValues((current) => ({ ...current, [name]: value }));
-    setErrors((current) => ({ ...current, [name]: '' }));
-    setStatus('idle');
-  }
+  const INTERESTS_EN = ['Inner Power Training', 'Course Enrollment', 'Partnership', 'General Inquiry', 'Other'];
+  const INTERESTS_TA = ['உள்ளார்ந்த சக்தி பயிற்சி', 'பாடப்பதிவு', 'கூட்டாண்மை', 'பொதுவான விசாரணை', 'மற்றவை'];
+  const INTERESTS = lang === 'ta' ? INTERESTS_TA : INTERESTS_EN;
 
-  function updateInterest(value) {
-    setValues((current) => ({ ...current, interest: value }));
-    setErrors((current) => ({ ...current, interest: '' }));
-    setStatus('idle');
-    setInterestOpen(false);
-  }
+  const change = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
-  function validate() {
-    const nextErrors = {};
-    if (!values.name.trim()) nextErrors.name = 'Enter your full name.';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-      nextErrors.email = 'Enter a valid email address.';
-    }
-    if (!/^[+()0-9\s-]{8,}$/.test(values.phone.trim())) {
-      nextErrors.phone = 'Enter a valid phone number.';
-    }
-    if (!values.interest) nextErrors.interest = 'Choose your area of interest.';
-    return nextErrors;
-  }
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = t('Required', 'தேவை', lang);
+    if (!form.email.trim()) e.email = t('Required', 'தேவை', lang);
+    if (!form.message.trim()) e.message = t('Required', 'தேவை', lang);
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setInterestOpen(false);
-    const nextErrors = validate();
-    setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length) {
-      setStatus('error');
-      return;
-    }
-
-    const subject = encodeURIComponent(`Valsii inquiry from ${values.name.trim()}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${values.name.trim()}`,
-        `Email: ${values.email.trim()}`,
-        `Phone: ${values.phone.trim()}`,
-        `Interest: ${values.interest}`,
-        '',
-        `Message: ${values.message.trim() || 'No extra message provided.'}`,
-      ].join('\n'),
-    );
-
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
-    setStatus('sent');
-    setValues(initialValues);
-  }
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    if (!validate()) return;
+    const msg = `Hello VALSII!\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nInterest: ${form.interest}\n\nMessage: ${form.message}`;
+    window.open(`https://wa.me/${siteConfig.phoneDigits}?text=${encodeURIComponent(msg)}`, '_blank', 'noreferrer');
+    setSubmitted(true);
+  };
 
   return (
-    <>
-      <HeroSection data={contactPage.hero} />
-      <ContentCards data={contactPage.channels} compact />
+    <div style={{ padding: '60px 0' }}>
+      {/* Page Title */}
+      <div className="section-inner animate-text-reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <span className="section-eyebrow">{t('Contact', 'தொடர்பு', lang)}</span>
+        <h1
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
+            fontWeight: 900,
+            color: 'var(--primary)',
+            margin: '16px 0 8px 0',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          {t("Let's Talk", 'பேசலாம்', lang)}
+        </h1>
+        <p style={{ color: 'var(--text-muted)', fontSize: '1rem', margin: 0 }}>
+          {t('Reach out for admissions or inquiries.', 'சேர்க்கை அல்லது விசாரணைக்கு தொடர்பு கொள்ளுங்கள்.', lang)}
+        </p>
+      </div>
 
-      <section className="section-shell contact-shell" id="contact-form">
+      <section className="section-shell">
         <div className="section-inner">
-          <div className="contact-studio">
-            <div className="contact-story-panel">
-              <span className="section-eyebrow">Direct Contact</span>
-              <h2>Choose the right Valsii conversation.</h2>
-              <p>
-                Use the form for structured questions, or jump straight to WhatsApp for the
-                fastest route into SkillNet Mastery, Farm-to-Home, or broader ecosystem conversations.
-              </p>
-
-              <div className="contact-pill-row">
-                <span>Calm response flow</span>
-                <span>No pressure follow-up</span>
-                <span>Clear next steps</span>
-              </div>
-
-              <div className="contact-link-stack">
-                <a href={siteConfig.whatsappGeneralUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle size={18} />
-                  <span>WhatsApp Valsii</span>
-                </a>
-                <a href={`mailto:${siteConfig.email}`}>
-                  <Mail size={18} />
-                  <span>{siteConfig.email}</span>
-                </a>
-                <a href={`tel:${siteConfig.phoneDigits}`}>
-                  <Phone size={18} />
-                  <span>{siteConfig.phone}</span>
-                </a>
-              </div>
-
-              <div className="contact-assurance-strip">
-                <span>Admissions guidance, partnerships, and future brand conversations are all routed clearly.</span>
+          {/* Top: Quick contact links — left-right split */}
+          <div className="lr-grid animate-text-reveal delay-100" style={{ marginBottom: '0', paddingTop: '0' }}>
+            {/* LEFT: Info */}
+            <div style={{ display: 'grid', gap: '24px' }}>
+              <div>
+                <div className="section-label-line">
+                  <span className="section-eyebrow" style={{ margin: 0 }}>
+                    {t('Reach Us', 'தொடர்பு கொள்ளுங்கள்', lang)}
+                  </span>
+                </div>
+                <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 900, margin: '8px 0 12px 0', color: 'var(--text)' }}>
+                  {t('VALSII Contact Details', 'VALSII தொடர்பு விவரங்கள்', lang)}
+                </h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: '0 0 20px 0', lineHeight: 1.6 }}>
+                  {t(
+                    'WhatsApp is the fastest path for direct follow-up.',
+                    'WhatsApp மூலம் விரைவாக தொடர்பு கொள்ளலாம்.',
+                    lang
+                  )}
+                </p>
+                <div style={{ display: 'grid', gap: '16px' }}>
+                  <a href={`mailto:${siteConfig.email}`} style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+                    <Mail size={16} color="var(--primary)" />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text)' }}>{siteConfig.email}</span>
+                  </a>
+                  <a href={`tel:${siteConfig.phoneDigits}`} style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+                    <Phone size={16} color="var(--primary)" />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text)' }}>{siteConfig.phone}</span>
+                  </a>
+                  <a
+                    href={siteConfig.whatsappGeneralUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}
+                  >
+                    <MessageCircle size={16} color="var(--primary)" />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text)' }}>
+                      {t('WhatsApp Chat', 'WhatsApp அரட்டை', lang)}
+                    </span>
+                  </a>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <MapPin size={16} color="var(--primary)" />
+                    <span style={{ fontSize: '0.95rem', color: 'var(--text)' }}>{siteConfig.founderLocation}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="contact-form-shell">
-              <div className="form-intro">
-                <h3>Send an inquiry</h3>
-                <p>We will guide you to the right next step clearly, calmly, and without pressure.</p>
+            {/* RIGHT: Form */}
+            <div>
+              <div className="section-label-line">
+                <span className="section-eyebrow" style={{ margin: 0 }}>
+                  {t('Send a Message', 'செய்தி அனுப்புங்கள்', lang)}
+                </span>
               </div>
+              <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 900, margin: '8px 0 16px 0', color: 'var(--text)' }}>
+                {t('Write to Us', 'எங்களுக்கு எழுதுங்கள்', lang)}
+              </h2>
 
-              <form className="contact-form" onSubmit={handleSubmit} noValidate>
-                <div className="contact-form-grid">
-                  <FieldShell id="contact-name" label="Full name" value={values.name} error={errors.name}>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      name="name"
-                      value={values.name}
-                      onChange={updateField}
-                      autoComplete="name"
-                      placeholder=" "
-                      aria-invalid={Boolean(errors.name)}
-                    />
-                  </FieldShell>
-
-                  <FieldShell id="contact-email" label="Email address" value={values.email} error={errors.email}>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      name="email"
-                      value={values.email}
-                      onChange={updateField}
-                      autoComplete="email"
-                      placeholder=" "
-                      aria-invalid={Boolean(errors.email)}
-                    />
-                  </FieldShell>
-
-                  <FieldShell id="contact-phone" label="Phone number" value={values.phone} error={errors.phone}>
-                    <input
-                      id="contact-phone"
-                      type="tel"
-                      name="phone"
-                      value={values.phone}
-                      onChange={updateField}
-                      autoComplete="tel"
-                      placeholder=" "
-                      aria-invalid={Boolean(errors.phone)}
-                    />
-                  </FieldShell>
-
-                  <SelectField
-                    id="contact-interest"
-                    name="interest"
-                    label="Area of interest"
-                    value={values.interest}
-                    error={errors.interest}
-                    open={interestOpen}
-                    onToggle={() => setInterestOpen((current) => !current)}
-                    onSelect={updateInterest}
-                    onClose={() => setInterestOpen(false)}
-                  />
-
-                  <FieldShell
-                    id="contact-message"
-                    label="How can we help?"
-                    value={values.message}
-                    error={errors.message}
-                    spanTwo
-                  >
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      rows="6"
-                      value={values.message}
-                      onChange={updateField}
-                      placeholder=" "
-                    />
-                  </FieldShell>
+              {submitted ? (
+                <div style={{ padding: '24px 0' }}>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--secondary)', margin: '0 0 8px 0' }}>
+                    ✔ {t('Message Forwarded', 'செய்தி அனுப்பப்பட்டது', lang)}
+                  </h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0 }}>
+                    {t('We will get back to you shortly.', 'விரைவில் உங்களை தொடர்பு கொள்வோம்.', lang)}
+                  </p>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate style={{ display: 'grid', gap: '16px' }}>
+                  <div style={{ display: 'grid', gap: '6px' }}>
+                    <label className="form-label" htmlFor="c-name">
+                      {t('Full Name *', 'முழு பெயர் *', lang)}
+                    </label>
+                    <input
+                      id="c-name"
+                      type="text"
+                      className="form-input"
+                      placeholder={t('Your name', 'உங்கள் பெயர்', lang)}
+                      value={form.name}
+                      onChange={(e) => change('name', e.target.value)}
+                    />
+                    {errors.name && <span style={{ color: 'var(--primary)', fontSize: '0.8rem' }}>{errors.name}</span>}
+                  </div>
 
-                <button type="submit" className="premium-button primary form-submit">
-                  <span>{status === 'sent' ? 'Email Draft Opened' : 'Send Inquiry'}</span>
-                </button>
+                  <div style={{ display: 'grid', gap: '6px' }}>
+                    <label className="form-label" htmlFor="c-email">
+                      {t('Email Address *', 'மின்னஞ்சல் முகவரி *', lang)}
+                    </label>
+                    <input
+                      id="c-email"
+                      type="email"
+                      className="form-input"
+                      placeholder={t('you@example.com', 'you@example.com', lang)}
+                      value={form.email}
+                      onChange={(e) => change('email', e.target.value)}
+                    />
+                    {errors.email && <span style={{ color: 'var(--primary)', fontSize: '0.8rem' }}>{errors.email}</span>}
+                  </div>
 
-                {status === 'sent' ? (
-                  <p className="form-note success" role="status">
-                    Your email app should now open with a prepared Valsii inquiry draft.
-                  </p>
-                ) : null}
+                  <div style={{ display: 'grid', gap: '6px' }}>
+                    <label className="form-label" htmlFor="c-interest">
+                      {t("I'm interested in", 'என்னில் ஆர்வம்', lang)}
+                    </label>
+                    <select
+                      id="c-interest"
+                      className="form-input"
+                      value={form.interest}
+                      onChange={(e) => change('interest', e.target.value)}
+                    >
+                      <option value="">{t('Select a topic', 'ஒரு தலைப்பை தேர்வு செய்யுங்கள்', lang)}</option>
+                      {INTERESTS.map((i) => (
+                        <option key={i} value={i}>{i}</option>
+                      ))}
+                    </select>
+                  </div>
 
-                {status === 'error' ? (
-                  <p className="form-note" role="alert">
-                    Please correct the highlighted fields before sending your request.
-                  </p>
-                ) : null}
-              </form>
+                  <div style={{ display: 'grid', gap: '6px' }}>
+                    <label className="form-label" htmlFor="c-message">
+                      {t('Message *', 'செய்தி *', lang)}
+                    </label>
+                    <textarea
+                      id="c-message"
+                      className="form-input"
+                      rows={4}
+                      placeholder={t('How can we help?', 'நாங்கள் எவ்வாறு உதவலாம்?', lang)}
+                      value={form.message}
+                      onChange={(e) => change('message', e.target.value)}
+                    />
+                    {errors.message && <span style={{ color: 'var(--primary)', fontSize: '0.8rem' }}>{errors.message}</span>}
+                  </div>
+
+                  <button
+                    id="contact-form-submit-btn"
+                    type="submit"
+                    className="premium-button primary"
+                    style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
+                  >
+                    <Send size={16} /> {t('Send Message', 'செய்தி அனுப்பு', lang)}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
       </section>
-
-      <ProcessRail data={contactPage.contactProcess} />
-      <FAQSection eyebrow="Support" title="Frequently asked questions" items={contactPage.faqs} />
-      <CTASection data={closingCta} />
-    </>
+    </div>
   );
 }

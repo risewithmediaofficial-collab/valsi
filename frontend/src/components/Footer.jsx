@@ -1,42 +1,46 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
-import logo from '../assets/logo.png';
+import logo from '../assets/Valsii Official LOGO.png';
 import { siteConfig } from '../data/siteContent';
 
 const navigationColumns = [
   {
-    title: 'Ecosystem',
+    title: 'VALSII LLP',
     items: [
-      { label: 'Home', to: '/' },
-      { label: 'About Valsii', to: '/about' },
-      { label: 'Core Systems', to: '/core-systems' },
-      { label: 'Contact', to: '/contact' },
+      { label: 'Home',       to: '/' },
+      { label: 'About Us',   to: '/about' },
+      { label: 'Programs',   to: '/programs' },
+      { label: 'Events',     to: '/events' },
+      { label: 'Contact Us', to: '/contact' },
     ],
   },
   {
-    title: 'Platforms',
+    title: 'Green VALSII',
     items: [
-      { label: 'SkillNet Mastery', to: '/skillnet-mastery' },
-      { label: 'Farm-to-Home', href: '/farm-to-home', newTab: true },
-      { label: 'Join SkillNet', href: siteConfig.whatsappSkillNetUrl, newTab: true },
-      { label: 'Talk to Valsii', href: siteConfig.whatsappGeneralUrl, newTab: true },
+      { label: 'Shop Catalog',  href: '/products', newTab: true },
+      { label: 'Why Natural',   href: '/why-natural', newTab: true },
+      { label: 'Our Farmers',   href: '/our-farmers', newTab: true },
+      { label: 'Healthy Recipes', href: '/recipes', newTab: true },
     ],
   },
 ];
 
 const quickConnectItems = [
-  { label: 'Email Valsii', href: `mailto:${siteConfig.email}`, icon: Mail },
-  { label: 'WhatsApp Valsii', href: siteConfig.whatsappGeneralUrl, icon: MessageCircle, newTab: true },
-  { label: 'Call Valsii', href: `tel:${siteConfig.phoneDigits}`, icon: Phone },
+  { label: 'Email VALSII',     href: `mailto:${siteConfig.email}`,     icon: Mail },
+  { label: 'WhatsApp VALSII',  href: siteConfig.whatsappGeneralUrl,    icon: MessageCircle, newTab: true },
+  { label: 'Call VALSII',      href: `tel:${siteConfig.phoneDigits}`,  icon: Phone },
 ];
 
 function FooterItem({ item }) {
   if (item.to) {
     return <Link to={item.to}>{item.label}</Link>;
   }
-
   return (
-    <a href={item.href} target={item.newTab ? '_blank' : undefined} rel={item.newTab ? 'noreferrer' : undefined}>
+    <a
+      href={item.href}
+      target={item.newTab ? '_blank' : undefined}
+      rel={item.newTab ? 'noreferrer' : undefined}
+    >
       {item.label}
     </a>
   );
@@ -47,53 +51,41 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="section-inner">
         <div className="footer-shell">
-          <span className="footer-ambient-wordmark" aria-hidden="true">
-            VALSII ECOSYSTEM
-          </span>
-
           <div className="footer-grid">
+            {/* Brand Column */}
             <div className="footer-story">
-              <Link className="footer-brand-lockup" to="/">
+              <Link className="footer-brand-lockup" to="/" aria-label="VALSII LLP Home">
                 <span className="footer-logo-shell">
-                  <img src={logo} alt="Valsii LLP logo" />
+                  <img src={logo} alt="VALSII LLP logo" style={{ objectFit: 'contain' }} />
                 </span>
-
                 <span className="footer-brand-mark">
                   <span className="footer-brand-name">VALSII LLP</span>
-                  <span className="footer-brand-subtitle">Premium ecosystem company</span>
+                  <span className="footer-brand-subtitle">- LEARN · GROW · LEAD -</span>
                 </span>
               </Link>
 
-              <div className="footer-story-copy">
-                <span className="footer-kicker">Future-ready ecosystems</span>
-                <h2>Building future-ready leadership and healthier living ecosystems for the next generation.</h2>
-                <p>
-                  SkillNet Mastery leads the active flagship experience today, while Farm-to-Home extends
-                  the Valsii vision into healthier living, family trust, and long-term brand scale.
-                </p>
-              </div>
+              <p style={{ marginTop: '12px', fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--text-muted)' }}>
+                Empowering individuals through practical learning, confidence, leadership development, and life skills training.
+              </p>
 
-              <div className="footer-contact-stack">
+              <div className="footer-contact-stack" style={{ marginTop: '16px' }}>
                 <a href={`mailto:${siteConfig.email}`}>
-                  <Mail size={16} />
+                  <Mail size={15} />
                   <span>{siteConfig.email}</span>
                 </a>
-
                 <a href={`tel:${siteConfig.phoneDigits}`}>
-                  <Phone size={16} />
+                  <Phone size={15} />
                   <span>{siteConfig.phone}</span>
                 </a>
-
-                <Link to="/contact">
-                  <MapPin size={16} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                  <MapPin size={15} />
                   <span>{siteConfig.founderLocation}</span>
-                </Link>
+                </div>
               </div>
 
-              <div className="footer-connect-icons" aria-label="Quick connect">
+              <div className="footer-connect-icons" aria-label="Quick connect" style={{ marginTop: '16px' }}>
                 {quickConnectItems.map((item) => {
                   const Icon = item.icon;
-
                   return (
                     <a
                       key={item.label}
@@ -110,6 +102,7 @@ export default function Footer() {
               </div>
             </div>
 
+            {/* Nav Columns */}
             {navigationColumns.map((column) => (
               <div className="footer-nav-column" key={column.title}>
                 <h3>{column.title}</h3>
@@ -121,36 +114,41 @@ export default function Footer() {
               </div>
             ))}
 
+            {/* CTA Panel */}
             <div className="footer-cta-panel">
-              <h3>Connect</h3>
-              <p className="footer-cta-title">Enter the flagship. Stay close to what comes next.</p>
-              <p className="footer-cta-copy">
-                Choose your starting point and move into the right Valsii journey with clarity, calm,
-                and premium support.
+              <h3>Join Our Journey</h3>
+              <p className="footer-cta-title">
+                Enroll in Inner Power Training or explore Green VALSII organic farm products.
               </p>
 
               <div className="footer-cta-actions">
-                <a className="premium-button primary footer-cta-button" href={siteConfig.whatsappSkillNetUrl} target="_blank" rel="noreferrer">
-                  <span>Join SkillNet</span>
-                  <ArrowUpRight size={16} />
-                </a>
+                <Link
+                  to="/register"
+                  id="footer-join-now-btn"
+                  className="footer-cta-button primary"
+                >
+                  <span>Register Now</span>
+                  <ArrowUpRight size={15} />
+                </Link>
 
-                <a className="premium-button secondary footer-cta-button" href="/farm-to-home" target="_blank" rel="noreferrer">
-                  <span>Explore FTH</span>
-                  <ArrowUpRight size={16} />
+                <a
+                  href="/products"
+                  id="footer-login-btn"
+                  className="footer-cta-button secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>Green VALSII</span>
+                  <ArrowUpRight size={15} />
                 </a>
-              </div>
-
-              <div className="footer-cta-notes">
-                <span>Flagship platform: SkillNet Mastery</span>
-                <span>Expansion horizon: Farm-to-Home</span>
               </div>
             </div>
           </div>
 
-          <div className="footer-bottom">
-            <p>Copyright {new Date().getFullYear()} Valsii LLP. All rights reserved.</p>
-            <span className="footer-bottom-tagline">One ecosystem. Distinct premium journeys.</span>
+          {/* Footer Bottom */}
+          <div className="footer-bottom" style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+            <p>© {new Date().getFullYear()} VALSII LLP. All rights reserved. | Developed with RisewithMedia</p>
+            <span className="footer-bottom-tagline">Learn. Grow. Lead. Inspired by Tamil Heritage, Built for the Future.</span>
           </div>
         </div>
       </div>

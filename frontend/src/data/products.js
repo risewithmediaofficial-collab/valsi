@@ -1,0 +1,177 @@
+import { images } from './siteContent';
+
+export const products = [
+  // 🌾 RICE
+  {
+    id: 'p1',
+    name: 'Traditional Mapillai Samba Rice',
+    nameTa: 'மாப்பிள்ளை சம்பா அரிசி',
+    category: 'rice',
+    categoryTa: 'அரிசி',
+    price: 95,
+    weight: '1 kg',
+    weightNumeric: 1.0,
+    rating: 5,
+    image: images.rice,
+    description: 'Traditional red rice variety of Tamil Nadu. High in iron, zinc, and fiber. Promotes stamina and digestive health.',
+    descriptionTa: 'தமிழ்நாட்டின் பாரம்பரிய சிவப்பு அரிசி வகை. இரும்பு, துத்தநாகம் மற்றும் நார்ச்சத்து நிறைந்தது. உடல் வலிமையையும் செரிமானத்தையும் மேம்படுத்துகிறது.',
+    benefits: ['Rich in antioxidants', 'Builds immunity', 'Low glycemic index'],
+    ingredients: ['100% Organic Mapillai Samba Red Rice'],
+    nutrition: { carbs: '76g', protein: '7.8g', fat: '1.2g', energy: '350 kcal' },
+    storage: 'Store in a cool, dry place inside an airtight container.'
+  },
+  {
+    id: 'p2',
+    name: 'Organic Karuppu Kavuni Rice',
+    nameTa: 'கருப்பு கவுனி அரிசி',
+    category: 'rice',
+    categoryTa: 'அரிசி',
+    price: 180,
+    weight: '1 kg',
+    weightNumeric: 1.0,
+    rating: 5,
+    image: images.rice,
+    description: 'Ancient black rice known for its deep purple color and high nutrient density. Rich in anthocyanins.',
+    descriptionTa: 'ஆரோக்கியமான ஊட்டச்சத்துக்கள் மற்றும் ஆன்டிஆக்ஸிடன்ட்கள் நிறைந்த பாரம்பரிய கருப்பு அரிசி வகை.',
+    benefits: ['High in anthocyanin antioxidants', 'Supports weight management', 'Good for heart health'],
+    ingredients: ['100% Organic Black Kavuni Rice'],
+    nutrition: { carbs: '72g', protein: '8.5g', fat: '2.0g', energy: '340 kcal' },
+    storage: 'Store in an airtight jar in a cool place.'
+  },
+  
+  // 🌿 MILLETS
+  {
+    id: 'p3',
+    name: 'Sprouted Thinai (Foxtail Millet)',
+    nameTa: 'முளைகட்டிய தினை',
+    category: 'millets',
+    categoryTa: 'சிறுதானியங்கள்',
+    price: 80,
+    weight: '500 g',
+    weightNumeric: 0.5,
+    rating: 5,
+    image: images.grains,
+    description: 'Foxtail millet is rich in dietary fiber and protein, making it excellent for blood sugar management.',
+    descriptionTa: 'நார்ப்பொருள் மற்றும் புரதம் நிறைந்த தினை. சர்க்கரை அளவை கட்டுப்படுத்த உதவுகிறது.',
+    benefits: ['Excellent for diabetes', 'Gluten-free grains', 'Rich in dietary fiber'],
+    ingredients: ['Sprouted Foxtail Millet'],
+    nutrition: { carbs: '60g', protein: '12g', fat: '4.3g', energy: '330 kcal' },
+    storage: 'Keep dry and store in an airtight container.'
+  },
+  {
+    id: 'p4',
+    name: 'Premium Pearl Millet (Kambu)',
+    nameTa: 'கம்பு',
+    category: 'millets',
+    categoryTa: 'சிறுதானியங்கள்',
+    price: 65,
+    weight: '1 kg',
+    weightNumeric: 1.0,
+    rating: 4.8,
+    image: images.grains,
+    description: 'Cooling pearl millet, highly traditional for making porridge (Kambu Koozh). Perfect for hot days.',
+    descriptionTa: 'பாரம்பரிய கம்பு கூழ் தயாரிக்க பயன்படும் சிறந்த சிறுதானிய உணவு.',
+    benefits: ['Naturally cooling agent', 'High in iron and magnesium', 'Easily digestible'],
+    ingredients: ['100% Pearl Millet'],
+    nutrition: { carbs: '67g', protein: '11g', fat: '4.2g', energy: '360 kcal' },
+    storage: 'Keep in dry conditions.'
+  },
+
+  // 🫒 COLD PRESSED OILS
+  {
+    id: 'p5',
+    name: 'Wood Pressed Sesame Oil (Nallennai)',
+    nameTa: 'மரச்செக்கு நல்லெண்ணெய்',
+    category: 'oils',
+    categoryTa: 'எண்ணெய்',
+    price: 280,
+    weight: '1 L',
+    weightNumeric: 0.9,
+    rating: 5,
+    image: images.oils,
+    description: 'Cold-pressed sesame oil extracted using traditional wooden pestle. Fully unrefined and nutrient-rich.',
+    descriptionTa: 'மரச்செக்கு மூலம் பாரம்பரியமாக பிழிந்தெடுக்கப்பட்ட சுத்தமான எள் எண்ணெய்.',
+    benefits: ['Great for skin and hair health', 'Rich in unsaturated fats', 'Authentic aroma and flavor'],
+    ingredients: ['Cold Pressed Sesame seeds', 'Organic Jaggery (used for processing)'],
+    nutrition: { carbs: '0g', protein: '0g', fat: '100g', energy: '900 kcal' },
+    storage: 'Store in a clean dark bottle away from direct sunlight.'
+  },
+  {
+    id: 'p6',
+    name: 'Wood Pressed Groundnut Oil',
+    nameTa: 'மரச்செக்கு கடலை எண்ணெய்',
+    category: 'oils',
+    categoryTa: 'எண்ணெய்',
+    price: 240,
+    weight: '1 L',
+    weightNumeric: 0.9,
+    rating: 4.9,
+    image: images.oils,
+    description: 'Pure cold-pressed groundnut oil, ideal for everyday cooking and deep frying. Rich flavor.',
+    descriptionTa: 'தினசரி சமையலுக்கு உகந்த மரச்செக்கு சுத்தமான கடலை எண்ணெய்.',
+    benefits: ['Zero cholesterol', 'Rich in Vitamin E', 'High smoke point'],
+    ingredients: ['Organic Groundnuts'],
+    nutrition: { carbs: '0g', protein: '0g', fat: '100g', energy: '884 kcal' },
+    storage: 'Keep in dry cupboard.'
+  },
+
+  // 🥬 VEGETABLES
+  {
+    id: 'p7',
+    name: 'Fresh Farm Spinach Combo',
+    nameTa: 'கீரை வகைகள்',
+    category: 'vegetables',
+    categoryTa: 'காய்கறிகள்',
+    price: 40,
+    weight: '1 Bunch',
+    weightNumeric: 0.3,
+    rating: 4.8,
+    image: images.vegetables,
+    description: 'Fresh organic greens harvested early morning and delivered straight to your home.',
+    descriptionTa: 'அதிகாலையில் பண்ணையிலிருந்து நேரடியாக பறிக்கப்பட்ட புதிய கீரை கட்டுகள்.',
+    benefits: ['Rich in iron', 'Loaded with vitamins A and C', 'Extremely fresh and chemical-free'],
+    ingredients: ['Fresh Organic Spinach (Palak/Sirukeerai)'],
+    nutrition: { carbs: '3.6g', protein: '2.9g', fat: '0.4g', energy: '23 kcal' },
+    storage: 'Keep refrigerated and consume within 2 days.'
+  },
+
+  // 🌶️ SPICES
+  {
+    id: 'p8',
+    name: 'Pure Turmeric Powder (Viral Manjal)',
+    nameTa: 'சுத்தமான மஞ்சள் தூள்',
+    category: 'spices',
+    categoryTa: 'மசாலாக்கள்',
+    price: 70,
+    weight: '250 g',
+    weightNumeric: 0.25,
+    rating: 5,
+    image: images.spices,
+    description: 'High curcumin turmeric powder made from selected traditional turmeric fingers.',
+    descriptionTa: 'உயர்ந்த குர்குமின் கொண்ட பாரம்பரிய விரலி மஞ்சள் தூள்.',
+    benefits: ['Natural anti-inflammatory properties', 'Strong antiseptic agent', 'No artificial colors added'],
+    ingredients: ['100% Ground Turmeric Root'],
+    nutrition: { carbs: '65g', protein: '8g', fat: '10g', energy: '354 kcal' },
+    storage: 'Store in dry airtight container.'
+  },
+
+  // 🍯 NATURAL PRODUCTS
+  {
+    id: 'p9',
+    name: 'Organic Raw Forest Honey',
+    nameTa: 'சுத்தமான மலைத்தேன்',
+    category: 'natural',
+    categoryTa: 'இயற்கை பொருட்கள்',
+    price: 195,
+    weight: '250 g',
+    weightNumeric: 0.25,
+    rating: 5,
+    image: images.produce,
+    description: 'Raw, unfiltered forest honey sourced responsibly from local beehives. Pure wellness.',
+    descriptionTa: 'பண்ணைகளில் இருந்து இயற்கையாக சேகரிக்கப்பட்ட சுத்தமான மலைத்தேன்.',
+    benefits: ['Natural energy booster', 'Soothes cough and throat', 'Rich in natural enzymes'],
+    ingredients: ['100% Pure Raw Honey'],
+    nutrition: { carbs: '82g', protein: '0.3g', fat: '0g', energy: '304 kcal' },
+    storage: 'Do not refrigerate. Honey naturally crystallizes.'
+  }
+];
