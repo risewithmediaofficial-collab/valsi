@@ -113,8 +113,7 @@ export default function OurFarmers() {
         </div>
 
         {/* Partner Form Section */}
-        <div className="gsap-fade lr-grid" style={{
-          padding: '40px',
+        <div className="gsap-fade lr-grid partner-form-card" style={{
           backgroundColor: 'var(--bg-soft)',
           border: '1.5px solid var(--stroke)',
           borderRadius: 'var(--radius-lg)',

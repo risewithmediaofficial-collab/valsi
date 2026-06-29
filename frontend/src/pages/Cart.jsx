@@ -40,11 +40,7 @@ export default function Cart() {
           {t('Shopping Cart', 'உணவுக் கூடை', lang)}
         </h1>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '32px',
-        }} className="lr-grid">
+        <div className="lr-grid" style={{ alignItems: 'start', gap: '32px', borderBottom: 'none', padding: '0' }}>
           {/* Left Column: Cart Items List */}
           <div>
             <div style={{ display: 'grid', gap: '20px' }}>

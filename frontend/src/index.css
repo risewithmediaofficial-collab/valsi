@@ -48,8 +48,8 @@
   --radius-pill:   999px;
 
   /* Typography */
-  --font-heading:  'Outfit', sans-serif;
-  --font-body:     'Outfit', sans-serif;
+  --font-heading:  'Outfit', 'Noto Sans Tamil', sans-serif;
+  --font-body:     'Outfit', 'Noto Sans Tamil', sans-serif;
   --font-tamil:    'Noto Sans Tamil', sans-serif;
 
   /* Layout */
@@ -273,6 +273,83 @@ textarea { resize: vertical; }
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.desktop-cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 150ms ease;
+}
+
+.desktop-cart-btn:hover {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--secondary);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: bold;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.mobile-header-actions {
+  display: none;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--stroke);
+  background: var(--bg-soft);
+  color: var(--text);
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.mobile-cart-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.cart-badge-mobile {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background: var(--secondary);
+  color: white;
+  font-size: 0.68rem;
+  font-weight: bold;
+  border-radius: 50%;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 /* Language Toggle */
@@ -1983,6 +2060,10 @@ textarea { resize: vertical; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .desktop-nav, .desktop-actions { display: none !important; }
+  .mobile-header-actions { display: flex; }
+  .mobile-menu-button { display: flex; }
+
   .meaning-grid { grid-template-columns: 1fr; gap: 40px; }
   .founder-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1991,8 +2072,6 @@ textarea { resize: vertical; }
 }
 
 @media (max-width: 768px) {
-  .desktop-nav, .desktop-actions { display: none; }
-  .mobile-menu-button { display: flex; }
 
   .section-shell { padding: 64px 0; }
   .ipt-hero-content { padding: 90px 0 60px; }
@@ -2020,6 +2099,9 @@ textarea { resize: vertical; }
 
 @media (max-width: 480px) {
   :root { --site-width: calc(100vw - 24px); }
+  .brand-mark-bottom { display: none !important; }
+  .brand-mark-top { font-size: 1.05rem; }
+  
   .audience-list { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .hero-carousel { height: min(60vh, 400px); }
@@ -2075,6 +2157,15 @@ textarea { resize: vertical; }
 @media (max-width: 700px) {
   .lr-grid { grid-template-columns: 1fr; gap: 20px; }
   .lr-grid.reverse { direction: ltr; }
+}
+
+.partner-form-card {
+  padding: 48px;
+}
+@media (max-width: 768px) {
+  .partner-form-card {
+    padding: 24px 16px;
+  }
 }
 
 /* ── Section label line ──────────────────────────────────────── */

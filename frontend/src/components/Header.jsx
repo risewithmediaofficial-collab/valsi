@@ -134,46 +134,19 @@ export default function Header() {
         </nav>
 
         {/* Desktop Right Actions */}
-        <div className="desktop-actions" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="desktop-actions">
           <LanguageToggle />
 
           {/* Cart Icon Link */}
           <Link
             to="/cart"
             id="cart-icon-btn"
-            style={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--text)',
-              padding: '8px',
-              borderRadius: '50%',
-              transition: 'background-color 150ms ease',
-            }}
+            className="desktop-cart-btn"
             aria-label="View Shopping Cart"
           >
             <ShoppingCart size={22} />
             {cartTotalCount > 0 && (
-              <span
-                style={{
-                  position: 'absolute',
-                  top: '-4px',
-                  right: '-4px',
-                  background: 'var(--secondary)',
-                  color: 'white',
-                  fontSize: '0.72rem',
-                  fontWeight: 'bold',
-                  borderRadius: '50%',
-                  minWidth: '18px',
-                  height: '18px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '0 4px',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
-                }}
-              >
+              <span className="cart-badge">
                 {cartTotalCount}
               </span>
             )}
@@ -193,16 +166,33 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          type="button"
-          className="mobile-menu-button"
-          aria-expanded={open}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((c) => !c)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Header Actions */}
+        <div className="mobile-header-actions">
+          {/* Mobile Cart Button */}
+          <Link
+            to="/cart"
+            className="mobile-cart-btn"
+            aria-label="View Shopping Cart"
+          >
+            <ShoppingCart size={20} />
+            {cartTotalCount > 0 && (
+              <span className="cart-badge-mobile">
+                {cartTotalCount}
+              </span>
+            )}
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            className="mobile-menu-button"
+            aria-expanded={open}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((c) => !c)}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Panel */}

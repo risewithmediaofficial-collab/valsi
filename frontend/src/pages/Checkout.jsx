@@ -68,11 +68,7 @@ export default function Checkout() {
           {t('Checkout Details', 'ஆர்டர் முகவரி', lang)}
         </h1>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '32px',
-        }} className="lr-grid">
+        <div className="lr-grid" style={{ alignItems: 'start', gap: '32px', borderBottom: 'none', padding: '0' }}>
           {/* Left Column: Form */}
           <div>
             <form onSubmit={handleOrderSubmit} style={{ display: 'grid', gap: '20px' }}>

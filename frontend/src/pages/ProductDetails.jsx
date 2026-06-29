@@ -77,12 +77,7 @@ export default function ProductDetails() {
         </button>
 
         {/* Product Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: '40px',
-          marginBottom: '60px',
-        }} className="lr-grid">
+        <div className="lr-grid" style={{ gap: '40px', marginBottom: '60px', borderBottom: 'none', padding: '0' }}>
           {/* Left Column: Image */}
           <div className="gsap-detail" style={{
             position: 'relative',
