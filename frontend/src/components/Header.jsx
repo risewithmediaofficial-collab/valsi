@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { Menu, X, User, ShoppingCart } from 'lucide-react';
+import { Link, NavLink } from 'react-router-dom';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { useLang, LANGUAGES } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
-import { siteConfig } from '../data/siteContent';
 import logo from '../assets/Valsii Official LOGO.png';
 
 const navItems = [
@@ -84,7 +83,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { lang } = useLang();
   const { cartTotalCount } = useCart();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);

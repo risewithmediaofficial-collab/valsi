@@ -146,15 +146,6 @@ export function CoreDirectivesSection() {
       snippetTa: 'ஒவ்வொருவரும் தங்களுடைய முழுமையான திறனை உணர்ந்து வழிநடத்த...',
       fullEn: 'To become a trusted learning ecosystem that inspires individuals to unlock their potential, lead with integrity, embrace lifelong learning, and contribute to a better future.',
       fullTa: 'ஒவ்வொருவரும் தங்களுடைய முழுமையான திறனை உணர்ந்து, நேர்மையுடன் தலைமைத்துவம் மேற்கொண்டு, வாழ்நாள் முழுவதும் கற்றுக்கொண்டு, சிறந்த எதிர்காலத்தை உருவாக்குவதே எங்கள் பார்வையாகும்.'
-    },
-    {
-      id: 'why-valsii',
-      title: 'Why VALSII?',
-      titleTa: 'ஏன் வல்சி?',
-      snippet: 'Inspired by the ancient Tamil word meaning "food for life"...',
-      snippetTa: '"வாழ்க்கைக்கான உணவு" என்ற ஆழமான பொருளை கொண்டுள்ளது...',
-      fullEn: "The name VALSII is inspired by the ancient Tamil word 'Valsii,' meaning 'food for life.' We believe that knowledge, practical skills, confidence, leadership, and values are the true nourishment that empowers individuals to grow, succeed, and lead with purpose.",
-      fullTa: "ஏன் வல்சி? 'வல்சி' என்ற தமிழ்ச் சொல் 'வாழ்க்கைக்கான உணவு' என்ற ஆழமான பொருளை கொண்டுள்ளது. உடலுக்கு உணவு எவ்வளவு அவசியமோ, அதேபோல் அறிவு, திறன், தன்னம்பிக்கை, தலைமைத்துவம் மற்றும் நல்ல மதிப்புகளும் மனித வாழ்வை வளப்படுத்தும் அடிப்படை ஆற்றல்கள் என்று நாங்கள் நாங்கள் நம்புகிறோம்."
     }
   ];
 
@@ -168,24 +159,30 @@ export function CoreDirectivesSection() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gap: '40px' }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '40px',
+          marginBottom: '20px'
+        }}>
           {items.map((item, i) => (
-            <div key={item.id} className="lr-grid" style={{
-              alignItems: 'start',
-              borderBottom: i < items.length - 1 ? '1px solid var(--divider)' : 'none',
-              paddingBottom: '32px'
+            <div key={item.id} className="gsap-reveal" style={{
+              borderRadius: 'var(--radius-md)',
+              padding: '32px',
+              border: '1.5px solid var(--stroke)',
+              backgroundColor: 'var(--bg)'
             }}>
-              {/* Left Panel - Section title */}
-              <div className="gsap-reveal">
-                <span style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--primary)', opacity: 0.2, fontFamily: 'var(--font-heading)', display: 'block', lineHeight: 1 }}>
+              {/* Section title */}
+              <div style={{ marginBottom: '20px' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--primary)', opacity: 0.2, fontFamily: 'var(--font-heading)', display: 'block', lineHeight: 1 }}>
                   0{i + 1}
                 </span>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 900, color: 'var(--text)', margin: '4px 0 0 0' }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: 'var(--text)', margin: '8px 0 0 0' }}>
                   {lang === LANGUAGES.TA ? item.titleTa : item.title}
                 </h3>
               </div>
 
-              {/* Right Panel - Snippet with Expandable Content */}
+              {/* Snippet with Expandable Content */}
               <div>
                 <ExpandBlock
                   summary={lang === LANGUAGES.TA ? item.snippetTa : item.snippet}

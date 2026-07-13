@@ -117,16 +117,8 @@ export default function Programs() {
 
   const benefitsItems = [
     {
-      title: t('Confidence', 'தன்னம்பிக்கை', lang),
-      desc: t('Develop unwavering self-belief to face any challenge.', 'எந்தவொரு சவாலையும் எதிர்கொள்ள உறுதியான சுயநம்பிக்கையை வளர்த்துக் கொள்ளுங்கள்.', lang)
-    },
-    {
       title: t('Leadership', 'தலைமைத்துவம்', lang),
       desc: t('Inspire and guide others with integrity and responsibility.', 'பொறுப்புணர்வு மற்றும் நேர்மையுடன் மற்றவர்களை வழிநடத்துங்கள்.', lang)
-    },
-    {
-      title: t('Communication', 'தொடர்பாடல்', lang),
-      desc: t('Express your ideas clearly, concisely, and persuasively.', 'உங்கள் கருத்துக்களை தெளிவாகவும் சுருக்கமாகவும் வெளிப்படுத்துங்கள்.', lang)
     },
     {
       title: t('Fear Management', 'அச்ச மேலாண்மை', lang),
@@ -135,14 +127,6 @@ export default function Programs() {
     {
       title: t('Mobile Addiction Recovery', 'கைப்பேசி அடிமைத்தன மீட்பு', lang),
       desc: t('Reclaim your time from social media distractions.', 'சமூக ஊடக கவனச்சிதறல்களிலிருந்து உங்கள் நேரத்தை மீட்டெடுங்கள்.', lang)
-    },
-    {
-      title: t('Time Management', 'நேர மேலாண்மை', lang),
-      desc: t('Prioritize tasks, avoid procrastination, and double productivity.', 'பணிகளுக்கு முன்னுரிமை அளித்து, நேரத்தை சரியாக நிர்வகியுங்கள்.', lang)
-    },
-    {
-      title: t('Money Mindset', 'பண மனநிலை', lang),
-      desc: t('Build healthy wealth-creation habits and financial literacy.', 'ஆரோக்கியமான செல்வ உருவாக்க பழக்கங்களையும் நிதி அறிவையும் உருவாக்குங்கள்.', lang)
     }
   ];
 
@@ -173,19 +157,9 @@ export default function Programs() {
       desc: t('Adopt scheduling tools, priority maps, and daily setups.', 'நேர திட்டமிடல் கருவிகள் மற்றும் முன்னுரிமை வரைபடங்களை அமையுங்கள்.', lang)
     },
     {
-      num: '06',
-      title: t('Money Mindset', 'பண மனநிலை', lang),
-      desc: t('Acquire wealth-building principles and budget management.', 'செல்வ மேலாண்மை மற்றும் வரவுசெலவு திட்டத்தைப் புரிந்து கொள்ளுங்கள்.', lang)
-    },
-    {
       num: '07',
       title: t('Emotional Intelligence', 'உணர்ச்சிசார் நுண்ணறிவு', lang),
       desc: t('Regulate stress, handle feedback, and build empathy.', 'மன அழுத்தத்தைக் கட்டுப்படுத்தி, மற்றவர்களிடம் அனுதாபம் கொள்ளுங்கள்.', lang)
-    },
-    {
-      num: '08',
-      title: t('Personal Growth', 'தனிநபர் வளர்ச்சி', lang),
-      desc: t('Plan long-term goals and execute daily self-improvement.', 'நீண்ட கால இலக்குகளைத் திட்டமிட்டு, தினசரி உங்களை மேம்படுத்துங்கள்.', lang)
     }
   ];
 
@@ -246,7 +220,7 @@ export default function Programs() {
               {t('Join Now', 'இப்போதே சேருங்கள்', lang)}
             </button>
             <button onClick={handleLogin} className="premium-button ghost" style={{ borderColor: 'white', color: 'white', padding: '0.85rem 2rem' }}>
-              {t('Student Login', 'மாணவர் உள்நுழைவு', lang)}
+              {t('Login', 'உள்நுழைவு', lang)}
             </button>
           </div>
         </div>
@@ -277,7 +251,7 @@ export default function Programs() {
               {/* CTAs */}
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button onClick={handleJoinNow} className="premium-button primary compact">{t('Join Now', 'இப்போதே சேருங்கள்', lang)}</button>
-                <button onClick={handleLogin} className="premium-button ghost compact">{t('Student Login', 'மாணவர் உள்நுழைவு', lang)}</button>
+                <button onClick={handleLogin} className="premium-button ghost compact">{t('Login', 'உள்நுழைவு', lang)}</button>
               </div>
             </div>
           </div>
@@ -319,7 +293,7 @@ export default function Programs() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <button onClick={handleJoinNow} className="premium-button primary compact">{t('Join Now', 'இப்போதே சேருங்கள்', lang)}</button>
-            <button onClick={handleLogin} className="premium-button ghost compact">{t('Student Login', 'மாணவர் உள்நுழைவு', lang)}</button>
+            <button onClick={handleLogin} className="premium-button ghost compact">{t('Login', 'உள்நுழைவு', lang)}</button>
           </div>
         </div>
       </section>
@@ -354,7 +328,7 @@ export default function Programs() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <button onClick={handleJoinNow} className="premium-button primary compact">{t('Join Now', 'இப்போதே சேருங்கள்', lang)}</button>
-            <button onClick={handleLogin} className="premium-button ghost compact">{t('Student Login', 'மாணவர் உள்நுழைவு', lang)}</button>
+            <button onClick={handleLogin} className="premium-button ghost compact">{t('Login', 'உள்நுழைவு', lang)}</button>
           </div>
         </div>
       </section>
@@ -481,7 +455,7 @@ export default function Programs() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <button onClick={handleJoinNow} className="premium-button primary compact">{t('Join Now', 'இப்போதே சேருங்கள்', lang)}</button>
-            <button onClick={handleLogin} className="premium-button ghost compact">{t('Student Login', 'மாணவர் உள்நுழைவு', lang)}</button>
+            <button onClick={handleLogin} className="premium-button ghost compact">{t('Login', 'உள்நுழைவு', lang)}</button>
           </div>
         </div>
       </section>
@@ -536,7 +510,7 @@ export default function Programs() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <button onClick={handleJoinNow} className="premium-button primary compact">{t('Join Now', 'இப்போதே சேருங்கள்', lang)}</button>
-            <button onClick={handleLogin} className="premium-button ghost compact">{t('Student Login', 'மாணவர் உள்நுழைவு', lang)}</button>
+            <button onClick={handleLogin} className="premium-button ghost compact">{t('Login', 'உள்நுழைவு', lang)}</button>
           </div>
         </div>
       </section>
