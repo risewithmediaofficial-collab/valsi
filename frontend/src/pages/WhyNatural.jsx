@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { ShieldAlert, Sparkles, HeartPulse, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';

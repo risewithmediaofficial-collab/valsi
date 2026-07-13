@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { CreditCard, Truck, ArrowLeft, CheckCircle } from 'lucide-react';
 

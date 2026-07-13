@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { useCart } from '../context/CartContext';
 import { products } from '../data/products';
 import { ShoppingCart, Star, ArrowLeft, ShieldCheck, Truck, RefreshCw } from 'lucide-react';

@@ -1,5 +1,5 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { CheckCircle, Truck, Package, ShoppingBag, MapPin } from 'lucide-react';
 import { useEffect } from 'react';
 

@@ -1,5 +1,5 @@
 import { useCart } from '../context/CartContext';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Trash2, ShoppingBag, ArrowLeft, Truck, Weight } from 'lucide-react';
 import { useEffect } from 'react';

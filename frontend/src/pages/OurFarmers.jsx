@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLang, t } from '../context/LanguageContext';
+import { useLang, t, LANGUAGES } from '../context/LanguageContext';
 import { siteConfig, images } from '../data/siteContent';
 import { CheckCircle2, Star, UserCheck } from 'lucide-react';
 import gsap from 'gsap';
