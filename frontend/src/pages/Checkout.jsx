@@ -130,7 +130,7 @@ export default function Checkout() {
               {/* Payment Method Selector */}
               <div>
                 <label className="form-label" style={{ marginBottom: '10px', display: 'block' }}>{t('Payment Method', 'பணம் செலுத்தும் முறை', lang)}</label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth > 640 ? '1fr 1fr' : '1fr', gap: '12px' }}>
                   {/* COD */}
                   <label
                     style={{

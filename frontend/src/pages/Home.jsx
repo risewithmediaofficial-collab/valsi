@@ -32,9 +32,9 @@ export default function Home() {
       {/* SECTION 1: HERO WITH CAROUSEL AND MEANING */}
       <section className="gsap-section" style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: window.innerWidth > 768 ? '1fr 1fr' : '1fr',
         gap: '0',
-        minHeight: 'min(65vh, 500px)',
+        minHeight: window.innerWidth > 768 ? 'min(65vh, 500px)' : 'auto',
         alignItems: 'stretch'
       }}>
         {/* Left: Carousel */}

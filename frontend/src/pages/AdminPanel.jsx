@@ -37,7 +37,7 @@ export default function AdminPanel() {
             🔒 This admin route is a front-end scaffold. Connect authentication and API.
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
             {[
               { label: 'Registrations', value: '0', icon: '📋' },
               { label: 'Pending Approvals', value: '0', icon: '⏳' },

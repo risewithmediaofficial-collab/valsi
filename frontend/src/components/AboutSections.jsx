@@ -354,7 +354,7 @@ export function FounderMessageSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }} className="gsap-reveal">
             <div style={{
               width: '100%',
-              maxWidth: '300px',
+              maxWidth: 'clamp(200px, 60vw, 320px)',
               aspectRatio: '4/5',
               overflow: 'hidden',
               borderRadius: 'var(--radius-sm)',
@@ -373,11 +373,11 @@ export function FounderMessageSection() {
                 }}
               />
             </div>
-            <div style={{ textAlign: 'center', borderTop: '2px solid var(--primary)', paddingTop: '16px', width: '100%', maxWidth: '300px' }}>
-              <span style={{ display: 'block', fontSize: '1.15rem', fontWeight: 900, color: 'var(--text)', marginBottom: '4px' }}>
+            <div style={{ textAlign: 'center', borderTop: '2px solid var(--primary)', paddingTop: '16px', width: '100%', maxWidth: 'clamp(200px, 60vw, 320px)' }}>
+              <span style={{ display: 'block', fontSize: 'clamp(1rem, 1.8vw, 1.15rem)', fontWeight: 900, color: 'var(--text)', marginBottom: '4px' }}>
                 Ganeshan Mohan
               </span>
-              <span style={{ display: 'block', fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+              <span style={{ display: 'block', fontSize: 'clamp(0.7rem, 1.2vw, 0.82rem)', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'uppercase' }}>
                 {t('Founder & CEO, VALSII LLP', 'நிறுவனர் & தலைமை நிர்வாக அதிகாரி, VALSII LLP', lang)}
               </span>
             </div>

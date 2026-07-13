@@ -47,14 +47,15 @@ export default function Cart() {
               {cartItems.map((item) => (
                 <div
                   key={item.id}
+                  className="cart-item"
                   style={{
                     display: 'flex',
-                    alignItems: 'center',
+                    flexDirection: window.innerWidth < 640 ? 'column' : 'row',
+                    alignItems: window.innerWidth < 640 ? 'stretch' : 'center',
                     gap: '16px',
                     paddingBottom: '20px',
                     borderBottom: '1px solid var(--divider)',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap'
+                    justifyContent: 'space-between'
                   }}
                 >
                   {/* Image & Basic Details */}

@@ -208,7 +208,7 @@ export default function ProductDetails() {
             {/* Highlights Infobox */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
               gap: '16px',
               padding: '20px',
               backgroundColor: 'var(--bg-soft)',
